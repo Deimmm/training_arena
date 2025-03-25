@@ -1,0 +1,85 @@
+<root>
+    <scripts>
+        <include src="file://{resources}/layout/custom_game/shared/logger.js"/>
+        <include src="file://{resources}/layout/custom_game/shared/button.js"/>
+        <include src="file://{resources}/layout/custom_game/shared/page.js"/>
+        <include src="file://{resources}/layout/custom_game/menu/buttons/aim-nav-btn.js"/>
+        <include src="file://{resources}/layout/custom_game/menu/buttons/lasthit-nav-btn.js"/>
+        <include src="file://{resources}/layout/custom_game/menu/buttons/multitask-nav-btn.js"/>
+        <include src="file://{resources}/layout/custom_game/menu/buttons/spelldodge-nav-btn.js"/>
+        <include src="file://{resources}/layout/custom_game/menu/buttons/unitcontroll-nav-btn.js"/>
+        <include src="file://{resources}/layout/custom_game/pages/lasthit/options/lasthit_solo.js"/>
+        <include src="file://{resources}/layout/custom_game/pages/lasthit/options/lasthit_1v1.js"/>
+        <include src="file://{resources}/layout/custom_game/pages/lasthit/options/lasthit_2v2.js"/>
+        <include src="file://{resources}/layout/custom_game/pages/lasthit/lasthit.js"/>
+        <include src="file://{resources}/layout/custom_game/pages/aim/aim.js"/>
+        <include src="file://{resources}/layout/custom_game/pages/page_config.js"/>
+        <include src="file://{resources}/layout/custom_game/menu/menu_config.js"/>
+        <include src="file://{resources}/layout/custom_game/menu/menu.js"/>
+    </scripts>
+    <styles>
+        <include src="file://{resources}/layout/custom_game/menu/menu.css"/>
+    </styles>
+    <snippets>
+        <snippet name="ShowHideButton">
+            <Panel class="ShowHideButton" onactivate="$('#Menu')">
+                <Label class="ButtonText" id="ShowHide" text="HIDE"/>
+            </Panel>
+        </snippet>
+        <snippet name="NavButton">
+            <Panel class="ButtonContainer" >
+                <Label class="ButtonText" text="Placeholder"/>
+            </Panel>
+        </snippet>
+        <snippet name="Option">
+            <Panel class="Option">
+                <Label class="ButtonText" text="Placeholder"/>
+            </Panel>
+        </snippet>
+        <snippet name="LasthitPage">
+            <Panel class="PageContainer" id ="LasthitPage">
+                <Panel class="PageOptions" id ="PageOptions">
+                </Panel>
+                <Panel class="PageContent"  id ="PageContent">
+                </Panel>
+            </Panel>
+        </snippet>
+        <snippet name="Solo">
+            <Panel class="SelectedOptionContainer" id ="SoloOption">
+                <Label text="Solo works!"/>
+                <Panel class="LaunchButton" >
+                    <Label class="ButtonText" text="START"/>
+                </Panel>
+            </Panel>
+        </snippet>
+        <snippet name="1V1">
+            <Panel class="SelectedOptionContainer" id ="1V1Option">
+                <Label text="1v1 works!"/>
+                <Panel class="LaunchButton" onactivate="GameEvents.SendCustomGameEventToServer('game_launch.1v1', {playerId: Players.GetLocalPlayer()});$.Msg('SEND EVENT AHAHHA');    GameEvents.Subscribe('game_launch.1v1.success', (event) => {$.Msg('1v1.LAUNCH SUCCESS: ', event);$('#MenuContainer').visible=false});">
+                    <Label class="ButtonText" text="START"/>
+                </Panel>
+            </Panel>
+        </snippet>
+        <snippet name="2V2">
+            <Panel class="SelectedOptionContainer" id ="1V1Option" >
+                <Label text="2v2 works!"/>
+            </Panel>
+        </snippet>
+        <snippet name="AimPage">
+            <Panel class="PageContainer" id ="LasthitPage">
+                <Panel class="PageOptions" id ="PageOptions">
+                </Panel>
+                <Panel class="PageContent" id ="PageContent">
+                    <Label text="AimPage works!"/>
+                </Panel>
+            </Panel>
+        </snippet>
+    </snippets>
+    <Panel class="MenuRoot" >
+        <Panel class='MenuContainer' id="MenuContainer">
+            <Panel class='SideNav' id="SideNav"></Panel>
+            <Panel class="PageContentContainer" id="PageContainer"></Panel>
+        </Panel>
+        <Panel id="ShowHideBtn"></Panel>
+    </Panel>
+</root>

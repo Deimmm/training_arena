@@ -1,0 +1,2 @@
+class MultitaskNavButton extends ButtonComponent {
+}
