@@ -1,4 +1,5 @@
 import { Lasthit1V1 } from "./games/Lasthit1v1";
+import { reloadable } from "./lib/tstl-utils";
 
 declare global {
   interface CDOTAGameRules {
@@ -6,7 +7,7 @@ declare global {
   }
 }
 
-// @reloadable
+@reloadable
 export class GameMode {
   public static Precache(this: void, context: CScriptPrecacheContext) {
     PrecacheUnitByNameSync("npc_dota_hero_sniper", context);
