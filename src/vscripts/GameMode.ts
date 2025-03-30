@@ -76,6 +76,7 @@ export class GameMode {
     GameRules.SetStrategyTime(9999);
     GameRules.SetShowcaseTime(0);
     GameRules.SetPreGameTime(0);
+    GameRules.SetTimeOfDay(0);
 
     print("CONFIGUYRE END");
   }

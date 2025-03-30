@@ -1,4 +1,4 @@
-import { Sniper } from "../ai/Sniper";
+import { sniper_ai } from "../ai/Sniper";
 import { CreepSpawn } from "../units/creeps";
 
 export class Lasthit1V1 {
@@ -70,6 +70,6 @@ export class Lasthit1V1 {
       undefined,
       DotaTeam.BADGUYS,
     );
-    const sniper = new Sniper();
+    sniper_hero.AddNewModifier(undefined, undefined, sniper_ai.name, {});
   }
 }
