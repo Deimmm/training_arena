@@ -11,6 +11,8 @@ declare global {
 export class GameMode {
   public static Precache(this: void, context: CScriptPrecacheContext) {
     PrecacheUnitByNameSync("npc_dota_hero_sniper", context);
+
+    PrecacheResource("particle", "particles/msg_fx/msg_death.vpcf", context);
   }
 
   public static Activate(this: void) {

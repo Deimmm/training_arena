@@ -7,7 +7,14 @@ export class sniper_ai extends BaseModifier {
 
   OnCreated(params: any) {
     if (IsServer()) {
-      this.self = this.GetParent();
+      const ai = this.GetParent();
+      ai.SetPhysicalArmorBaseValue(99999);
+      ai.SetBaseHealthRegen(99999);
+      ai.SetBaseDamageMax(params.damage - 27);
+      ai.SetBaseDamageMin(params.damage - 27);
+      ai.SetAttackCapability(params.base_attack_time + 0.3);
+
+      this.self = ai;
       ExecuteOrderFromTable({
         UnitIndex: this.self.GetEntityIndex(),
         OrderType: UnitOrder.HOLD_POSITION,
@@ -42,6 +49,10 @@ export class sniper_ai extends BaseModifier {
         mvp = lasthitableCreeps[0];
         break;
       default:
+        ExecuteOrderFromTable({
+          UnitIndex: ai.GetEntityIndex(),
+          OrderType: UnitOrder.HOLD_POSITION,
+        });
         this.prepareAttack();
     }
 
@@ -60,32 +71,87 @@ export class sniper_ai extends BaseModifier {
     if (!ai) {
       return;
     }
-    const healthStep = ai.GetAverageTrueAttackDamage(undefined);
+    const attackInterval = ai.GetSecondsPerAttack(false);
 
-    const creeps = Entities.FindAllByClassname("npc_dota_creep_lane")
-      .filter((creep) => creep.IsAlive())
-      .sort((a, b) => a.GetHealth() - b.GetHealth());
-    const creepsByHP = creeps
-      .filter(
-        (creep) => creeps[0].GetHealth() + healthStep <= creep.GetHealth(),
-      )
-      .sort((a, b) => this.getCreepCost(b) - this.getCreepCost(a)); // Add Incoming DPS calculations in mvp predictions. creep1 250hp but 20 dps inc and creep2 300hp but 60dps. creep2 will be mvp
+    const creeps = Entities.FindAllByClassname("npc_dota_creep_lane").filter(
+      (creep) => creep.IsAlive(),
+    );
+    const nextMVPS = creeps.sort(
+      (a, b) => this.calculateTimeToMVP(a) - this.calculateTimeToMVP(b),
+    );
+    // print("NEXT MVPS: ", nextMVPS.length);
+    const treshold = this.calculateTimeToMVP(nextMVPS[0]) + attackInterval;
+    // print("TRESHOLD: ", treshold);
+    // print("0, TIME TO MVP: ", this.calculateTimeToMVP(nextMVPS[0])); // infinity because no creeps are hittinh him
+    const mvps = nextMVPS.filter(
+      (creep) => this.calculateTimeToMVP(creep) < treshold,
+    );
 
-    const mvp = creepsByHP[0];
+    let movePostion: Vector | null = null;
+    let AVector: Vector;
+    let BVector: Vector | null = null;
+    const optimalMax = this.optimal_attack_range + 50;
+    const optimalMin = this.optimal_attack_range - 50;
+    print("MVPS: ", mvps.length);
 
-    const distance_between = this.calculateDistance(mvp);
-    if (
-      distance_between &&
-      (distance_between > this.optimal_attack_range + 50 ||
-        distance_between < this.optimal_attack_range - 50)
-    ) {
-      const moveVector = Vector(); // Calculate Vector to move to stay in optimal attack range
-      ExecuteOrderFromTable({
-        UnitIndex: ai.GetEntityIndex(),
-        OrderType: UnitOrder.MOVE_TO_POSITION,
-        Position: moveVector,
-      });
+    switch (true) {
+      case mvps.length >= 1:
+        AVector = ai.GetAbsOrigin();
+        BVector = mvps[0].GetAbsOrigin();
+        const distance_between = this.calculateDistance(mvps[0]);
+        if (distance_between && distance_between > optimalMax) {
+          const length = distance_between - optimalMax;
+          movePostion = this.setVectorLenght(
+            (BVector - AVector) as Vector,
+            length,
+          );
+        }
+        if (distance_between && distance_between < optimalMin) {
+          movePostion = this.setVectorLenght(
+            (AVector - BVector) as Vector,
+            this.optimal_attack_range,
+          );
+        }
+
+        break;
+      // case mvps.length === 2:
+      //   break;
+      // case mvps.length > 2:
+      //   break;
+      default:
+        break;
     }
+
+    if (!movePostion) {
+      if (BVector) {
+        ExecuteOrderFromTable({
+          UnitIndex: ai.GetEntityIndex(),
+          OrderType: UnitOrder.MOVE_RELATIVE,
+          Position: this.setVectorLenght(
+            (BVector - ai.GetAbsOrigin()) as Vector,
+            0.5,
+          ),
+        });
+      }
+      return;
+    }
+
+    ExecuteOrderFromTable({
+      UnitIndex: ai.GetEntityIndex(),
+      OrderType: UnitOrder.MOVE_RELATIVE,
+      Position: movePostion,
+    });
+  }
+  private setVectorLenght(initVector: Vector, length: number): Vector {
+    const { x, y } = initVector;
+    const initLength = initVector.Length2D();
+    const normilizedVector = Vector(x / initLength, y / initLength);
+    return Vector(normilizedVector.x * length, normilizedVector.y * length);
+  }
+  private calculateTimeToMVP(creep: CBaseEntity): number {
+    const incDPS = this.creepIncomingDPS(creep);
+    const health = creep.GetHealth();
+    return health / incDPS;
   }
 
   private getAttackingCreeps(creep: CBaseEntity): CDOTA_BaseNPC[] {

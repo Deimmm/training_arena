@@ -49,6 +49,8 @@ export class LaneCreep {
       undefined,
       team,
     );
+
+    creep.SetDeathXP(0);
     return creep;
   }
 }

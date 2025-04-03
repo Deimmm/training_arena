@@ -70,6 +70,34 @@ export class Lasthit1V1 {
       undefined,
       DotaTeam.BADGUYS,
     );
-    sniper_hero.AddNewModifier(undefined, undefined, sniper_ai.name, {});
+    const eventId = ListenToGameEvent(
+      "entity_killed",
+      (event) => {
+        if (event.entindex_attacker === sniper_hero.GetEntityIndex()) {
+          const entity = EntIndexToHScript(event.entindex_killed);
+          if (entity) {
+            const position = entity.GetAbsOrigin();
+            const particle = ParticleManager.CreateParticle(
+              "particles/msg_fx/msg_death.vpcf",
+              8,
+              undefined,
+            );
+            ParticleManager.SetParticleControl(particle, 0, position);
+          }
+          print(
+            "entity_killed ",
+            "KILLED BY: ",
+            event.entindex_attacker,
+            "SNIPERID",
+            sniper_hero.GetEntityIndex(),
+          );
+        }
+      },
+      {},
+    );
+    sniper_hero.AddNewModifier(undefined, undefined, sniper_ai.name, {
+      damage: 65,
+      base_attack_time: 1,
+    });
   }
 }
