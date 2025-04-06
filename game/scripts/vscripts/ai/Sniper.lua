@@ -3,11 +3,12 @@ local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__ArrayFilter = ____lualib.__TS__ArrayFilter
 local __TS__ArraySort = ____lualib.__TS__ArraySort
+local __TS__ArrayFlat = ____lualib.__TS__ArrayFlat
 local __TS__ArrayReduce = ____lualib.__TS__ArrayReduce
 local __TS__StringIncludes = ____lualib.__TS__StringIncludes
 local __TS__Decorate = ____lualib.__TS__Decorate
 local __TS__SourceMapTraceBack = ____lualib.__TS__SourceMapTraceBack
-__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["12"] = 1,["13"] = 1,["14"] = 1,["15"] = 3,["16"] = 4,["17"] = 3,["18"] = 4,["20"] = 4,["21"] = 5,["22"] = 3,["23"] = 8,["24"] = 9,["25"] = 10,["26"] = 11,["27"] = 12,["28"] = 13,["29"] = 14,["30"] = 15,["31"] = 17,["32"] = 18,["33"] = 18,["34"] = 18,["35"] = 18,["36"] = 22,["38"] = 24,["39"] = 24,["40"] = 24,["41"] = 24,["42"] = 8,["43"] = 26,["44"] = 27,["45"] = 28,["48"] = 32,["49"] = 32,["50"] = 32,["51"] = 32,["52"] = 32,["53"] = 32,["54"] = 32,["55"] = 35,["56"] = 35,["57"] = 35,["58"] = 35,["59"] = 41,["61"] = 42,["62"] = 43,["64"] = 44,["65"] = 44,["66"] = 44,["67"] = 44,["70"] = 48,["72"] = 49,["76"] = 52,["77"] = 52,["78"] = 52,["79"] = 52,["80"] = 56,["83"] = 59,["84"] = 60,["85"] = 60,["86"] = 60,["87"] = 60,["88"] = 61,["89"] = 61,["90"] = 61,["91"] = 61,["92"] = 61,["94"] = 26,["95"] = 69,["96"] = 70,["97"] = 71,["100"] = 74,["101"] = 76,["102"] = 76,["103"] = 76,["104"] = 76,["105"] = 79,["106"] = 79,["107"] = 79,["108"] = 79,["109"] = 83,["110"] = 86,["111"] = 86,["112"] = 86,["113"] = 86,["114"] = 90,["115"] = 91,["116"] = 92,["117"] = 93,["118"] = 94,["119"] = 95,["121"] = 97,["122"] = 101,["123"] = 98,["125"] = 99,["126"] = 100,["127"] = 101,["128"] = 102,["129"] = 103,["130"] = 104,["132"] = 109,["133"] = 110,["141"] = 125,["142"] = 126,["143"] = 127,["144"] = 127,["145"] = 127,["146"] = 130,["147"] = 130,["148"] = 130,["149"] = 127,["150"] = 127,["154"] = 139,["155"] = 139,["156"] = 139,["157"] = 139,["158"] = 139,["159"] = 69,["160"] = 145,["161"] = 146,["162"] = 146,["163"] = 146,["164"] = 147,["165"] = 148,["166"] = 149,["167"] = 145,["168"] = 151,["169"] = 152,["170"] = 153,["171"] = 154,["172"] = 151,["173"] = 157,["174"] = 158,["175"] = 158,["176"] = 158,["177"] = 158,["178"] = 158,["179"] = 158,["180"] = 158,["181"] = 158,["182"] = 158,["183"] = 158,["184"] = 158,["185"] = 158,["186"] = 169,["187"] = 170,["188"] = 170,["189"] = 158,["190"] = 158,["191"] = 157,["192"] = 174,["193"] = 175,["194"] = 176,["195"] = 176,["196"] = 176,["197"] = 177,["198"] = 178,["199"] = 179,["200"] = 176,["201"] = 176,["202"] = 176,["203"] = 174,["204"] = 183,["205"] = 184,["206"] = 185,["207"] = 186,["208"] = 187,["209"] = 188,["210"] = 189,["212"] = 191,["213"] = 192,["215"] = 194,["216"] = 195,["218"] = 197,["219"] = 183,["220"] = 199,["221"] = 200,["222"] = 200,["223"] = 201,["224"] = 202,["225"] = 199,["226"] = 4,["227"] = 4,["228"] = 4,["229"] = 3,["232"] = 4});
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["13"] = 1,["14"] = 1,["15"] = 1,["16"] = 3,["17"] = 4,["18"] = 3,["19"] = 4,["21"] = 4,["22"] = 5,["23"] = 3,["24"] = 8,["25"] = 9,["26"] = 10,["27"] = 11,["28"] = 12,["29"] = 13,["30"] = 14,["31"] = 15,["32"] = 17,["33"] = 18,["34"] = 18,["35"] = 18,["36"] = 18,["37"] = 22,["39"] = 24,["40"] = 24,["41"] = 24,["42"] = 24,["43"] = 8,["44"] = 26,["45"] = 27,["46"] = 28,["49"] = 32,["50"] = 32,["51"] = 32,["52"] = 32,["53"] = 32,["54"] = 32,["55"] = 32,["56"] = 35,["57"] = 35,["58"] = 35,["59"] = 35,["60"] = 41,["62"] = 42,["63"] = 43,["65"] = 44,["66"] = 44,["67"] = 44,["68"] = 44,["71"] = 48,["73"] = 49,["77"] = 52,["78"] = 52,["79"] = 52,["80"] = 52,["81"] = 56,["84"] = 59,["85"] = 60,["86"] = 60,["87"] = 60,["88"] = 60,["89"] = 61,["90"] = 61,["91"] = 61,["92"] = 61,["93"] = 61,["95"] = 26,["96"] = 69,["97"] = 70,["98"] = 71,["101"] = 74,["102"] = 76,["103"] = 76,["104"] = 76,["105"] = 76,["106"] = 79,["107"] = 79,["108"] = 79,["109"] = 79,["110"] = 82,["111"] = 83,["112"] = 83,["113"] = 83,["114"] = 83,["115"] = 87,["116"] = 88,["117"] = 89,["119"] = 91,["120"] = 93,["121"] = 92,["123"] = 93,["124"] = 94,["125"] = 95,["126"] = 96,["127"] = 97,["131"] = 102,["133"] = 103,["134"] = 104,["135"] = 104,["136"] = 104,["137"] = 105,["138"] = 106,["139"] = 107,["140"] = 104,["141"] = 104,["142"] = 109,["143"] = 111,["144"] = 112,["152"] = 119,["153"] = 120,["154"] = 121,["155"] = 121,["156"] = 121,["157"] = 124,["158"] = 124,["159"] = 124,["160"] = 121,["161"] = 121,["165"] = 132,["166"] = 132,["167"] = 132,["168"] = 132,["169"] = 132,["170"] = 69,["171"] = 138,["172"] = 139,["173"] = 140,["174"] = 141,["177"] = 144,["178"] = 146,["179"] = 147,["180"] = 148,["181"] = 149,["182"] = 150,["183"] = 152,["184"] = 154,["185"] = 157,["186"] = 161,["188"] = 164,["189"] = 138,["190"] = 167,["191"] = 168,["192"] = 168,["193"] = 168,["194"] = 169,["195"] = 170,["196"] = 171,["197"] = 167,["198"] = 173,["199"] = 174,["200"] = 175,["201"] = 176,["202"] = 173,["203"] = 179,["204"] = 180,["205"] = 180,["206"] = 180,["207"] = 180,["208"] = 180,["209"] = 180,["210"] = 180,["211"] = 180,["212"] = 180,["213"] = 180,["214"] = 180,["215"] = 191,["216"] = 191,["217"] = 191,["218"] = 191,["219"] = 191,["220"] = 191,["221"] = 191,["222"] = 191,["223"] = 191,["224"] = 191,["225"] = 191,["226"] = 203,["227"] = 203,["228"] = 206,["229"] = 207,["230"] = 207,["231"] = 203,["232"] = 203,["233"] = 179,["234"] = 211,["235"] = 212,["236"] = 213,["237"] = 213,["238"] = 213,["239"] = 214,["240"] = 215,["241"] = 216,["242"] = 213,["243"] = 213,["244"] = 213,["245"] = 211,["246"] = 220,["247"] = 221,["248"] = 222,["249"] = 223,["250"] = 224,["251"] = 225,["253"] = 227,["254"] = 228,["256"] = 230,["257"] = 231,["259"] = 233,["260"] = 220,["261"] = 235,["262"] = 236,["263"] = 236,["264"] = 237,["265"] = 238,["266"] = 235,["267"] = 4,["268"] = 4,["269"] = 4,["270"] = 3,["273"] = 4});
 local ____exports = {}
 local ____dota_ts_adapter = require("lib.dota_ts_adapter")
 local BaseModifier = ____dota_ts_adapter.BaseModifier
@@ -112,27 +113,37 @@ function sniper_ai.prototype.prepareAttack(self)
         function(____, creep) return self:calculateTimeToMVP(creep) < treshold end
     )
     local movePostion = nil
-    local AVector
-    local BVector = nil
-    local optimalMax = self.optimal_attack_range + 50
-    local optimalMin = self.optimal_attack_range - 50
-    print("MVPS: ", #mvps)
+    local BVector
+    local AVector = ai:GetAbsOrigin()
     repeat
         local ____switch17 = true
-        local distance_between
+        local creep, vector
         local ____cond17 = ____switch17 == (#mvps >= 1)
         if ____cond17 then
-            AVector = ai:GetAbsOrigin()
-            BVector = mvps[1]:GetAbsOrigin()
-            distance_between = self:calculateDistance(mvps[1])
-            if distance_between and distance_between > optimalMax then
-                local length = distance_between - optimalMax
-                movePostion = self:setVectorLenght(BVector - AVector, length)
-            end
-            if distance_between and distance_between < optimalMin then
-                movePostion = self:setVectorLenght(AVector - BVector, self.optimal_attack_range)
+            creep = mvps[1]
+            BVector = creep:GetAbsOrigin()
+            vector = self:keepDistanceToCreepVector(creep)
+            if vector then
+                movePostion = vector
             end
             break
+        end
+        ____cond17 = ____cond17 or ____switch17 == (#mvps == 0)
+        if ____cond17 then
+            if #creeps > 0 then
+                local closestCreep = __TS__ArraySort(
+                    creeps,
+                    function(____, a, b)
+                        local aLength = AVector - a:GetAbsOrigin()
+                        local bLength = AVector - b:GetAbsOrigin()
+                        return aLength:Length2D() - bLength:Length2D()
+                    end
+                )
+                local vector = self:keepDistanceToCreepVector(closestCreep[1])
+                if vector then
+                    movePostion = vector
+                end
+            end
         end
         do
             break
@@ -145,7 +156,7 @@ function sniper_ai.prototype.prepareAttack(self)
                 OrderType = DOTA_UNIT_ORDER_MOVE_RELATIVE,
                 Position = self:setVectorLenght(
                     BVector - ai:GetAbsOrigin(),
-                    0.5
+                    1
                 )
             })
         end
@@ -156,6 +167,25 @@ function sniper_ai.prototype.prepareAttack(self)
         OrderType = DOTA_UNIT_ORDER_MOVE_RELATIVE,
         Position = movePostion
     })
+end
+function sniper_ai.prototype.keepDistanceToCreepVector(self, creep)
+    local sniper_spawn = Entities:FindByName(nil, "sniper_spawn")
+    local ai = self.self
+    if not sniper_spawn or not ai then
+        return
+    end
+    local movePosition
+    local optimalMax = self.optimal_attack_range + 50
+    local optimalMin = self.optimal_attack_range - 50
+    local AVector = sniper_spawn:GetAbsOrigin()
+    local BVector = creep:GetAbsOrigin()
+    local AIVector = BVector - ai:GetAbsOrigin()
+    local distance_between = self:calculateDistance(creep)
+    if distance_between and distance_between > optimalMax or distance_between < optimalMin then
+        movePosition = self:setVectorLenght(BVector - AVector, self.optimal_attack_range)
+        movePosition = AIVector - movePosition
+    end
+    return movePosition
 end
 function sniper_ai.prototype.setVectorLenght(self, initVector, length)
     local ____initVector_5 = initVector
@@ -170,19 +200,31 @@ function sniper_ai.prototype.calculateTimeToMVP(self, creep)
     local health = creep:GetHealth()
     return health / incDPS
 end
-function sniper_ai.prototype.getAttackingCreeps(self, creep)
+function sniper_ai.prototype.getAttackingUnits(self, creep)
+    local creeps = FindUnitsInRadius(
+        creep:GetTeam(),
+        creep:GetAbsOrigin(),
+        nil,
+        3000,
+        DOTA_UNIT_TARGET_TEAM_ENEMY,
+        DOTA_UNIT_TARGET_HEROES_AND_CREEPS,
+        DOTA_UNIT_TARGET_FLAG_NONE,
+        FIND_ANY_ORDER,
+        false
+    )
+    local towers = FindUnitsInRadius(
+        creep:GetTeam(),
+        creep:GetAbsOrigin(),
+        nil,
+        3000,
+        DOTA_UNIT_TARGET_TEAM_BOTH,
+        DOTA_UNIT_TARGET_BUILDING,
+        DOTA_UNIT_TARGET_FLAG_NONE,
+        FIND_ANY_ORDER,
+        false
+    )
     return __TS__ArrayFilter(
-        FindUnitsInRadius(
-            creep:GetTeam(),
-            creep:GetAbsOrigin(),
-            nil,
-            500,
-            2,
-            2,
-            0,
-            0,
-            false
-        ),
+        __TS__ArrayFlat({creeps, towers}),
         function(____, enemy)
             local ____opt_6 = enemy:GetAttackTarget()
             return (____opt_6 and ____opt_6:GetEntityIndex()) == creep:GetEntityIndex()
@@ -190,7 +232,7 @@ function sniper_ai.prototype.getAttackingCreeps(self, creep)
     )
 end
 function sniper_ai.prototype.creepIncomingDPS(self, creep)
-    local enemies = self:getAttackingCreeps(creep)
+    local enemies = self:getAttackingUnits(creep)
     return __TS__ArrayReduce(
         enemies,
         function(____, acc, enemy)
@@ -204,7 +246,6 @@ end
 function sniper_ai.prototype.getCreepCost(self, creep)
     local name = creep:GetName()
     local team = creep:GetTeam()
-    print(name, team)
     local cost = 0
     if __TS__StringIncludes(name, "goodguys") then
         cost = cost + 1

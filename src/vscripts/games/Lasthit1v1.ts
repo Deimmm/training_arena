@@ -96,7 +96,7 @@ export class Lasthit1V1 {
       {},
     );
     sniper_hero.AddNewModifier(undefined, undefined, sniper_ai.name, {
-      damage: 65,
+      damage: 62,
       base_attack_time: 1,
     });
   }

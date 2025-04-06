@@ -97,6 +97,6 @@ function Lasthit1V1.createSniper(self)
         end,
         {}
     )
-    sniper_hero:AddNewModifier(nil, nil, sniper_ai.name, {damage = 65, base_attack_time = 1})
+    sniper_hero:AddNewModifier(nil, nil, sniper_ai.name, {damage = 62, base_attack_time = 1})
 end
 return ____exports

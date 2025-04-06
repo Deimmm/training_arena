@@ -79,45 +79,39 @@ export class sniper_ai extends BaseModifier {
     const nextMVPS = creeps.sort(
       (a, b) => this.calculateTimeToMVP(a) - this.calculateTimeToMVP(b),
     );
-    // print("NEXT MVPS: ", nextMVPS.length);
     const treshold = this.calculateTimeToMVP(nextMVPS[0]) + attackInterval;
-    // print("TRESHOLD: ", treshold);
-    // print("0, TIME TO MVP: ", this.calculateTimeToMVP(nextMVPS[0])); // infinity because no creeps are hittinh him
     const mvps = nextMVPS.filter(
       (creep) => this.calculateTimeToMVP(creep) < treshold,
     );
 
     let movePostion: Vector | null = null;
-    let AVector: Vector;
-    let BVector: Vector | null = null;
-    const optimalMax = this.optimal_attack_range + 50;
-    const optimalMin = this.optimal_attack_range - 50;
-    print("MVPS: ", mvps.length);
+    let BVector: Vector;
+    const AVector = ai.GetAbsOrigin();
 
     switch (true) {
       case mvps.length >= 1:
-        AVector = ai.GetAbsOrigin();
-        BVector = mvps[0].GetAbsOrigin();
-        const distance_between = this.calculateDistance(mvps[0]);
-        if (distance_between && distance_between > optimalMax) {
-          const length = distance_between - optimalMax;
-          movePostion = this.setVectorLenght(
-            (BVector - AVector) as Vector,
-            length,
-          );
+        const creep = mvps[0];
+        BVector = creep.GetAbsOrigin();
+        const vector = this.keepDistanceToCreepVector(creep);
+        if (vector) {
+          movePostion = vector;
         }
-        if (distance_between && distance_between < optimalMin) {
-          movePostion = this.setVectorLenght(
-            (AVector - BVector) as Vector,
-            this.optimal_attack_range,
-          );
-        }
-
         break;
       // case mvps.length === 2:
       //   break;
-      // case mvps.length > 2:
-      //   break;
+      case mvps.length === 0:
+        if (creeps.length > 0) {
+          const closestCreep = creeps.sort((a, b) => {
+            const aLength = (AVector - a.GetAbsOrigin()) as Vector;
+            const bLength = (AVector - b.GetAbsOrigin()) as Vector;
+            return aLength.Length2D() - bLength.Length2D();
+          });
+          const vector = this.keepDistanceToCreepVector(closestCreep[0]);
+
+          if (vector) {
+            movePostion = vector;
+          }
+        }
       default:
         break;
     }
@@ -129,19 +123,47 @@ export class sniper_ai extends BaseModifier {
           OrderType: UnitOrder.MOVE_RELATIVE,
           Position: this.setVectorLenght(
             (BVector - ai.GetAbsOrigin()) as Vector,
-            0.5,
+            1,
           ),
         });
       }
       return;
     }
-
     ExecuteOrderFromTable({
       UnitIndex: ai.GetEntityIndex(),
       OrderType: UnitOrder.MOVE_RELATIVE,
       Position: movePostion,
     });
   }
+  private keepDistanceToCreepVector(creep: CBaseEntity): Vector | void {
+    const sniper_spawn = Entities.FindByName(undefined, "sniper_spawn");
+    const ai = this.self;
+    if (!sniper_spawn || !ai) {
+      return;
+    }
+    let movePosition: Vector;
+
+    const optimalMax = this.optimal_attack_range + 50;
+    const optimalMin = this.optimal_attack_range - 50;
+    const AVector = sniper_spawn.GetAbsOrigin();
+    const BVector = creep.GetAbsOrigin();
+    const AIVector = BVector - ai.GetAbsOrigin();
+
+    const distance_between = this.calculateDistance(creep);
+    if (
+      (distance_between && distance_between > optimalMax) ||
+      distance_between < optimalMin
+    ) {
+      movePosition = this.setVectorLenght(
+        (BVector - AVector) as Vector,
+        this.optimal_attack_range,
+      );
+      movePosition = (AIVector - movePosition) as Vector;
+    }
+
+    return movePosition;
+  }
+
   private setVectorLenght(initVector: Vector, length: number): Vector {
     const { x, y } = initVector;
     const initLength = initVector.Length2D();
@@ -154,25 +176,40 @@ export class sniper_ai extends BaseModifier {
     return health / incDPS;
   }
 
-  private getAttackingCreeps(creep: CBaseEntity): CDOTA_BaseNPC[] {
-    return FindUnitsInRadius(
+  private getAttackingUnits(creep: CBaseEntity): CDOTA_BaseNPC[] {
+    const creeps = FindUnitsInRadius(
       creep.GetTeam(),
       creep.GetAbsOrigin(),
       undefined,
-      500,
+      3000,
       UnitTargetTeam.ENEMY,
-      UnitTargetType.CREEP,
+      UnitTargetType.HEROES_AND_CREEPS,
       UnitTargetFlags.NONE,
       FindOrder.ANY,
       false,
-    ).filter(
-      (enemy) =>
-        enemy.GetAttackTarget()?.GetEntityIndex() === creep.GetEntityIndex(),
     );
+    const towers = FindUnitsInRadius(
+      creep.GetTeam(),
+      creep.GetAbsOrigin(),
+      undefined,
+      3000,
+      UnitTargetTeam.BOTH,
+      UnitTargetType.BUILDING,
+      UnitTargetFlags.NONE,
+      FindOrder.ANY,
+      false,
+    );
+
+    return [creeps, towers]
+      .flat()
+      .filter(
+        (enemy) =>
+          enemy.GetAttackTarget()?.GetEntityIndex() === creep.GetEntityIndex(),
+      );
   }
 
   private creepIncomingDPS(creep: CBaseEntity) {
-    const enemies = this.getAttackingCreeps(creep);
+    const enemies = this.getAttackingUnits(creep);
     return enemies.reduce((acc: number, enemy) => {
       const damage = enemy.GetAverageTrueAttackDamage(creep as CDOTA_BaseNPC);
       acc = acc + damage;
@@ -183,7 +220,6 @@ export class sniper_ai extends BaseModifier {
   private getCreepCost(creep: CBaseEntity): number {
     const name = creep.GetName();
     const team = creep.GetTeam();
-    print(name, team);
     let cost: number = 0;
     if (name.includes("goodguys")) {
       cost = cost + 1;
