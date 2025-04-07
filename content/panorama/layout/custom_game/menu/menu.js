@@ -1,4 +1,20 @@
 var menu;
+var ServerEventBus = {
+    emit(event, data) {
+        $.Msg("EMITING SERVER EVENT: ", event, data);
+        GameEvents.SendCustomGameEventToServer(event, data);
+    },
+};
+var ClientEventBus = {
+    emit(event, data) {
+        var payload = { playerId: Players.GetLocalPlayer() };
+        if (data) {
+            payload = Object.assign(Object.assign({}, payload), data);
+        }
+        $.Msg("EMITING CLIENT EVENT: ", event, payload);
+        GameEvents.SendCustomGameEventToAllClients(event, payload);
+    },
+};
 class MenuComponent {
     //>
     constructor() {
@@ -10,17 +26,40 @@ class MenuComponent {
         this.initShowHideBtn();
         this.initSideNav();
         this.initPages();
+        this.eventBus();
+    }
+    eventBus() {
+        GameEvents.Subscribe("close-menu", (event) => {
+            if (event.playerId === Players.GetLocalPlayer()) {
+                this.setShowHideBtnVisibility(false);
+            }
+        });
+        GameEvents.Subscribe("open-menu", (event) => {
+            if (event.playerId === Players.GetLocalPlayer()) {
+                this.setShowHideBtnVisibility(true);
+            }
+        });
+    }
+    emitBtn(id) {
+        $.Msg(id);
     }
     initShowHideBtn() {
         var panel = $("#ShowHideBtn");
         panel.BLoadLayoutSnippet("ShowHideButton");
-        $("#ShowHideBtn").SetPanelEvent("onactivate", () => {
-            var panel = $("#MenuContainer");
-            const visibility = !panel.visible;
-            const text = visibility ? "HIDE" : "SHOW";
-            $("#ShowHide").text = text;
-            panel.visible = visibility;
-        });
+        $("#ShowHideBtn").SetPanelEvent("onactivate", () => this.toogleShowHideBtn());
+    }
+    setShowHideBtnVisibility(visible) {
+        var panel = $("#MenuContainer");
+        const text = visible ? "HIDE" : "SHOW";
+        $("#ShowHide").text = text;
+        panel.visible = visible;
+    }
+    toogleShowHideBtn() {
+        var panel = $("#MenuContainer");
+        const visibility = !panel.visible;
+        const text = visibility ? "HIDE" : "SHOW";
+        $("#ShowHide").text = text;
+        panel.visible = visibility;
     }
     initSideNav() {
         var root = $("#SideNav");

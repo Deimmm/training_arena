@@ -8,8 +8,11 @@ local ReferenceError = ____lualib.ReferenceError
 local SyntaxError = ____lualib.SyntaxError
 local TypeError = ____lualib.TypeError
 local URIError = ____lualib.URIError
+local __TS__AsyncAwaiter = ____lualib.__TS__AsyncAwaiter
+local __TS__Await = ____lualib.__TS__Await
+local __TS__Promise = ____lualib.__TS__Promise
 local __TS__SourceMapTraceBack = ____lualib.__TS__SourceMapTraceBack
-__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["14"] = 1,["15"] = 1,["16"] = 1,["17"] = 4,["18"] = 16,["19"] = 16,["20"] = 16,["21"] = 17,["22"] = 17,["23"] = 17,["24"] = 16,["25"] = 18,["26"] = 18,["27"] = 18,["28"] = 16,["29"] = 19,["30"] = 19,["31"] = 19,["32"] = 16,["33"] = 20,["34"] = 20,["35"] = 20,["36"] = 16,["37"] = 21,["38"] = 21,["39"] = 21,["40"] = 16,["41"] = 22,["42"] = 22,["43"] = 22,["44"] = 16,["45"] = 16,["46"] = 16,["47"] = 10,["48"] = 10,["49"] = 10,["50"] = 10,["51"] = 10,["52"] = 11,["53"] = 12,["54"] = 13,["56"] = 4,["57"] = 25,["58"] = 26,["59"] = 26,["60"] = 26,["61"] = 26,["62"] = 26,["63"] = 26,["64"] = 25,["65"] = 34,["66"] = 39,["67"] = 40,["68"] = 41,["70"] = 42,["74"] = 44,["75"] = 44,["76"] = 44,["77"] = 44,["78"] = 44,["79"] = 44,["80"] = 44,["81"] = 44,["82"] = 53,["83"] = 54,["84"] = 34,["85"] = 58,["86"] = 58,["87"] = 58,["89"] = 59,["90"] = 60,["91"] = 71,["92"] = 71,["93"] = 71,["94"] = 71,["95"] = 72,["97"] = 74,["98"] = 74,["99"] = 75,["100"] = 74,["104"] = 82,["105"] = 82,["106"] = 83,["107"] = 82,["111"] = 90,["112"] = 90,["113"] = 91,["114"] = 90,["117"] = 98,["118"] = 72,["119"] = 60});
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["17"] = 1,["18"] = 1,["19"] = 1,["20"] = 4,["21"] = 16,["22"] = 16,["23"] = 16,["24"] = 17,["25"] = 17,["26"] = 17,["27"] = 16,["28"] = 18,["29"] = 18,["30"] = 18,["31"] = 16,["32"] = 19,["33"] = 19,["34"] = 19,["35"] = 16,["36"] = 20,["37"] = 20,["38"] = 20,["39"] = 16,["40"] = 21,["41"] = 21,["42"] = 21,["43"] = 16,["44"] = 22,["45"] = 22,["46"] = 22,["47"] = 16,["48"] = 16,["49"] = 16,["50"] = 10,["51"] = 10,["52"] = 10,["53"] = 10,["54"] = 10,["55"] = 11,["56"] = 12,["57"] = 13,["59"] = 4,["60"] = 25,["61"] = 26,["62"] = 26,["63"] = 26,["64"] = 26,["65"] = 26,["66"] = 26,["67"] = 25,["68"] = 34,["69"] = 39,["70"] = 40,["71"] = 41,["73"] = 42,["77"] = 44,["78"] = 44,["79"] = 44,["80"] = 44,["81"] = 44,["82"] = 44,["83"] = 44,["84"] = 44,["85"] = 53,["86"] = 54,["87"] = 34,["88"] = 58,["89"] = 58,["90"] = 58,["92"] = 59,["93"] = 60,["94"] = 62,["96"] = 73,["97"] = 73,["98"] = 73,["99"] = 73,["100"] = 74,["101"] = 76,["102"] = 78,["104"] = 79,["105"] = 79,["106"] = 80,["107"] = 79,["111"] = 87,["112"] = 87,["113"] = 88,["114"] = 87,["118"] = 95,["119"] = 95,["120"] = 96,["121"] = 95,["124"] = 103,["126"] = 76,["128"] = 62,["129"] = 108,["130"] = 109,["131"] = 108,["132"] = 111,["133"] = 112,["134"] = 112,["135"] = 112,["136"] = 113,["137"] = 113,["138"] = 114,["139"] = 113,["140"] = 113,["141"] = 113,["142"] = 112,["143"] = 112,["144"] = 111});
 local ____exports = {}
 ____exports.LaneCreep = __TS__Class()
 local LaneCreep = ____exports.LaneCreep
@@ -86,35 +89,57 @@ ____exports.CreepSpawn = __TS__Class()
 local CreepSpawn = ____exports.CreepSpawn
 CreepSpawn.name = "CreepSpawn"
 function CreepSpawn.prototype.____constructor(self)
+    self.isSpawning = false
 end
-function CreepSpawn.createSpawn(self, position, movePosition, creeps, interval, team)
-    local ____creeps_1 = creeps
-    local melee = ____creeps_1.melee
-    local range = ____creeps_1.range
-    local business = ____creeps_1.business
-    Timers:CreateTimer({callback = function()
-        do
-            local i = 0
-            while i < melee do
-                __TS__New(____exports.LaneCreep, {type = "melee", position = position, team = team, waypoint = movePosition})
-                i = i + 1
+function CreepSpawn.prototype.startSpawn(self, position, movePosition, creeps, interval, team)
+    return __TS__AsyncAwaiter(function(____awaiter_resolve)
+        local ____creeps_1 = creeps
+        local melee = ____creeps_1.melee
+        local range = ____creeps_1.range
+        local business = ____creeps_1.business
+        self.isSpawning = true
+        Timers:CreateTimer({callback = function()
+            if self.isSpawning then
+                do
+                    local i = 0
+                    while i < melee do
+                        __TS__New(____exports.LaneCreep, {type = "melee", position = position, team = team, waypoint = movePosition})
+                        i = i + 1
+                    end
+                end
+                do
+                    local i = 0
+                    while i < range do
+                        __TS__New(____exports.LaneCreep, {type = "range", position = position, team = team, waypoint = movePosition})
+                        i = i + 1
+                    end
+                end
+                do
+                    local i = 0
+                    while i < business do
+                        __TS__New(____exports.LaneCreep, {type = "business", position = position, team = team, waypoint = movePosition})
+                        i = i + 1
+                    end
+                end
+                return interval
             end
+        end})
+    end)
+end
+function CreepSpawn.prototype.stopSpawn(self)
+    self.isSpawning = false
+end
+function CreepSpawn.prototype.sleep(self, time)
+    return __TS__New(
+        __TS__Promise,
+        function(____, resolve)
+            Timers:CreateTimer(
+                function()
+                    resolve(nil, true)
+                end,
+                time
+            )
         end
-        do
-            local i = 0
-            while i < range do
-                __TS__New(____exports.LaneCreep, {type = "range", position = position, team = team, waypoint = movePosition})
-                i = i + 1
-            end
-        end
-        do
-            local i = 0
-            while i < business do
-                __TS__New(____exports.LaneCreep, {type = "business", position = position, team = team, waypoint = movePosition})
-                i = i + 1
-            end
-        end
-        return interval
-    end})
+    )
 end
 return ____exports

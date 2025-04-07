@@ -46,23 +46,31 @@
         </snippet>
         <snippet name="Solo">
             <Panel class="SelectedOptionContainer" id ="SoloOption">
-                <Label text="Solo works!"/>
-                <Panel class="LaunchButton" >
-                    <Label class="ButtonText" text="START"/>
-                </Panel>
+                <Label  class="ButtonText" text="Work in progress"/>
             </Panel>
         </snippet>
         <snippet name="1V1">
             <Panel class="SelectedOptionContainer" id ="1V1Option">
-                <Label text="1v1 works!"/>
-                <Panel class="LaunchButton" onactivate="GameEvents.SendCustomGameEventToServer('game_launch.1v1', {playerId: Players.GetLocalPlayer()});$.Msg('SEND EVENT AHAHHA');    GameEvents.Subscribe('game_launch.1v1.success', (event) => {$.Msg('1v1.LAUNCH SUCCESS: ', event);$('#MenuContainer').visible=false});">
-                    <Label class="ButtonText" text="START"/>
+                <Panel class="Form" id="1V1Form">
+                    <Label class="FormOptionTitle" text="Sniper Bot"/>
+                    <Panel class="IsSniperEnabled">
+                        <RadioButton group="IsSniperEnabled" selectionpos="auto" id="SniperEnable" text="Enable" class="RadioBtn" onactivate="ClientEventBus.emit('form.1v1.isSniper', {isSniper: true})" />
+                        <RadioButton group="IsSniperEnabled" selectionpos="auto" id="SniperDisable" text="Disable" class="RadioBtn"  onactivate="ClientEventBus.emit('form.1v1.isSniper', {isSniper: false})" />
+                    </Panel>
+                </Panel>
+                <Panel class="ButtonPanel">
+                    <Panel class="LaunchButton" onactivate="ClientEventBus.emit('game_launch.1v1');">
+                        <Label class="ButtonText" text="START"/>
+                    </Panel>
+                    <Panel id="1V1FinishButton" class="FinishButton" onactivate="ClientEventBus.emit('game_finish.1v1');">
+                        <Label class="ButtonText" text="FINISH"/>
+                    </Panel>
                 </Panel>
             </Panel>
         </snippet>
         <snippet name="2V2">
             <Panel class="SelectedOptionContainer" id ="1V1Option" >
-                <Label text="2v2 works!"/>
+                <Label  class="ButtonText" text="Work in progress"/>
             </Panel>
         </snippet>
         <snippet name="AimPage">

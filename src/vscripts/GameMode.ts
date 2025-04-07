@@ -53,21 +53,8 @@ export class GameMode {
       },
       undefined,
     );
-    CustomGameEventManager.RegisterListener(
-      "game_launch.1v1",
-      (userId: number, event: any) => {
-        print("game_launch.1v1 EVENT AAA", event);
-        const playerController = PlayerResource.GetPlayer(event.playerId);
-        if (playerController) {
-          Lasthit1V1.launch(playerController);
-          CustomGameEventManager.Send_ServerToPlayer<any>(
-            playerController,
-            "game_launch.1v1.success",
-            { data: null },
-          );
-        }
-      },
-    );
+
+    new Lasthit1V1().listenEvents();
   }
 
   private gameRules(): void {

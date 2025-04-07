@@ -56,8 +56,10 @@ export class LaneCreep {
 }
 
 export class CreepSpawn {
+  private isSpawning = false;
   constructor() {}
-  static createSpawn(
+
+  async startSpawn(
     position: Vector,
     movePosition: Vector,
     creeps: {
@@ -69,34 +71,48 @@ export class CreepSpawn {
     team: DotaTeam,
   ) {
     const { melee, range, business } = creeps;
+    this.isSpawning = true;
+
     Timers.CreateTimer({
       callback: () => {
-        for (let i = 0; i < melee; i++) {
-          new LaneCreep({
-            type: "melee",
-            position,
-            team,
-            waypoint: movePosition,
-          });
+        if (this.isSpawning) {
+          for (let i = 0; i < melee; i++) {
+            new LaneCreep({
+              type: "melee",
+              position,
+              team,
+              waypoint: movePosition,
+            });
+          }
+          for (let i = 0; i < range; i++) {
+            new LaneCreep({
+              type: "range",
+              position,
+              team,
+              waypoint: movePosition,
+            });
+          }
+          for (let i = 0; i < business; i++) {
+            new LaneCreep({
+              type: "business",
+              position,
+              team,
+              waypoint: movePosition,
+            });
+          }
+          return interval;
         }
-        for (let i = 0; i < range; i++) {
-          new LaneCreep({
-            type: "range",
-            position,
-            team,
-            waypoint: movePosition,
-          });
-        }
-        for (let i = 0; i < business; i++) {
-          new LaneCreep({
-            type: "business",
-            position,
-            team,
-            waypoint: movePosition,
-          });
-        }
-        return interval;
       },
+    });
+  }
+  stopSpawn() {
+    this.isSpawning = false;
+  }
+  private sleep(time: number) {
+    return new Promise((resolve) => {
+      Timers.CreateTimer(() => {
+        resolve(true);
+      }, time);
     });
   }
 }

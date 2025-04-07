@@ -1,4 +1,10 @@
 declare var menu: MenuComponent;
+declare var ServerEventBus: {
+    emit(event: string, data: any): void;
+};
+declare var ClientEventBus: {
+    emit(event: string, data: any): void;
+};
 declare class MenuComponent {
     /**
      * Imports
@@ -10,7 +16,11 @@ declare class MenuComponent {
     activePage?: PageComponent;
     initializedPages: PageComponent[];
     sideNavButtons: NavButtons[];
+    private eventBus;
+    emitBtn(id: string): void;
     private initShowHideBtn;
+    private setShowHideBtnVisibility;
+    private toogleShowHideBtn;
     private initSideNav;
     private initPages;
     private renderPage;

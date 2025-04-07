@@ -1,5 +1,20 @@
 var menu: MenuComponent;
-
+var ServerEventBus = {
+  emit(event: string, data: any) {
+    $.Msg("EMITING SERVER EVENT: ", event, data);
+    GameEvents.SendCustomGameEventToServer<any>(event, data);
+  },
+};
+var ClientEventBus = {
+  emit(event: string, data: any) {
+    var payload = { playerId: Players.GetLocalPlayer() };
+    if (data) {
+      payload = { ...payload, ...data };
+    }
+    $.Msg("EMITING CLIENT EVENT: ", event, payload);
+    GameEvents.SendCustomGameEventToAllClients<any>(event, payload);
+  },
+};
 class MenuComponent {
   /**
    * Imports
@@ -13,21 +28,48 @@ class MenuComponent {
     this.initShowHideBtn();
     this.initSideNav();
     this.initPages();
+    this.eventBus();
   }
 
   activePage?: PageComponent;
   initializedPages: PageComponent[] = [];
   sideNavButtons: NavButtons[] = new Array();
+
+  private eventBus() {
+    GameEvents.Subscribe<{ playerId: PlayerID }>("close-menu", (event) => {
+      if (event.playerId === Players.GetLocalPlayer()) {
+        this.setShowHideBtnVisibility(false);
+      }
+    });
+    GameEvents.Subscribe<{ playerId: PlayerID }>("open-menu", (event) => {
+      if (event.playerId === Players.GetLocalPlayer()) {
+        this.setShowHideBtnVisibility(true);
+      }
+    });
+  }
+  public emitBtn(id: string) {
+    $.Msg(id);
+  }
+
   private initShowHideBtn() {
     var panel = $("#ShowHideBtn");
     panel.BLoadLayoutSnippet("ShowHideButton");
-    $("#ShowHideBtn").SetPanelEvent("onactivate", () => {
-      var panel = $("#MenuContainer");
-      const visibility = !panel.visible;
-      const text = visibility ? "HIDE" : "SHOW";
-      ($("#ShowHide") as LabelPanel).text = text;
-      panel.visible = visibility;
-    });
+    $("#ShowHideBtn").SetPanelEvent("onactivate", () =>
+      this.toogleShowHideBtn(),
+    );
+  }
+  private setShowHideBtnVisibility(visible: boolean) {
+    var panel = $("#MenuContainer");
+    const text = visible ? "HIDE" : "SHOW";
+    ($("#ShowHide") as LabelPanel).text = text;
+    panel.visible = visible;
+  }
+  private toogleShowHideBtn() {
+    var panel = $("#MenuContainer");
+    const visibility = !panel.visible;
+    const text = visibility ? "HIDE" : "SHOW";
+    ($("#ShowHide") as LabelPanel).text = text;
+    panel.visible = visibility;
   }
   private initSideNav() {
     var root = $("#SideNav");
@@ -74,4 +116,5 @@ class MenuComponent {
     }
   }
 }
+
 menu = new MenuComponent();
