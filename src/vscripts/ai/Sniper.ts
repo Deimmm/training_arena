@@ -27,7 +27,6 @@ export class sniper_ai extends BaseModifier {
       });
       this.StartIntervalThink(0.1);
     }
-    print(this?.self?.GetSecondsPerAttack(false));
   }
   OnIntervalThink() {
     const ai = this.self;
@@ -63,7 +62,6 @@ export class sniper_ai extends BaseModifier {
     }
 
     if (mvp) {
-      print("MVP: ", mvp.GetName());
       ExecuteOrderFromTable({
         UnitIndex: ai.GetEntityIndex(),
         OrderType: UnitOrder.ATTACK_TARGET,
