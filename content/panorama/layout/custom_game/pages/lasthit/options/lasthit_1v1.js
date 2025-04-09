@@ -2,7 +2,7 @@ class ONE_V_ONELasthitPageComponent extends PageComponent {
     constructor(id, root) {
         super(id, { snippet: "1V1", isSingle: true });
         this.isLaunched = false;
-        this.form = {};
+        this.form = { terrain: "plain", isSniper: true };
         this.load(root);
         this.eventBus();
     }
@@ -11,6 +11,12 @@ class ONE_V_ONELasthitPageComponent extends PageComponent {
             $.Msg("form.1v1.isSniper", event);
             if (event.playerId === Players.GetLocalPlayer()) {
                 this.form.isSniper = Boolean(event.isSniper);
+            }
+        });
+        GameEvents.Subscribe("form.1v1.terrain", (event) => {
+            $.Msg("form.1v1.terrain", event);
+            if (event.playerId === Players.GetLocalPlayer()) {
+                this.form.terrain = event.terrain;
             }
         });
         GameEvents.Subscribe("game_launch.1v1", (event) => {

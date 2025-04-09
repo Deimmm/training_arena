@@ -27,6 +27,11 @@ export class Lasthit1V1 {
                 "game_relaunch.1v1.success",
                 { data: null },
               );
+              CustomGameEventManager.Send_ServerToPlayer<any>(
+                playerController,
+                "game_launch.1v1.success",
+                { data: null },
+              );
             },
           );
 
@@ -59,10 +64,11 @@ export class Lasthit1V1 {
   }
 
   private launch(controller: CDOTAPlayerController, options: any) {
-    this.moveHero(controller);
-    this.initCreepSpawns();
-    if (options.isSniper === 1) {
-      this.sniper = this.createSniper();
+    const { isSniper, terrain } = options;
+    this.moveHero(controller, terrain);
+    this.initCreepSpawns(terrain);
+    if (isSniper === 1) {
+      this.sniper = this.createSniper(terrain);
     }
   }
 
@@ -90,9 +96,13 @@ export class Lasthit1V1 {
     this.listenEvents();
   }
 
-  private initCreepSpawns() {
-    const padawan_spawn = Entities.FindByName(undefined, "radiant_creep_spawn");
-    const sniper_spawn = Entities.FindByName(undefined, "dire_creep_spawn");
+  private initCreepSpawns(terrain: "plain" | "river") {
+    const padawan_spawn_name =
+      terrain === "plain" ? "radiant_creep_spawn_plain" : "radiant_creep_spawn";
+    const sniper_spawn_name =
+      terrain === "plain" ? "dire_creep_spawn_plain" : "dire_creep_spawn";
+    const padawan_spawn = Entities.FindByName(undefined, padawan_spawn_name);
+    const sniper_spawn = Entities.FindByName(undefined, sniper_spawn_name);
     if (!padawan_spawn || !sniper_spawn) {
       print("WARNING: ", "Cant find spawns");
       return;
@@ -126,9 +136,16 @@ export class Lasthit1V1 {
     hero.SetAbsOrigin(vector);
     CenterCameraOnUnit(this.controller.GetPlayerID(), hero);
   }
-  private moveHero(controller: CDOTAPlayerController) {
+
+  private moveHero(
+    controller: CDOTAPlayerController,
+    terrain: "plain" | "river",
+  ) {
     const hero = controller.GetAssignedHero();
-    const padawan_spawn = Entities.FindByName(undefined, "padawan_spawn");
+    const padawan_spawn_name =
+      terrain === "plain" ? "padawan_spawn_plain" : "padawan_spawn";
+
+    const padawan_spawn = Entities.FindByName(undefined, padawan_spawn_name);
     if (!padawan_spawn) {
       return;
     }
@@ -136,8 +153,10 @@ export class Lasthit1V1 {
     hero.SetAbsOrigin(vector);
     CenterCameraOnUnit(controller.GetPlayerID(), hero);
   }
-  private createSniper(): CBaseEntity {
-    const sniper_spawn = Entities.FindByName(undefined, "sniper_spawn");
+  private createSniper(terrain: "plain" | "river"): CBaseEntity {
+    const sniper_spawn_name =
+      terrain === "plain" ? "sniper_spawn_plain" : "sniper_spawn";
+    const sniper_spawn = Entities.FindByName(undefined, sniper_spawn_name);
     if (!sniper_spawn) {
       return;
     }
@@ -181,6 +200,7 @@ export class Lasthit1V1 {
     sniper_hero.AddNewModifier(undefined, undefined, sniper_ai.name, {
       damage: 62,
       base_attack_time: 1,
+      spawn_name: sniper_spawn_name,
     });
     return sniper_hero;
   }

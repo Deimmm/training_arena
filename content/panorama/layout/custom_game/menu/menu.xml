@@ -53,9 +53,14 @@
             <Panel class="SelectedOptionContainer" id ="1V1Option">
                 <Panel class="Form" id="1V1Form">
                     <Label class="FormOptionTitle" text="Sniper Bot"/>
-                    <Panel class="IsSniperEnabled">
+                    <Panel class="RadioBtnGroup">
                         <RadioButton group="IsSniperEnabled" selectionpos="auto" id="SniperEnable" text="Enable" class="RadioBtn" onactivate="ClientEventBus.emit('form.1v1.isSniper', {isSniper: true})" />
                         <RadioButton group="IsSniperEnabled" selectionpos="auto" id="SniperDisable" text="Disable" class="RadioBtn"  onactivate="ClientEventBus.emit('form.1v1.isSniper', {isSniper: false})" />
+                    </Panel>
+                    <Label class="FormOptionTitle" text="Choose Terrain"/>
+                    <Panel class="RadioBtnGroup">
+                        <RadioButton group="Terrain" selectionpos="auto" id="TerrainPlain" text="Plain" class="RadioBtn" onactivate="ClientEventBus.emit('form.1v1.terrain', {terrain: 'plain'})" />
+                        <RadioButton group="Terrain" selectionpos="auto" id="TerrainRiverd" text="River" class="RadioBtn"  onactivate="ClientEventBus.emit('form.1v1.terrain', {terrain: 'river'})" />
                     </Panel>
                 </Panel>
                 <Panel class="ButtonPanel">

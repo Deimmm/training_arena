@@ -172,10 +172,10 @@
 }
 .RadioBtn:selected {
   color: white;
-  box-shadow: #a2afda18 0px 0px 15px -5px;
+  box-shadow: #a2afda0e 0px 0px 15px -5px;
 }
 
-.IsSniperEnabled {
+.RadioBtnGroup {
   width: 100%;
   flow-children: right;
 }

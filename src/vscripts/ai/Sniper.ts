@@ -4,10 +4,16 @@ import { BaseModifier, registerModifier } from "../lib/dota_ts_adapter";
 export class sniper_ai extends BaseModifier {
   private optimal_attack_range: number = 500;
   private self?: CDOTA_BaseNPC;
+  private spawn_vector?: Vector;
 
   OnCreated(params: any) {
     if (IsServer()) {
       const ai = this.GetParent();
+
+      if (params.spawn_name) {
+        const sniper_spawn = Entities.FindByName(undefined, params.spawn_name);
+        this.spawn_vector = sniper_spawn.GetAbsOrigin();
+      }
       ai.SetPhysicalArmorBaseValue(99999);
       ai.SetBaseHealthRegen(99999);
       ai.SetBaseDamageMax(params.damage - 27);
@@ -136,16 +142,15 @@ export class sniper_ai extends BaseModifier {
     });
   }
   private keepDistanceToCreepVector(creep: CBaseEntity): Vector | void {
-    const sniper_spawn = Entities.FindByName(undefined, "sniper_spawn");
     const ai = this.self;
-    if (!sniper_spawn || !ai) {
+    if (!ai) {
       return;
     }
     let movePosition: Vector;
 
     const optimalMax = this.optimal_attack_range + 50;
     const optimalMin = this.optimal_attack_range - 50;
-    const AVector = sniper_spawn.GetAbsOrigin();
+    const AVector = this.spawn_vector;
     const BVector = creep.GetAbsOrigin();
     const AIVector = BVector - ai.GetAbsOrigin();
 

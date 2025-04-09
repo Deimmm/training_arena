@@ -1,5 +1,6 @@
 interface LaunchOptions {
   isSniper?: boolean;
+  terrain?: "plain" | "river";
 }
 
 class ONE_V_ONELasthitPageComponent extends PageComponent {
@@ -10,7 +11,7 @@ class ONE_V_ONELasthitPageComponent extends PageComponent {
   }
 
   private isLaunched: boolean = false;
-  private form: LaunchOptions = {};
+  private form: LaunchOptions = { terrain: "plain", isSniper: true };
 
   eventBus() {
     GameEvents.Subscribe<{ playerId: PlayerID; isSniper: boolean }>(
@@ -22,7 +23,15 @@ class ONE_V_ONELasthitPageComponent extends PageComponent {
         }
       },
     );
-
+    GameEvents.Subscribe<{ playerId: PlayerID; terrain: "plain" | "river" }>(
+      "form.1v1.terrain",
+      (event) => {
+        $.Msg("form.1v1.terrain", event);
+        if (event.playerId === Players.GetLocalPlayer()) {
+          this.form.terrain = event.terrain;
+        }
+      },
+    );
     GameEvents.Subscribe("game_launch.1v1", (event) => {
       $.Msg("game_launch.1v1", event);
       this.isLaunched
