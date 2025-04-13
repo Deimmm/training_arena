@@ -45,28 +45,41 @@ export class GameMode {
     ListenToGameEvent(
       "game_rules_state_change",
       (event) => {
-        print("game_rules_state_change: ", event);
         const state = GameRules.State_Get();
-        print("GAME STATE CHANGE TO: ", state);
         if (state === GameState.GAME_IN_PROGRESS) {
+          PlayerResource.GetPlayer;
         }
       },
+      undefined,
+    );
+    ListenToGameEvent(
+      "npc_spawned",
+      (event) => this.onNPCSpawned(event),
       undefined,
     );
 
     new Lasthit1V1().listenEvents();
   }
 
+  onNPCSpawned(event: NpcSpawnedEvent) {
+    const npc = EntIndexToHScript(event.entindex) as CDOTA_BaseNPC_Hero;
+    if (npc && npc.IsRealHero() && !npc.HasModifier("modifier_global_shop")) {
+      npc.SetGold(999999, true);
+    }
+  }
+
   private gameRules(): void {
     print("CONFIGURE STARTS");
-
     GameRules.SetCustomGameSetupTimeout(0);
     GameRules.SetHeroSelectionTime(9999);
     GameRules.SetStrategyTime(9999);
     GameRules.SetShowcaseTime(0);
     GameRules.SetPreGameTime(0);
     GameRules.SetTimeOfDay(0);
-    GameRules.GetGameModeEntity().SetFogOfWarDisabled(true);
+    GameRules.SetUseUniversalShopMode(true);
+    const gameMode = GameRules.GetGameModeEntity();
+    gameMode.SetFogOfWarDisabled(true);
+    SpawnDOTAShopTriggerRadiusApproximate(Vector(), 999999);
     print("CONFIGUYRE END");
   }
 }

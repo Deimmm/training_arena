@@ -39,7 +39,7 @@ export class sniper_ai extends BaseModifier {
       .sort((a, b) => a.GetHealth() - b.GetHealth());
     const lasthitableCreeps = creeps.filter(
       (creep) =>
-        creep.GetHealth() <=
+        creep.GetHealth() + 3 <=
         ai.GetAverageTrueAttackDamage(creep as CDOTA_BaseNPC),
     );
 

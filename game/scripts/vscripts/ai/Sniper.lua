@@ -55,7 +55,7 @@ function sniper_ai.prototype.OnIntervalThink(self)
     )
     local lasthitableCreeps = __TS__ArrayFilter(
         creeps,
-        function(____, creep) return creep:GetHealth() <= ai:GetAverageTrueAttackDamage(creep) end
+        function(____, creep) return creep:GetHealth() + 3 <= ai:GetAverageTrueAttackDamage(creep) end
     )
     local mvp = nil
     repeat

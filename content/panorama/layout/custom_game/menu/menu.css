@@ -1,6 +1,6 @@
 .MenuRoot {
-  width: 60%;
-  height: 65%;
+  width: 50%;
+  height: 60%;
   margin-bottom: 200px;
   horizontal-align: left;
   vertical-align: middle;
@@ -159,7 +159,7 @@
 }
 .RadioBtn {
   /* background-color: white; */
-  max-width: 100px;
+  max-width: 80px;
   width: 100%;
 }
 .RadioBtn Label {
@@ -172,7 +172,7 @@
 }
 .RadioBtn:selected {
   color: white;
-  box-shadow: #a2afda0e 0px 0px 15px -5px;
+  box-shadow: #a2afda1e 0px 0px 12px -8px;
 }
 
 .RadioBtnGroup {
