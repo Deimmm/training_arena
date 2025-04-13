@@ -59,7 +59,7 @@
                     </Panel>
                     <Label class="FormOptionTitle" text="Choose Terrain"/>
                     <Panel class="RadioBtnGroup">
-                        <RadioButton group="Terrain" selectionpos="auto" id="TerrainPlain" text="Plain" class="RadioBtn" onactivate="ClientEventBus.emit('form.1v1.terrain', {terrain: 'plain'})" />
+                        <RadioButton checked="checked" group="Terrain" selectionpos="auto" id="TerrainPlain" text="Plain" class="RadioBtn" onactivate="ClientEventBus.emit('form.1v1.terrain', {terrain: 'plain'})" />
                         <RadioButton group="Terrain" selectionpos="auto" id="TerrainRiverd" text="River" class="RadioBtn"  onactivate="ClientEventBus.emit('form.1v1.terrain', {terrain: 'river'})" />
                     </Panel>
                 </Panel>

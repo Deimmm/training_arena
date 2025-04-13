@@ -23,5 +23,6 @@ declare class MenuComponent {
     private toogleShowHideBtn;
     private initSideNav;
     private initPages;
+    private openDefaultPage;
     private renderPage;
 }

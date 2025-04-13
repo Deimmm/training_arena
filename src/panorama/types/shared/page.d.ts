@@ -23,6 +23,7 @@ declare class PageComponent {
     isLoaded(): Panel | false;
     get(): Panel;
     delete(): void;
+    openDefaultPageOption(): void;
     private initListeners;
     private renderPageOption;
     private loadPageOptions;

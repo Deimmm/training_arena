@@ -26,6 +26,7 @@ class MenuComponent {
         this.initShowHideBtn();
         this.initSideNav();
         this.initPages();
+        this.openDefaultPage();
         this.eventBus();
     }
     eventBus() {
@@ -67,6 +68,12 @@ class MenuComponent {
     }
     initPages() {
         GameEvents.Subscribe("render-page", (event) => this.renderPage(event));
+    }
+    openDefaultPage() {
+        this.renderPage({
+            playerId: Players.GetLocalPlayer(),
+            page: "LasthitPage",
+        });
     }
     renderPage(event) {
         const { playerId, page } = event;

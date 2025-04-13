@@ -28,6 +28,7 @@ class MenuComponent {
     this.initShowHideBtn();
     this.initSideNav();
     this.initPages();
+    this.openDefaultPage();
     this.eventBus();
   }
 
@@ -75,10 +76,17 @@ class MenuComponent {
     var root = $("#SideNav");
     this.sideNavButtons = this.config.map((e) => new e.class(e.name, root));
   }
+
   private initPages() {
     GameEvents.Subscribe("render-page", (event) =>
       this.renderPage(event as { playerId: number; page: string }),
     );
+  }
+  private openDefaultPage() {
+    this.renderPage({
+      playerId: Players.GetLocalPlayer(),
+      page: "LasthitPage",
+    });
   }
 
   private renderPage(event: { playerId: number; page: string }) {

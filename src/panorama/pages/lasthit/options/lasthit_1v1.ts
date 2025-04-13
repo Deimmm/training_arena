@@ -7,6 +7,7 @@ class ONE_V_ONELasthitPageComponent extends PageComponent {
   constructor(id: string, root: Panel) {
     super(id, { snippet: "1V1", isSingle: true });
     this.load(root);
+    this.prefillForm();
     this.eventBus();
   }
 
@@ -74,5 +75,15 @@ class ONE_V_ONELasthitPageComponent extends PageComponent {
       this.isLaunched = false;
       $("#1V1FinishButton").visible = true;
     });
+  }
+
+  private prefillForm() {
+    const form = this.form;
+    form.isSniper
+      ? (($("#SniperEnable") as RadioButton).checked = true)
+      : $("#SniperDisable").SetFocus();
+    form.terrain === "plain"
+      ? (($("#TerrainPlain") as RadioButton).checked = true)
+      : $("#River").SetFocus();
   }
 }

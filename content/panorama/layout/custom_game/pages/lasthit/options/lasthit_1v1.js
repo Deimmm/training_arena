@@ -4,6 +4,7 @@ class ONE_V_ONELasthitPageComponent extends PageComponent {
         this.isLaunched = false;
         this.form = { terrain: "plain", isSniper: true };
         this.load(root);
+        this.prefillForm();
         this.eventBus();
     }
     eventBus() {
@@ -41,5 +42,14 @@ class ONE_V_ONELasthitPageComponent extends PageComponent {
             this.isLaunched = false;
             $("#1V1FinishButton").visible = true;
         });
+    }
+    prefillForm() {
+        const form = this.form;
+        form.isSniper
+            ? ($("#SniperEnable").checked = true)
+            : $("#SniperDisable").SetFocus();
+        form.terrain === "plain"
+            ? ($("#TerrainPlain").checked = true)
+            : $("#River").SetFocus();
     }
 }

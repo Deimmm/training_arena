@@ -14,6 +14,7 @@ class PageComponent {
         }
         this.render(root);
         this.loadPageOptions();
+        this.openDefaultPageOption();
         $.Msg("PAGE Is LAODED: ");
     }
     get idSelector() {
@@ -37,6 +38,12 @@ class PageComponent {
     delete() {
         $(this.idSelector).RemoveAndDeleteChildren();
         $(this.idSelector).DeleteAsync(0);
+    }
+    openDefaultPageOption() {
+        this.renderPageOption({
+            playerId: Players.GetLocalPlayer(),
+            page: "Solo",
+        });
     }
     initListeners() {
         GameEvents.Subscribe("render-page-option", (event) => this.renderPageOption(event));

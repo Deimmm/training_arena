@@ -7,4 +7,5 @@ declare class ONE_V_ONELasthitPageComponent extends PageComponent {
     private isLaunched;
     private form;
     eventBus(): void;
+    private prefillForm;
 }
