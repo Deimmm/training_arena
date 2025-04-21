@@ -8,7 +8,7 @@ var SideNavButton;
 })(SideNavButton || (SideNavButton = {}));
 var SIDE_NAV_CONFIG = [
     { name: SideNavButton.LASTHIT, class: LastitNavigationButton },
-    // { name: SideNavButton.AIM, class: AimNavButton },
+    { name: SideNavButton.AIM, class: AimNavButton },
     // { name: SideNavButton.SPELL_DODGE, class: SpellDodgeNavButton },
     // { name: SideNavButton.MULTITASK, class: MultitaskNavButton },
     // { name: SideNavButton.UNIT_CONTROL, class: UnitControllNavButton },

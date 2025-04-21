@@ -1,5 +1,6 @@
 <root>
     <scripts>
+        <include src="file://{resources}/layout/custom_game/index.js"/>
     </scripts>
     <styles>
         <include src="file://{resources}/layout/custom_game/index.css" />

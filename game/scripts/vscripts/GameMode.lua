@@ -3,8 +3,10 @@ local __TS__Class = ____lualib.__TS__Class
 local __TS__New = ____lualib.__TS__New
 local __TS__Decorate = ____lualib.__TS__Decorate
 local __TS__SourceMapTraceBack = ____lualib.__TS__SourceMapTraceBack
-__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["8"] = 1,["9"] = 1,["10"] = 2,["11"] = 2,["12"] = 10,["13"] = 11,["14"] = 10,["16"] = 23,["17"] = 24,["18"] = 22,["19"] = 12,["20"] = 13,["21"] = 15,["22"] = 12,["23"] = 18,["24"] = 19,["25"] = 18,["26"] = 26,["27"] = 27,["28"] = 27,["29"] = 29,["30"] = 30,["31"] = 31,["32"] = 27,["33"] = 27,["34"] = 27,["35"] = 35,["36"] = 35,["37"] = 37,["38"] = 38,["39"] = 35,["40"] = 35,["41"] = 35,["42"] = 45,["43"] = 45,["44"] = 47,["45"] = 48,["46"] = 49,["47"] = 50,["49"] = 45,["50"] = 45,["51"] = 45,["52"] = 55,["53"] = 55,["54"] = 55,["55"] = 55,["56"] = 55,["57"] = 61,["58"] = 26,["59"] = 64,["60"] = 65,["61"] = 66,["62"] = 67,["64"] = 64,["65"] = 71,["66"] = 72,["67"] = 73,["68"] = 74,["69"] = 75,["70"] = 76,["71"] = 77,["72"] = 78,["73"] = 79,["74"] = 80,["75"] = 81,["76"] = 82,["77"] = 82,["78"] = 82,["79"] = 82,["80"] = 83,["81"] = 71,["82"] = 10,["83"] = 11});
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["8"] = 1,["9"] = 1,["10"] = 2,["11"] = 2,["12"] = 3,["13"] = 3,["14"] = 11,["15"] = 12,["16"] = 11,["18"] = 29,["19"] = 30,["20"] = 28,["21"] = 13,["22"] = 14,["23"] = 15,["24"] = 16,["25"] = 17,["26"] = 13,["27"] = 24,["28"] = 25,["29"] = 24,["30"] = 32,["31"] = 33,["32"] = 33,["33"] = 35,["34"] = 36,["35"] = 37,["36"] = 33,["37"] = 33,["38"] = 33,["39"] = 41,["40"] = 41,["41"] = 43,["42"] = 44,["43"] = 41,["44"] = 41,["45"] = 41,["46"] = 51,["47"] = 51,["48"] = 53,["49"] = 54,["50"] = 55,["51"] = 56,["53"] = 51,["54"] = 51,["55"] = 51,["56"] = 61,["57"] = 61,["58"] = 61,["59"] = 61,["60"] = 61,["61"] = 67,["62"] = 68,["63"] = 32,["64"] = 71,["65"] = 72,["66"] = 73,["67"] = 74,["69"] = 71,["70"] = 78,["71"] = 79,["72"] = 80,["73"] = 81,["74"] = 82,["75"] = 83,["76"] = 84,["77"] = 85,["78"] = 86,["79"] = 87,["80"] = 88,["81"] = 89,["82"] = 89,["83"] = 89,["84"] = 89,["85"] = 90,["86"] = 78,["87"] = 11,["88"] = 12});
 local ____exports = {}
+local ____AimCommon = require("games.AimCommon")
+local AimCommon = ____AimCommon.AimCommon
 local ____Lasthit1v1 = require("games.Lasthit1v1")
 local Lasthit1V1 = ____Lasthit1v1.Lasthit1V1
 local ____tstl_2Dutils = require("lib.tstl-utils")
@@ -18,7 +20,9 @@ function GameMode.prototype.____constructor(self)
 end
 function GameMode.Precache(context)
     PrecacheUnitByNameSync("npc_dota_hero_sniper", context)
+    PrecacheResource("soundfile", "soundevents/sounds.vsndevts", context)
     PrecacheResource("particle", "particles/msg_fx/msg_death.vpcf", context)
+    PrecacheResource("particle", "particles/custom/range_display_line_red.vpcf", context)
 end
 function GameMode.Activate()
     GameRules.Addon = __TS__New(____exports.GameMode)
@@ -55,6 +59,7 @@ function GameMode.prototype.eventHandling(self)
         nil
     )
     __TS__New(Lasthit1V1):listenEvents()
+    __TS__New(AimCommon):listenEvents()
 end
 function GameMode.prototype.onNPCSpawned(self, event)
     local npc = EntIndexToHScript(event.entindex)

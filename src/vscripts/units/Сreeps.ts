@@ -108,11 +108,4 @@ export class CreepSpawn {
   stopSpawn() {
     this.isSpawning = false;
   }
-  private sleep(time: number) {
-    return new Promise((resolve) => {
-      Timers.CreateTimer(() => {
-        resolve(true);
-      }, time);
-    });
-  }
 }

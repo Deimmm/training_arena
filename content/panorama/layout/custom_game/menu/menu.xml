@@ -11,6 +11,7 @@
         <include src="file://{resources}/layout/custom_game/pages/lasthit/options/lasthit_solo.js"/>
         <include src="file://{resources}/layout/custom_game/pages/lasthit/options/lasthit_1v1.js"/>
         <include src="file://{resources}/layout/custom_game/pages/lasthit/options/lasthit_2v2.js"/>
+        <include src="file://{resources}/layout/custom_game/pages/aim/options/common_aim.js"/>
         <include src="file://{resources}/layout/custom_game/pages/lasthit/lasthit.js"/>
         <include src="file://{resources}/layout/custom_game/pages/aim/aim.js"/>
         <include src="file://{resources}/layout/custom_game/pages/page_config.js"/>
@@ -83,16 +84,42 @@
                 <Panel class="PageOptions" id ="PageOptions">
                 </Panel>
                 <Panel class="PageContent" id ="PageContent">
-                    <Label text="AimPage works!"/>
+                </Panel>
+            </Panel>
+        </snippet>
+        <snippet name="CommonAIM">
+            <Panel class="SelectedOptionContainer" id ="CommonAIM" >
+                <Label  class="ButtonText" text="LeaderBoard will be here \n Estimate 28/04/2025"/>
+                <Panel class="Form" id="1V1Form"></Panel>
+                <Panel class="ButtonPanel">
+                    <Panel class="LaunchButton" onactivate="ClientEventBus.emit('game_launch.aim_common');">
+                        <Label class="ButtonText" text="START"/>
+                    </Panel>
+                    <Panel id="CommonAimFinishButton" class="FinishButton" onactivate="ClientEventBus.emit('game_finish.aim_common');">
+                        <Label class="ButtonText" text="FINISH"/>
+                    </Panel>
                 </Panel>
             </Panel>
         </snippet>
     </snippets>
     <Panel class="MenuRoot" >
-        <Panel class='MenuContainer' id="MenuContainer">
-            <Panel class='SideNav' id="SideNav"></Panel>
-            <Panel class="PageContentContainer" id="PageContainer"></Panel>
+        <Panel class="MenuRoot2">
+            <Panel class='MenuContainer' id="MenuContainer">
+                <Panel class='SideNav' id="SideNav"></Panel>
+                <Panel class="PageContentContainer" id="PageContainer"></Panel>
+            </Panel>
+            <Panel id="ShowHideBtn"></Panel>
         </Panel>
-        <Panel id="ShowHideBtn"></Panel>
+        <Panel class="Timer">
+            <Label  id="Timer"/>
+        </Panel>
+        <Panel id="ResultBoard" class="ResultBoard" visible="false">
+            <Label id="Result1"/>
+            <Label id="Result2"  />
+            <Label id="Result3"  />
+            <Label id="Result4"  />
+            <Label id="Result5"  />
+            <Label id="Result6"  />
+        </Panel>
     </Panel>
 </root>

@@ -59,10 +59,13 @@ class PageComponent {
     $(this.idSelector).DeleteAsync(0);
   }
   public openDefaultPageOption() {
-    this.renderPageOption({
-      playerId: Players.GetLocalPlayer(),
-      page: "Solo",
-    });
+    $.Msg(this.pageOptions);
+    if (this.pageOptions && this.pageOptions?.length > 0) {
+      this.renderPageOption({
+        playerId: Players.GetLocalPlayer(),
+        page: this.pageOptions[0].name,
+      });
+    }
   }
   private initListeners() {
     GameEvents.Subscribe("render-page-option", (event) =>

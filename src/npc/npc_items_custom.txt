@@ -1,0 +1,15 @@
+"DOTAAbilities"
+{
+ 
+    "item_custom_qblade"
+    {
+        "ID"                            "6666"
+        "BaseClass"                     "item_lua"
+        "ScriptFile"                    "items/qblade.lua"
+        "AbilityTextureName"            "item_quelling_blade"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+        "AbilityUnitTargetTeam"         "DOTA_UNIT_TARGET_TEAM_BOTH"
+        "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_ALL"
+        "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_NONE"
+    }
+}

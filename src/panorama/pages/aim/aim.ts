@@ -4,7 +4,7 @@ class AimPageComponent extends PageComponent {
       isSingle: true,
       snippet: "AimPage",
       pageOptions: [
-        // { name: "Common", component:  },
+        { name: "Common", component: CommonAIMPageComponent },
         // { name: "Intermidiate", component: "" },
         // { name: "Pro", component: "" },
       ],

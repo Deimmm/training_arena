@@ -1,63 +1,35 @@
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
-local __TS__ArrayConcat = ____lualib.__TS__ArrayConcat
+local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__ArrayForEach = ____lualib.__TS__ArrayForEach
 local __TS__New = ____lualib.__TS__New
+local __TS__ArrayConcat = ____lualib.__TS__ArrayConcat
 local __TS__SourceMapTraceBack = ____lualib.__TS__SourceMapTraceBack
-__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["9"] = 1,["10"] = 1,["11"] = 2,["12"] = 2,["13"] = 4,["14"] = 4,["15"] = 4,["17"] = 6,["18"] = 7,["19"] = 8,["20"] = 4,["21"] = 11,["22"] = 12,["23"] = 12,["24"] = 14,["25"] = 15,["26"] = 16,["27"] = 17,["28"] = 18,["29"] = 19,["30"] = 21,["31"] = 21,["32"] = 23,["33"] = 24,["34"] = 25,["35"] = 30,["36"] = 21,["37"] = 21,["38"] = 38,["39"] = 38,["40"] = 40,["41"] = 41,["42"] = 42,["43"] = 38,["44"] = 38,["45"] = 49,["46"] = 50,["48"] = 12,["49"] = 12,["50"] = 58,["51"] = 58,["52"] = 11,["53"] = 61,["54"] = 62,["55"] = 63,["56"] = 61,["57"] = 66,["58"] = 67,["59"] = 67,["60"] = 67,["61"] = 68,["62"] = 69,["63"] = 70,["64"] = 71,["66"] = 66,["67"] = 75,["68"] = 76,["69"] = 77,["70"] = 78,["72"] = 80,["73"] = 81,["74"] = 82,["75"] = 82,["76"] = 82,["77"] = 82,["79"] = 86,["80"] = 87,["81"] = 88,["82"] = 89,["83"] = 89,["84"] = 89,["85"] = 89,["87"] = 91,["88"] = 92,["89"] = 93,["90"] = 93,["91"] = 93,["92"] = 93,["94"] = 95,["95"] = 96,["96"] = 75,["97"] = 99,["98"] = 100,["99"] = 102,["100"] = 104,["101"] = 105,["102"] = 106,["103"] = 107,["106"] = 111,["107"] = 112,["108"] = 113,["109"] = 114,["110"] = 114,["111"] = 114,["112"] = 114,["113"] = 114,["114"] = 114,["115"] = 114,["116"] = 121,["117"] = 121,["118"] = 121,["119"] = 121,["120"] = 121,["121"] = 121,["122"] = 121,["123"] = 99,["124"] = 129,["125"] = 130,["126"] = 131,["127"] = 132,["130"] = 135,["131"] = 136,["132"] = 137,["133"] = 137,["134"] = 137,["135"] = 137,["136"] = 129,["137"] = 140,["138"] = 144,["139"] = 145,["140"] = 148,["141"] = 149,["144"] = 152,["145"] = 153,["146"] = 154,["147"] = 154,["148"] = 154,["149"] = 154,["150"] = 140,["151"] = 156,["152"] = 157,["153"] = 159,["154"] = 160,["157"] = 163,["158"] = 164,["159"] = 164,["160"] = 164,["161"] = 164,["162"] = 164,["163"] = 164,["164"] = 164,["165"] = 164,["166"] = 172,["167"] = 172,["168"] = 174,["169"] = 175,["172"] = 178,["173"] = 179,["174"] = 180,["175"] = 181,["176"] = 182,["177"] = 187,["179"] = 189,["180"] = 189,["181"] = 189,["182"] = 189,["183"] = 189,["184"] = 189,["185"] = 189,["187"] = 172,["188"] = 172,["189"] = 172,["190"] = 200,["191"] = 205,["192"] = 156});
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["10"] = 1,["11"] = 1,["12"] = 2,["13"] = 2,["14"] = 3,["15"] = 3,["16"] = 5,["17"] = 5,["18"] = 5,["19"] = 5,["21"] = 5,["22"] = 7,["23"] = 9,["24"] = 12,["25"] = 13,["26"] = 14,["27"] = 12,["28"] = 17,["29"] = 18,["30"] = 19,["31"] = 19,["32"] = 19,["33"] = 20,["34"] = 21,["35"] = 22,["36"] = 23,["38"] = 17,["39"] = 26,["40"] = 27,["41"] = 28,["42"] = 29,["44"] = 31,["45"] = 32,["46"] = 33,["47"] = 33,["48"] = 33,["49"] = 33,["51"] = 37,["52"] = 38,["53"] = 39,["54"] = 40,["55"] = 40,["56"] = 40,["57"] = 40,["59"] = 42,["60"] = 43,["61"] = 44,["62"] = 44,["63"] = 44,["64"] = 44,["66"] = 46,["67"] = 47,["68"] = 26,["69"] = 50,["70"] = 51,["71"] = 53,["72"] = 55,["73"] = 56,["74"] = 57,["75"] = 58,["78"] = 62,["79"] = 63,["80"] = 64,["81"] = 65,["82"] = 65,["83"] = 65,["84"] = 65,["85"] = 65,["86"] = 65,["87"] = 65,["88"] = 72,["89"] = 72,["90"] = 72,["91"] = 72,["92"] = 72,["93"] = 72,["94"] = 72,["95"] = 50,["96"] = 80,["97"] = 81,["98"] = 82,["99"] = 83,["102"] = 86,["103"] = 87,["104"] = 88,["105"] = 88,["106"] = 88,["107"] = 88,["108"] = 80,["109"] = 91,["110"] = 95,["111"] = 96,["112"] = 99,["113"] = 100,["116"] = 103,["117"] = 104,["118"] = 105,["119"] = 105,["120"] = 105,["121"] = 105,["122"] = 91,["123"] = 107,["124"] = 108,["125"] = 110,["126"] = 111,["129"] = 114,["130"] = 115,["131"] = 115,["132"] = 115,["133"] = 115,["134"] = 115,["135"] = 115,["136"] = 115,["137"] = 115,["138"] = 123,["139"] = 123,["140"] = 125,["141"] = 126,["144"] = 129,["145"] = 130,["146"] = 131,["147"] = 132,["148"] = 133,["149"] = 138,["151"] = 140,["152"] = 140,["153"] = 140,["154"] = 140,["155"] = 140,["156"] = 140,["157"] = 140,["159"] = 123,["160"] = 123,["161"] = 123,["162"] = 151,["163"] = 156,["164"] = 107});
 local ____exports = {}
 local ____Sniper = require("ai.Sniper")
 local sniper_ai = ____Sniper.sniper_ai
-local ____creeps = require("units.creeps")
-local CreepSpawn = ____creeps.CreepSpawn
+local _____421reeps = require("units.Сreeps")
+local CreepSpawn = _____421reeps.CreepSpawn
+local ____Game = require("games.Game")
+local GameBase = ____Game.GameBase
 ____exports.Lasthit1V1 = __TS__Class()
 local Lasthit1V1 = ____exports.Lasthit1V1
 Lasthit1V1.name = "Lasthit1V1"
+__TS__ClassExtends(Lasthit1V1, GameBase)
 function Lasthit1V1.prototype.____constructor(self)
-    self.context = {}
+    GameBase.prototype.____constructor(self, "1v1")
     self.spawns = {}
-    self.listeners = {}
 end
-function Lasthit1V1.prototype.listenEvents(self)
-    local id = CustomGameEventManager:RegisterListener(
-        "game_launch.1v1",
-        function(userId, event)
-            print("game_launch.1v1 EVENT AAA", event.isSniper)
-            local playerController = PlayerResource:GetPlayer(event.PlayerID)
-            if playerController then
-                self.controller = playerController
-                self:launch(playerController, event)
-                local relaunchId = CustomGameEventManager:RegisterListener(
-                    "game_relaunch.1v1",
-                    function(userId, event)
-                        self:reLaunch(playerController, event)
-                        CustomGameEventManager:Send_ServerToPlayer(playerController, "game_relaunch.1v1.success", {data = nil})
-                        CustomGameEventManager:Send_ServerToPlayer(playerController, "game_launch.1v1.success", {data = nil})
-                    end
-                )
-                local finishId = CustomGameEventManager:RegisterListener(
-                    "game_finish.1v1",
-                    function(userId, event)
-                        self:finish()
-                        CustomGameEventManager:Send_ServerToPlayer(playerController, "game_finish.1v1.success", {data = nil})
-                    end
-                )
-                __TS__ArrayConcat(self.listeners, {relaunchId, finishId})
-                CustomGameEventManager:Send_ServerToPlayer(playerController, "game_launch.1v1.success", {data = nil})
-            end
-        end
-    )
-    local ____self_listeners_0 = self.listeners
-    ____self_listeners_0[#____self_listeners_0 + 1] = id
-end
-function Lasthit1V1.prototype.reLaunch(self, controller, options)
+function Lasthit1V1.prototype.reLaunch(self, options)
     self:finish()
-    self:launch(controller, options)
+    self:launch(options)
 end
-function Lasthit1V1.prototype.launch(self, controller, options)
-    local ____options_1 = options
-    local isSniper = ____options_1.isSniper
-    local terrain = ____options_1.terrain
+function Lasthit1V1.prototype.launch(self, options)
+    local controller = self.controller
+    local ____options_0 = options
+    local isSniper = ____options_0.isSniper
+    local terrain = ____options_0.terrain
     self:moveHero(controller, terrain)
     self:initCreepSpawns(terrain)
     if isSniper == 1 then

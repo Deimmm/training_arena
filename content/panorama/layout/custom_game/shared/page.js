@@ -40,10 +40,14 @@ class PageComponent {
         $(this.idSelector).DeleteAsync(0);
     }
     openDefaultPageOption() {
-        this.renderPageOption({
-            playerId: Players.GetLocalPlayer(),
-            page: "Solo",
-        });
+        var _a;
+        $.Msg(this.pageOptions);
+        if (this.pageOptions && ((_a = this.pageOptions) === null || _a === void 0 ? void 0 : _a.length) > 0) {
+            this.renderPageOption({
+                playerId: Players.GetLocalPlayer(),
+                page: this.pageOptions[0].name,
+            });
+        }
     }
     initListeners() {
         GameEvents.Subscribe("render-page-option", (event) => this.renderPageOption(event));

@@ -1,6 +1,10 @@
 .MenuRoot {
-  width: 50%;
-  height: 60%;
+  width: 100%;
+  height: 100%;
+}
+.MenuRoot2 {
+  width: 70%;
+  height: 70%;
   margin-bottom: 200px;
   horizontal-align: left;
   vertical-align: middle;
@@ -11,6 +15,7 @@
   background-image: url("s2r://panorama/images/hud/reborn/main_shop_bg_psd.vtex");
   background-repeat: no-repeat;
   background-size: cover;
+  vertical-align: middle;
   width: 80%;
   height: 100%;
 
@@ -178,4 +183,35 @@
 .RadioBtnGroup {
   width: 100%;
   flow-children: right;
+}
+
+.ResultBoard {
+  width: 250px;
+  height: 200px;
+  ignore-parent-flow: true;
+  position: 85% 15% 10px;
+  flow-children: down;
+  visibility: collapse;
+}
+.ResultBoard Label {
+  color: rgb(255, 255, 255);
+  width: 100%;
+  font-size: 24;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  box-shadow: #0b793d3f 0px 0px 0px 0px;
+  border-radius: 30px;
+  text-align: left;
+  padding-left: 20px;
+}
+.Timer {
+  ignore-parent-flow: true;
+  width: 75px;
+  height: 75px;
+  position: 50% 25% 10px;
+
+  color: rgb(255, 255, 255);
+  font-size: 64;
+  text-transform: uppercase;
+  text-align: left;
 }

@@ -1,3 +1,4 @@
+import { AimCommon } from "./games/AimCommon";
 import { Lasthit1V1 } from "./games/Lasthit1v1";
 import { reloadable } from "./lib/tstl-utils";
 
@@ -11,8 +12,13 @@ declare global {
 export class GameMode {
   public static Precache(this: void, context: CScriptPrecacheContext) {
     PrecacheUnitByNameSync("npc_dota_hero_sniper", context);
-
+    PrecacheResource("soundfile", "soundevents/sounds.vsndevts", context);
     PrecacheResource("particle", "particles/msg_fx/msg_death.vpcf", context);
+    PrecacheResource(
+      "particle",
+      "particles/custom/range_display_line_red.vpcf",
+      context,
+    );
   }
 
   public static Activate(this: void) {
@@ -59,6 +65,7 @@ export class GameMode {
     );
 
     new Lasthit1V1().listenEvents();
+    new AimCommon().listenEvents();
   }
 
   onNPCSpawned(event: NpcSpawnedEvent) {

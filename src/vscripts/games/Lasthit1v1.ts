@@ -1,69 +1,21 @@
 import { sniper_ai } from "../ai/Sniper";
-import { CreepSpawn } from "../units/creeps";
+import { CreepSpawn } from "../units/Сreeps";
+import { GameBase } from "./Game";
 
-export class Lasthit1V1 {
+export class Lasthit1V1 extends GameBase {
   private sniper?: CBaseEntity;
-  private context: any = {};
   private spawns: CreepSpawn[] = [];
-  private listeners: CustomGameEventListenerID[] = [];
-  private controller: CDOTAPlayerController;
 
-  public listenEvents() {
-    const id = CustomGameEventManager.RegisterListener(
-      "game_launch.1v1",
-      (userId: number, event: any) => {
-        print("game_launch.1v1 EVENT AAA", event.isSniper);
-        const playerController = PlayerResource.GetPlayer(event.PlayerID);
-        if (playerController) {
-          this.controller = playerController;
-          this.launch(playerController, event);
-
-          const relaunchId = CustomGameEventManager.RegisterListener(
-            "game_relaunch.1v1",
-            (userId: number, event: any) => {
-              this.reLaunch(playerController, event);
-              CustomGameEventManager.Send_ServerToPlayer<any>(
-                playerController,
-                "game_relaunch.1v1.success",
-                { data: null },
-              );
-              CustomGameEventManager.Send_ServerToPlayer<any>(
-                playerController,
-                "game_launch.1v1.success",
-                { data: null },
-              );
-            },
-          );
-
-          const finishId = CustomGameEventManager.RegisterListener(
-            "game_finish.1v1",
-            (userId: number, event: any) => {
-              this.finish();
-              CustomGameEventManager.Send_ServerToPlayer<any>(
-                playerController,
-                "game_finish.1v1.success",
-                { data: null },
-              );
-            },
-          );
-          this.listeners.concat([relaunchId, finishId]);
-          CustomGameEventManager.Send_ServerToPlayer<any>(
-            playerController,
-            "game_launch.1v1.success",
-            { data: null },
-          );
-        }
-      },
-    );
-    this.listeners.push(id);
+  constructor() {
+    super("1v1");
   }
-
-  private reLaunch(controller: CDOTAPlayerController, options: any) {
+  reLaunch(options: any) {
     this.finish();
-    this.launch(controller, options);
+    this.launch(options);
   }
 
-  private launch(controller: CDOTAPlayerController, options: any) {
+  launch(options: any) {
+    const controller = this.controller;
     const { isSniper, terrain } = options;
     this.moveHero(controller, terrain);
     this.initCreepSpawns(terrain);
@@ -71,8 +23,7 @@ export class Lasthit1V1 {
       this.sniper = this.createSniper(terrain);
     }
   }
-
-  private finish() {
+  finish() {
     const sniper = this.sniper;
     if (sniper && !sniper.IsNull()) {
       sniper.Destroy();
