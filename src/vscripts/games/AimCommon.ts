@@ -1,3 +1,4 @@
+import { API } from "../core/api/Api";
 import { eventBus } from "../core/event-bus/event-bus";
 import { AIMCOMMON_ObserverWardSpawn } from "../units/Оbserver";
 import { Box } from "../utils/Box";
@@ -14,7 +15,7 @@ export class AimCommon extends GameBase {
   private avgTime: number = 0;
   private maxStreak: number = 0;
   private killedWards: number = 0;
-  private totalWards: number = 120;
+  private totalWards: number = 10;
   private killTimes: number[] = [];
 
   private heroPreviousState: { attack_capability: UnitAttackCapability } = {
@@ -136,6 +137,16 @@ export class AimCommon extends GameBase {
             {},
           ),
         );
+        API.updateCommonAim({
+          steamId: PlayerResource.GetSteamID(
+            this.controller.GetPlayerID(),
+          ).__tostring(),
+
+          result: this.result,
+          streak: this.maxStreak,
+          avgTime: this.avgTime,
+          killedWards: this.killedWards,
+        });
       }),
     );
   }
@@ -199,9 +210,3 @@ export class AimCommon extends GameBase {
     CenterCameraOnUnit(this.controller.GetPlayerID(), hero);
   }
 }
-
-/**
- * 1. Finish / Relaunch Full cycle
- * 2. Notifications Container
- * 3. Extends Stats: Max Streak, Total Wards, Time Left
- */

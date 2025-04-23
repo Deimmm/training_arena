@@ -40,6 +40,7 @@ class CommonAIMPageComponent extends PageComponent {
         "game_finish.aim_common",
         {},
       );
+      $("#ResultBoard").visible = false;
     });
 
     GameEvents.Subscribe("game_launch.aim_common.success", (event) => {
@@ -70,7 +71,7 @@ class CommonAIMPageComponent extends PageComponent {
         { playerId: Players.GetLocalPlayer() },
       );
 
-      $("#CommonAimFinishButton").visible = false;
+      $("#CommonAimFinishButton").visible = true;
     });
 
     GameEvents.Subscribe("aim_common.result_update", (event: any) => {

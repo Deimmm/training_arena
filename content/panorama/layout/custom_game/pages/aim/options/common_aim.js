@@ -26,6 +26,7 @@ class CommonAIMPageComponent extends PageComponent {
         GameEvents.Subscribe("game_finish.aim_common", (event) => {
             $.Msg("game_finish.aim_common", event);
             GameEvents.SendCustomGameEventToServer("game_finish.aim_common", {});
+            $("#ResultBoard").visible = false;
         });
         GameEvents.Subscribe("game_launch.aim_common.success", (event) => {
             $.Msg("game_launch.aim_common.success", event);
@@ -44,7 +45,7 @@ class CommonAIMPageComponent extends PageComponent {
         GameEvents.Subscribe("round_finish.aim_common", (event) => {
             $.Msg("round_finish.aim_common", event);
             GameEvents.SendCustomGameEventToAllClients("open-menu", { playerId: Players.GetLocalPlayer() });
-            $("#CommonAimFinishButton").visible = false;
+            $("#CommonAimFinishButton").visible = true;
         });
         GameEvents.Subscribe("aim_common.result_update", (event) => {
             $.Msg("aim_common.result_update", event);
