@@ -13,3 +13,7 @@ declare enum SideNavButton {
     UNIT_CONTROL = "UnitControl"
 }
 declare var SIDE_NAV_CONFIG: SideNavConfig[];
+declare enum PageNames {
+    LASTHIT = "LasthitPage",
+    AIM = "AimPage"
+}

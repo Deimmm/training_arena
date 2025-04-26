@@ -2,6 +2,7 @@ class PageConfig {
   snippet?: string;
   isSingle?: boolean;
   pageOptions?: { name: string; component: PageConstructor<any> }[];
+  onReload?: () => void;
 }
 
 class PageComponent {
@@ -13,6 +14,7 @@ class PageComponent {
   activeOption?: any;
   initializedOptions: any[] = [];
 
+  onReload?: () => void;
   constructor(id: string, config: PageConfig) {
     this.id = id;
     this.parseConfig(config);
@@ -20,7 +22,7 @@ class PageComponent {
   }
 
   public load(root: Panel) {
-    if (this.isSingle && this.isLoaded()) {
+    if (this.isSingle) {
       this.delete();
     }
 
@@ -28,6 +30,7 @@ class PageComponent {
     this.loadPageOptions();
     this.openDefaultPageOption();
     $.Msg("PAGE Is LAODED: ");
+    this.onReload && this.onReload();
   }
 
   get idSelector() {
@@ -55,8 +58,10 @@ class PageComponent {
   }
 
   public delete(): void {
-    $(this.idSelector).RemoveAndDeleteChildren();
-    $(this.idSelector).DeleteAsync(0);
+    try {
+      $(this.idSelector).RemoveAndDeleteChildren();
+      $(this.idSelector).DeleteAsync(0);
+    } catch (err) {}
   }
   public openDefaultPageOption() {
     $.Msg(this.pageOptions);
@@ -134,9 +139,10 @@ class PageComponent {
   }
 
   private parseConfig(config: PageConfig) {
-    const { snippet, pageOptions, isSingle } = config;
+    const { snippet, pageOptions, isSingle, onReload } = config;
     snippet && (this.snippet = snippet);
     pageOptions && (this.pageOptions = pageOptions);
     isSingle && (this.isSingle = isSingle);
+    onReload && (this.onReload = onReload);
   }
 }

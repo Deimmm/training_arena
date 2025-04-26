@@ -16,6 +16,8 @@ declare class MenuComponent {
     activePage?: PageComponent;
     initializedPages: PageComponent[];
     sideNavButtons: NavButtons[];
+    private init;
+    private deleteAll;
     private eventBus;
     emitBtn(id: string): void;
     private initShowHideBtn;

@@ -1,19 +1,36 @@
-const global = globalThis as typeof globalThis & { reloadCache: Record<string, any> };
+const global = globalThis as typeof globalThis & {
+  reloadCache: Record<string, any>;
+};
 if (global.reloadCache === undefined) {
-    global.reloadCache = {};
+  global.reloadCache = {};
 }
 
-export function reloadable<T extends { new (...args: any[]): {} }>(constructor: T, context: ClassDecoratorContext): T {
-    const className = context.name;
+export function reloadable<T extends { new (...args: any[]): {} }>(
+  constructor: T,
+  context: ClassDecoratorContext,
+): T {
+  const className = context.name;
 
-    if (className === undefined) {
-        throw "Cannot reload classes without names!";
-    }
+  if (className === undefined) {
+    throw "Cannot reload classes without names!";
+  }
 
-    if (global.reloadCache[className] === undefined) {
-        global.reloadCache[className] = constructor;
-    }
+  if (global.reloadCache[className] === undefined) {
+    global.reloadCache[className] = constructor;
+  }
 
-    Object.assign(global.reloadCache[className].prototype, constructor.prototype);
-    return global.reloadCache[className];
+  Object.assign(global.reloadCache[className].prototype, constructor.prototype);
+  return global.reloadCache[className];
+}
+
+declare interface CustomNetTableDeclarations {
+  "common-aim": {
+    table: Array<{
+      steamId: number;
+      result: string;
+      streal: string;
+      avgTime: string;
+      killedWards: string;
+    }>;
+  };
 }

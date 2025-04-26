@@ -19,11 +19,13 @@ export class GameBase implements IGameBase {
     this.game_name = game_name;
   }
 
-  public listenEvents() {
+  public listenEvents(cb?: () => void) {
     const name = this.game_name;
     const id = CustomGameEventManager.RegisterListener(
       `game_launch.${name}`,
       (userId: number, event: any) => {
+        print(`[SERVER] `, `game_launch.${name}`, event);
+        DeepPrintTable(event);
         const playerController = PlayerResource.GetPlayer(event.PlayerID);
         if (playerController) {
           this.controller = playerController;
@@ -31,12 +33,16 @@ export class GameBase implements IGameBase {
           const relaunchId = CustomGameEventManager.RegisterListener(
             `game_relaunch.${name}`,
             (userId: number, event: any) => {
+              print(`[SERVER] `, `game_relaunch.${name}`);
+              DeepPrintTable(event);
               this.relaunch(event);
+
               CustomGameEventManager.Send_ServerToPlayer<any>(
                 playerController,
                 `game_relaunch.${name}.success`,
                 { data: null },
               );
+
               CustomGameEventManager.Send_ServerToPlayer<any>(
                 playerController,
                 `game_launch.${name}.success`,
@@ -48,10 +54,12 @@ export class GameBase implements IGameBase {
           const finishId = CustomGameEventManager.RegisterListener(
             `game_finish.${name}`,
             (userId: number, event: any) => {
+              print(`[SERVER] `, `game_finish.${name}`, event);
+              DeepPrintTable(event);
               this.finish();
               CustomGameEventManager.Send_ServerToPlayer<any>(
                 playerController,
-                "game_finish.${name}.success",
+                `game_finish.${name}.success`,
                 { data: null },
               );
             },

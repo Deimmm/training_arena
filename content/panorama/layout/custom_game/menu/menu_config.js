@@ -13,3 +13,8 @@ var SIDE_NAV_CONFIG = [
     // { name: SideNavButton.MULTITASK, class: MultitaskNavButton },
     // { name: SideNavButton.UNIT_CONTROL, class: UnitControllNavButton },
 ];
+var PageNames;
+(function (PageNames) {
+    PageNames["LASTHIT"] = "LasthitPage";
+    PageNames["AIM"] = "AimPage";
+})(PageNames || (PageNames = {}));

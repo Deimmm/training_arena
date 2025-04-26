@@ -10,7 +10,7 @@ class LastitNavigationButton extends ButtonComponent {
     static _onClick() {
         GameEvents.SendCustomGameEventToAllClients("render-page", {
             playerId: Players.GetLocalPlayer(),
-            page: "LasthitPage",
+            page: PageNames.LASTHIT,
         });
         $.Msg(`Clicked ${LastitNavigationButton.name}`);
     }

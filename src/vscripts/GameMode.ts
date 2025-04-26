@@ -1,3 +1,4 @@
+import { API } from "core/api/Api";
 import { AimCommon } from "./games/AimCommon";
 import { Lasthit1V1 } from "./games/Lasthit1v1";
 import { reloadable } from "./lib/tstl-utils";
@@ -64,6 +65,7 @@ export class GameMode {
       undefined,
     );
 
+    new API().listenEvents();
     new Lasthit1V1().listenEvents();
     new AimCommon().listenEvents();
   }

@@ -33,6 +33,7 @@ export class ObserverWard {
       undefined,
       DotaTeam.NOTEAM,
     );
+    ward.SetRenderColor(119, 218, 233);
     this.index = ward.GetEntityIndex();
     ward.SetDeathXP(0);
     ward.SetMaximumGoldBounty(0);
@@ -105,9 +106,10 @@ export class AIMCOMMON_ObserverWardSpawn {
         case count >= 22 && count < 28:
           interval = 0.5;
           break;
-        case count >= 28:
+        case count >= 28 && count < 80:
+          interval = 0.45;
+        case count >= 80:
           interval = 0.4;
-
           break;
       }
       const spawnPos = Box.twoBoxRandomPoint(

@@ -3,35 +3,33 @@ class CommonAIMPageComponent extends PageComponent {
         super(id, {
             snippet: "CommonAIM",
             isSingle: true,
+            onReload: () => this.loadTable(),
         });
-        this.isLaunched = false;
         this.form = {};
         this.shedules = [];
+        let x;
         this.load(root);
         this.eventBus();
     }
     eventBus() {
         GameEvents.Subscribe("game_launch.aim_common", (event) => {
             $.Msg("game_launch.aim_common", event);
-            $.Msg("IS LAUNCHED? ", this.isLaunched);
-            if (this.isLaunched) {
-                $("#Timer").visible = true;
-                this.shedules.forEach((e) => $.CancelScheduled(e));
-                GameEvents.SendCustomGameEventToServer("game_relaunch.aim_common", Object.assign({}, this.form));
-            }
-            else {
-                GameEvents.SendCustomGameEventToServer("game_launch.aim_common", Object.assign({}, this.form));
-            }
+            GameEvents.SendCustomGameEventToServer("game_launch.aim_common", Object.assign({}, this.form));
+        });
+        GameEvents.Subscribe("game_relaunch.aim_common", (event) => {
+            $.Msg("game_relaunch.aim_common", event);
+            $("#Timer").visible = true;
+            this.shedules.forEach((e) => $.CancelScheduled(e));
+            GameEvents.SendCustomGameEventToServer("game_relaunch.aim_common", Object.assign({}, this.form));
         });
         GameEvents.Subscribe("game_finish.aim_common", (event) => {
-            $.Msg("game_finish.aim_common", event);
+            $.Msg(CommonAIMPageComponent.name, "game_finish.aim_common", event);
             GameEvents.SendCustomGameEventToServer("game_finish.aim_common", {});
             $("#ResultBoard").visible = false;
         });
         GameEvents.Subscribe("game_launch.aim_common.success", (event) => {
             $.Msg("game_launch.aim_common.success", event);
             GameEvents.SendCustomGameEventToAllClients("close-menu", { playerId: Players.GetLocalPlayer() });
-            this.isLaunched = true;
             $("#CommonAimFinishButton").visible = true;
             this.updateResultBoard(0, 0, 0, 0, 0, 120);
             this.countdown();
@@ -39,7 +37,6 @@ class CommonAIMPageComponent extends PageComponent {
         GameEvents.Subscribe("game_finish.aim_common.success", (event) => {
             $.Msg("game_finish.aim_common.success", event);
             GameEvents.SendCustomGameEventToAllClients("open-menu", { playerId: Players.GetLocalPlayer() });
-            this.isLaunched = false;
             $("#CommonAimFinishButton").visible = false;
         });
         GameEvents.Subscribe("round_finish.aim_common", (event) => {
@@ -53,6 +50,37 @@ class CommonAIMPageComponent extends PageComponent {
             const { result, streak, avgTime, maxStreak, killedWards, totalWards } = event;
             this.updateResultBoard(result, streak, avgTime, maxStreak, killedWards, totalWards);
         });
+        const listenerId = GameEvents.Subscribe("aim_common.table.get.response", (event) => {
+            $.Msg("aim_common.table.get.response", event);
+            let rawData = CustomNetTables.GetTableValue("common-aim", "table");
+            if (!rawData) {
+                return;
+            }
+            const table = new TableBuilder("LeaderbordTable", {
+                headers: [
+                    { name: "№", colClass: "PlaceCol" },
+                    { name: "Player", colClass: "PlayerCol" },
+                    { name: "Result", colClass: "ResultCol" },
+                    { name: "Avg Time", colClass: "AvgTimeCol" },
+                    { name: "Max Streak", colClass: "StreakCol" },
+                    { name: "Killed Wards", colClass: "KilledWardCol" },
+                ],
+            });
+            let data = Object.entries(rawData).map((elem) => {
+                return {
+                    steamId: elem[1].steamId,
+                    result: elem[1].result,
+                    avgTime: elem[1].avgTime.toFixed(3),
+                    maxStreal: elem[1].streak,
+                    killedWards: elem[1].killedWards + "/120",
+                };
+            });
+            $.Msg(data);
+            data.forEach((elem, i) => {
+                table.addRow(elem.steamId, [i + 1, ...Object.values(elem)]);
+            });
+        });
+        $.Msg("LISTENER FOR HTTP REQUEST ID: ", listenerId);
     }
     countdown() {
         const timer = $("#Timer");
@@ -79,5 +107,10 @@ class CommonAIMPageComponent extends PageComponent {
         $("#Result4").text = `Max Streak:  ${maxStreak}`;
         $("#Result5").text = `Wards:  ${killedWards}/${totalWards}`;
         $.Msg(avgTime.toFixed(3));
+    }
+    loadTable() {
+        ServerEventBus.emit("aim_common.table.get", {
+            playerId: Players.GetLocalPlayer(),
+        });
     }
 }

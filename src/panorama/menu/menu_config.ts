@@ -25,3 +25,8 @@ var SIDE_NAV_CONFIG: SideNavConfig[] = [
   // { name: SideNavButton.MULTITASK, class: MultitaskNavButton },
   // { name: SideNavButton.UNIT_CONTROL, class: UnitControllNavButton },
 ];
+
+enum PageNames {
+  LASTHIT = "LasthitPage",
+  AIM = "AimPage",
+}

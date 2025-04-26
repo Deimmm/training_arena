@@ -5,13 +5,15 @@ interface LaunchOptions {
 
 class ONE_V_ONELasthitPageComponent extends PageComponent {
   constructor(id: string, root: Panel) {
-    super(id, { snippet: "1V1", isSingle: true });
+    super(id, {
+      snippet: "1V1",
+      isSingle: true,
+      onReload: () => this.prefillForm(),
+    });
     this.load(root);
-    this.prefillForm();
+
     this.eventBus();
   }
-
-  private isLaunched: boolean = false;
   private form: LaunchOptions = { terrain: "plain", isSniper: true };
 
   eventBus() {
@@ -33,23 +35,24 @@ class ONE_V_ONELasthitPageComponent extends PageComponent {
         }
       },
     );
+
     GameEvents.Subscribe("game_launch.1v1", (event) => {
       $.Msg("game_launch.1v1", event);
-      this.isLaunched
-        ? GameEvents.SendCustomGameEventToServer<LaunchOptions>(
-            "game_relaunch.1v1",
-            { ...this.form },
-          )
-        : GameEvents.SendCustomGameEventToServer<LaunchOptions>(
-            "game_launch.1v1",
-            {
-              ...this.form,
-            },
-          );
+      GameEvents.SendCustomGameEventToServer<LaunchOptions>("game_launch.1v1", {
+        ...this.form,
+      });
+    });
+
+    GameEvents.Subscribe("game_relaunch.1v1", (event) => {
+      $.Msg("game_relaunch.1v1", event);
+      GameEvents.SendCustomGameEventToServer<LaunchOptions>(
+        "game_relaunch.1v1",
+        { ...this.form },
+      );
     });
 
     GameEvents.Subscribe("game_finish.1v1", (event) => {
-      $.Msg("game_finish.1v1", event);
+      $.Msg(ONE_V_ONELasthitPageComponent.name, "game_finish.1v1", event);
       GameEvents.SendCustomGameEventToServer<LaunchOptions>(
         "game_finish.1v1",
         {},
@@ -62,28 +65,40 @@ class ONE_V_ONELasthitPageComponent extends PageComponent {
         "close-menu",
         { playerId: Players.GetLocalPlayer() },
       );
-      this.isLaunched = true;
       $("#1V1FinishButton").visible = true;
     });
 
     GameEvents.Subscribe("game_finish.1v1.success", (event) => {
-      $.Msg("game_finish.1v1.success", event);
+      $.Msg(
+        ONE_V_ONELasthitPageComponent.name,
+        "game_finish.1v1.success",
+        event,
+      );
       GameEvents.SendCustomGameEventToAllClients<{ playerId: PlayerID }>(
         "open-menu",
         { playerId: Players.GetLocalPlayer() },
       );
-      this.isLaunched = false;
       $("#1V1FinishButton").visible = true;
     });
   }
 
   private prefillForm() {
     const form = this.form;
-    form.isSniper
-      ? (($("#SniperEnable") as RadioButton).checked = true)
-      : $("#SniperDisable").SetFocus();
-    form.terrain === "plain"
-      ? (($("#TerrainPlain") as RadioButton).checked = true)
-      : $("#River").SetFocus();
+    let sniperSelector: string = form.isSniper
+      ? "#SniperEnable"
+      : "#SniperDisable";
+    let terrainSelector: string =
+      form.terrain === "plain" ? "#TerrainPlain" : "#TerrainRiver";
+
+    this.checkRadioBtn(sniperSelector);
+    this.checkRadioBtn(terrainSelector);
+  }
+
+  checkRadioBtn(selector: string) {
+    const btn = $(selector) as RadioButton;
+    if (btn) {
+      btn.checked = true;
+      btn.SetFocus();
+    }
   }
 }

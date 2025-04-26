@@ -23,13 +23,29 @@ class MenuComponent {
         this.initializedPages = [];
         this.sideNavButtons = new Array();
         this.logger = new Logger(MenuComponent.name);
+        this.deleteAll();
+        this.init();
         this.initShowHideBtn();
         this.initSideNav();
         this.initPages();
         this.openDefaultPage();
         this.eventBus();
     }
+    init() {
+        var menu = $("#MENU_SNIPPET");
+        menu.BLoadLayoutSnippet("Menu");
+    }
+    deleteAll() {
+        try {
+            const menu = $("#MenuRoot");
+            menu.RemoveAndDeleteChildren();
+        }
+        catch (err) {
+            $.Msg("DELETE ERROR", err);
+        }
+    }
     eventBus() {
+        new GameLauncher().listenEvents();
         GameEvents.Subscribe("close-menu", (event) => {
             if (event.playerId === Players.GetLocalPlayer()) {
                 this.setShowHideBtnVisibility(false);
@@ -77,6 +93,8 @@ class MenuComponent {
     }
     renderPage(event) {
         const { playerId, page } = event;
+        $.Msg(this.initializedPages);
+        $.Msg("RENDER: ", event);
         if (Players.GetLocalPlayer() !== playerId) {
             return;
         }

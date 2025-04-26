@@ -5,6 +5,7 @@ declare class PageConfig {
         name: string;
         component: PageConstructor<any>;
     }[];
+    onReload?: () => void;
 }
 declare class PageComponent {
     isSingle: boolean;
@@ -16,6 +17,7 @@ declare class PageComponent {
     }[];
     activeOption?: any;
     initializedOptions: any[];
+    onReload?: () => void;
     constructor(id: string, config: PageConfig);
     load(root: Panel): void;
     get idSelector(): string;

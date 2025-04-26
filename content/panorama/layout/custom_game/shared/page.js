@@ -9,13 +9,14 @@ class PageComponent {
         this.initListeners();
     }
     load(root) {
-        if (this.isSingle && this.isLoaded()) {
+        if (this.isSingle) {
             this.delete();
         }
         this.render(root);
         this.loadPageOptions();
         this.openDefaultPageOption();
         $.Msg("PAGE Is LAODED: ");
+        this.onReload && this.onReload();
     }
     get idSelector() {
         return "#" + this.id;
@@ -36,8 +37,11 @@ class PageComponent {
         return $(this.idSelector);
     }
     delete() {
-        $(this.idSelector).RemoveAndDeleteChildren();
-        $(this.idSelector).DeleteAsync(0);
+        try {
+            $(this.idSelector).RemoveAndDeleteChildren();
+            $(this.idSelector).DeleteAsync(0);
+        }
+        catch (err) { }
     }
     openDefaultPageOption() {
         var _a;
@@ -110,9 +114,10 @@ class PageComponent {
         });
     }
     parseConfig(config) {
-        const { snippet, pageOptions, isSingle } = config;
+        const { snippet, pageOptions, isSingle, onReload } = config;
         snippet && (this.snippet = snippet);
         pageOptions && (this.pageOptions = pageOptions);
         isSingle && (this.isSingle = isSingle);
+        onReload && (this.onReload = onReload);
     }
 }

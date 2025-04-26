@@ -9,7 +9,8 @@ export class Lasthit1V1 extends GameBase {
   constructor() {
     super("1v1");
   }
-  reLaunch(options: any) {
+  relaunch(options: any) {
+    DeepPrintTable(options);
     this.finish();
     this.launch(options);
   }
@@ -137,13 +138,6 @@ export class Lasthit1V1 extends GameBase {
             );
             ParticleManager.SetParticleControl(particle, 0, position);
           }
-          print(
-            "entity_killed ",
-            "KILLED BY: ",
-            event.entindex_attacker,
-            "SNIPERID",
-            sniper_hero.GetEntityIndex(),
-          );
         }
       },
       this.context,

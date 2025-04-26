@@ -9,7 +9,6 @@ export class item_custom_qblade extends BaseItem {
 
     if (target) {
       const targetName = target.GetUnitName();
-      print("TARGET: ", targetName);
       if (targetName === "npc_dota_observer_wards") {
         target.Kill(undefined, undefined);
         eventBus.emit("qblade.hit", {

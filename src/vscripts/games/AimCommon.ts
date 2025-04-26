@@ -15,7 +15,7 @@ export class AimCommon extends GameBase {
   private avgTime: number = 0;
   private maxStreak: number = 0;
   private killedWards: number = 0;
-  private totalWards: number = 10;
+  private totalWards: number = 120;
   private killTimes: number[] = [];
 
   private heroPreviousState: { attack_capability: UnitAttackCapability } = {
@@ -208,5 +208,12 @@ export class AimCommon extends GameBase {
     const vector = game_start.GetAbsOrigin();
     hero.SetAbsOrigin(vector);
     CenterCameraOnUnit(this.controller.GetPlayerID(), hero);
+  }
+  private listen() {
+    const listener = CustomGameEventManager.RegisterListener(
+      "aim_common.table.get.response",
+      () => {},
+    );
+    this.listeners.push(listener);
   }
 }
