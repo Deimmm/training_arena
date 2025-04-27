@@ -290,7 +290,6 @@ HTMLVerticalScrollBar .ScrollThumb {
 .TableRow Label {
   color: #c0c0c0;
   font-size: 18;
-  text-transform: uppercase;
 }
 .PlaceCol {
   width: 50px;

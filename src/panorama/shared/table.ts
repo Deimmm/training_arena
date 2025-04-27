@@ -36,8 +36,6 @@ class TableBuilder {
     }
   }
 
-  // Extend Values into objects with type to dynamically create proper type
-  // Page component, pass callback function OnReload to call it on reload
   addRow(rowId: string, values: (string | number)[]) {
     const tableContainer = $(this.id);
     if (!tableContainer) {

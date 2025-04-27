@@ -2,6 +2,7 @@ import { API } from "core/api/Api";
 import { AimCommon } from "./games/AimCommon";
 import { Lasthit1V1 } from "./games/Lasthit1v1";
 import { reloadable } from "./lib/tstl-utils";
+import { AimVector } from "games/AimVector";
 
 declare global {
   interface CDOTAGameRules {
@@ -32,14 +33,6 @@ export class GameMode {
   }
   private eventHandling() {
     ListenToGameEvent(
-      "player_chat",
-      (event: PlayerChatEvent) => {
-        print("received message");
-        print(event.text);
-      },
-      undefined,
-    );
-    ListenToGameEvent(
       "player_connect_full",
       (event: PlayerConnectFullEvent) => {
         PlayerResource.SetCustomTeamAssignment(
@@ -49,16 +42,7 @@ export class GameMode {
       },
       undefined,
     );
-    ListenToGameEvent(
-      "game_rules_state_change",
-      (event) => {
-        const state = GameRules.State_Get();
-        if (state === GameState.GAME_IN_PROGRESS) {
-          PlayerResource.GetPlayer;
-        }
-      },
-      undefined,
-    );
+
     ListenToGameEvent(
       "npc_spawned",
       (event) => this.onNPCSpawned(event),
@@ -68,6 +52,7 @@ export class GameMode {
     new API().listenEvents();
     new Lasthit1V1().listenEvents();
     new AimCommon().listenEvents();
+    // new AimVector().listenEvents();
   }
 
   onNPCSpawned(event: NpcSpawnedEvent) {
