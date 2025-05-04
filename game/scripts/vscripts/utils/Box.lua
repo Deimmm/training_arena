@@ -9,22 +9,40 @@ local TypeError = ____lualib.TypeError
 local URIError = ____lualib.URIError
 local __TS__New = ____lualib.__TS__New
 local __TS__SourceMapTraceBack = ____lualib.__TS__SourceMapTraceBack
-__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["14"] = 1,["15"] = 1,["16"] = 1,["18"] = 2,["19"] = 3,["20"] = 1,["21"] = 5,["22"] = 11,["23"] = 12,["24"] = 12,["25"] = 12,["26"] = 13,["27"] = 14,["28"] = 15,["29"] = 16,["30"] = 17,["31"] = 18,["32"] = 20,["33"] = 21,["34"] = 21,["35"] = 21,["36"] = 21,["37"] = 21,["38"] = 21,["39"] = 27,["40"] = 28,["41"] = 29,["42"] = 5,["43"] = 35,["44"] = 36,["45"] = 36,["46"] = 36,["47"] = 37,["48"] = 38,["49"] = 36,["50"] = 36,["51"] = 35,["52"] = 41,["53"] = 42,["54"] = 43,["55"] = 48,["56"] = 49,["57"] = 50,["58"] = 41,["59"] = 53,["60"] = 54,["62"] = 55,["66"] = 57,["67"] = 58,["68"] = 59,["69"] = 60,["70"] = 61,["71"] = 63,["72"] = 64,["73"] = 65,["74"] = 66,["75"] = 67,["76"] = 69,["77"] = 70,["78"] = 71,["80"] = 79,["81"] = 80,["83"] = 88,["84"] = 89,["86"] = 97,["87"] = 98,["89"] = 105,["90"] = 107,["91"] = 108,["92"] = 110,["93"] = 110,["94"] = 110,["95"] = 113,["96"] = 113,["97"] = 113,["98"] = 110,["99"] = 110,["100"] = 53});
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["14"] = 1,["15"] = 1,["16"] = 1,["18"] = 2,["19"] = 3,["20"] = 1,["21"] = 5,["22"] = 6,["23"] = 11,["24"] = 16,["25"] = 17,["26"] = 18,["27"] = 18,["28"] = 18,["29"] = 18,["30"] = 23,["31"] = 29,["32"] = 30,["33"] = 31,["34"] = 33,["35"] = 5,["36"] = 36,["37"] = 43,["38"] = 43,["39"] = 43,["40"] = 44,["41"] = 45,["42"] = 45,["43"] = 45,["44"] = 46,["45"] = 47,["46"] = 48,["47"] = 49,["48"] = 50,["49"] = 51,["50"] = 53,["51"] = 54,["52"] = 54,["53"] = 54,["54"] = 54,["55"] = 54,["56"] = 54,["57"] = 60,["58"] = 61,["59"] = 62,["60"] = 36,["61"] = 68,["62"] = 69,["63"] = 69,["64"] = 69,["65"] = 70,["66"] = 71,["67"] = 69,["68"] = 69,["69"] = 68,["70"] = 74,["71"] = 75,["72"] = 76,["73"] = 81,["74"] = 82,["75"] = 83,["76"] = 74,["77"] = 86,["78"] = 87,["80"] = 88,["84"] = 90,["85"] = 91,["86"] = 92,["87"] = 93,["88"] = 94,["89"] = 96,["90"] = 97,["91"] = 98,["92"] = 99,["93"] = 100,["94"] = 102,["95"] = 103,["96"] = 104,["98"] = 112,["99"] = 113,["101"] = 121,["102"] = 122,["104"] = 130,["105"] = 131,["107"] = 138,["108"] = 140,["109"] = 141,["110"] = 143,["111"] = 143,["112"] = 143,["113"] = 146,["114"] = 146,["115"] = 146,["116"] = 143,["117"] = 143,["118"] = 86});
 local ____exports = {}
-____exports.Box = __TS__Class()
-local Box = ____exports.Box
-Box.name = "Box"
-function Box.prototype.____constructor(self)
+____exports.Geometry = __TS__Class()
+local Geometry = ____exports.Geometry
+Geometry.name = "Geometry"
+function Geometry.prototype.____constructor(self)
     self.boxParticles = {}
     self.boxPoints = {}
 end
-function Box.prototype.createBox(self, center, size, offsetY, isParticle)
+function Geometry.distanceToSegment(self, p, a, b)
+    local ab = {x = b.x - a.x, y = b.y - a.y, z = b.z - a.z}
+    local ap = {x = p.x - a.x, y = p.y - a.y, z = p.z - a.z}
+    local abLengthSq = ab.x ^ 2 + ab.y ^ 2 + ab.z ^ 2
+    local apDotAb = ap.x * ab.x + ap.y * ab.y + ap.z * ab.z
+    local t = math.max(
+        0,
+        math.min(1, abLengthSq == 0 and 0 or apDotAb / abLengthSq)
+    )
+    local closest = {x = a.x + ab.x * t, y = a.y + ab.y * t, z = a.z + ab.z * t}
+    local dx = p.x - closest.x
+    local dy = p.y - closest.y
+    local dz = p.z - closest.z
+    return math.sqrt(dx * dx + dy * dy + dz * dz)
+end
+function Geometry.prototype.createBox(self, center, size, offsetY, isParticle, opts)
+    local ____opts_0 = opts
+    local widthCoef = ____opts_0.widthCoef
+    local heightCoef = ____opts_0.heightCoef
     local z = 128
-    local ____center_0 = center
-    local x = ____center_0.x
-    local y = ____center_0.y
-    local width = size * 1.3
-    local height = size * 0.9
+    local ____center_1 = center
+    local x = ____center_1.x
+    local y = ____center_1.y
+    local width = size * (widthCoef or 1)
+    local height = size * (heightCoef or 1)
     local p1 = Vector(x - width, y - height + offsetY, z)
     local p2 = Vector(x + width, y - height + offsetY, z)
     local p3 = Vector(x + width, y + height + offsetY, z)
@@ -40,7 +58,7 @@ function Box.prototype.createBox(self, center, size, offsetY, isParticle)
     self.boxPoints = boxPoints
     return {points = boxPoints, particles = boxParticles}
 end
-function Box.prototype.destroyBox(self)
+function Geometry.prototype.destroyBox(self)
     __TS__ArrayForEach(
         self.boxParticles,
         function(____, particle)
@@ -49,14 +67,14 @@ function Box.prototype.destroyBox(self)
         end
     )
 end
-function Box.prototype.createParticleLine(self, start, ____end)
+function Geometry.prototype.createParticleLine(self, start, ____end)
     local particleName = "particles/custom/range_display_line_red.vpcf"
     local pid = ParticleManager:CreateParticle(particleName, PATTACH_WORLDORIGIN, nil)
     ParticleManager:SetParticleControl(pid, 0, start)
     ParticleManager:SetParticleControl(pid, 1, ____end)
     return pid
 end
-function Box.twoBoxRandomPoint(self, outer, inner)
+function Geometry.twoBoxRandomPoint(self, outer, inner)
     if #outer ~= 4 or #inner ~= 4 then
         error(
             __TS__New(Error, "Wrong incoming params. Outer or Inner not box"),

@@ -1,17 +1,50 @@
-export class Box {
+export class Geometry {
   boxParticles: ParticleID[] = [];
   boxPoints: Vector[] = [];
+
+  public static distanceToSegment(p: Vector, a: Vector, b: Vector) {
+    const ab = {
+      x: b.x - a.x,
+      y: b.y - a.y,
+      z: b.z - a.z,
+    };
+    const ap = {
+      x: p.x - a.x,
+      y: p.y - a.y,
+      z: p.z - a.z,
+    };
+    const abLengthSq = ab.x ** 2 + ab.y ** 2 + ab.z ** 2;
+    const apDotAb = ap.x * ab.x + ap.y * ab.y + ap.z * ab.z;
+    const t = Math.max(
+      0,
+      Math.min(1, abLengthSq === 0 ? 0 : apDotAb / abLengthSq),
+    );
+
+    const closest = {
+      x: a.x + ab.x * t,
+      y: a.y + ab.y * t,
+      z: a.z + ab.z * t,
+    };
+
+    const dx = p.x - closest.x;
+    const dy = p.y - closest.y;
+    const dz = p.z - closest.z;
+
+    return Math.sqrt(dx * dx + dy * dy + dz * dz);
+  }
 
   createBox(
     center: Vector,
     size: number,
     offsetY: number,
     isParticle: boolean,
+    opts: { widthCoef?: number; heightCoef?: number },
   ) {
+    const { widthCoef, heightCoef } = opts;
     const z = 128;
     const { x, y } = center;
-    const width = size * 1.3;
-    const height = size * 0.9;
+    const width = size * (widthCoef ?? 1);
+    const height = size * (heightCoef ?? 1);
     const p1 = Vector(x - width, y - height + offsetY, z);
     const p2 = Vector(x + width, y - height + offsetY, z);
     const p3 = Vector(x + width, y + height + offsetY, z);

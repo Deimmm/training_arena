@@ -7,7 +7,6 @@ class CommonAIMPageComponent extends PageComponent {
         });
         this.form = {};
         this.shedules = [];
-        let x;
         this.load(root);
         this.eventBus();
     }
@@ -31,7 +30,7 @@ class CommonAIMPageComponent extends PageComponent {
             $.Msg("game_launch.aim_common.success", event);
             GameEvents.SendCustomGameEventToAllClients("close-menu", { playerId: Players.GetLocalPlayer() });
             $("#CommonAimFinishButton").visible = true;
-            this.updateResultBoard(0, 0, 0, 0, 0, 120);
+            this.updateResultBoard(0, 0, 0, 0, 0, 100);
             this.countdown();
         });
         GameEvents.Subscribe("game_finish.aim_common.success", (event) => {
@@ -50,7 +49,7 @@ class CommonAIMPageComponent extends PageComponent {
             const { result, streak, avgTime, maxStreak, killedWards, totalWards } = event;
             this.updateResultBoard(result, streak, avgTime, maxStreak, killedWards, totalWards);
         });
-        const listenerId = GameEvents.Subscribe("aim_common.table.get.response", (event) => {
+        GameEvents.Subscribe("aim_common.table.get.response", (event) => {
             $.Msg("aim_common.table.get.response", event);
             let rawData = CustomNetTables.GetTableValue("common-aim", "table");
             if (!rawData) {
@@ -72,7 +71,7 @@ class CommonAIMPageComponent extends PageComponent {
                     result: elem[1].result,
                     avgTime: elem[1].avgTime.toFixed(3),
                     maxStreal: elem[1].streak,
-                    killedWards: elem[1].killedWards + "/120",
+                    killedWards: elem[1].killedWards + "/100",
                 };
             });
             $.Msg(data);
@@ -80,7 +79,6 @@ class CommonAIMPageComponent extends PageComponent {
                 table.addRow(elem.steamId, [i + 1, ...Object.values(elem)]);
             });
         });
-        $.Msg("LISTENER FOR HTTP REQUEST ID: ", listenerId);
     }
     countdown() {
         const timer = $("#Timer");
@@ -101,11 +99,21 @@ class CommonAIMPageComponent extends PageComponent {
     }
     updateResultBoard(points, streak, avgTime, maxStreak, killedWards, totalWards) {
         $("#ResultBoard").visible = true;
-        $("#Result1").text = `Points:  ${points}`;
-        $("#Result2").text = `Streak:  ${streak}`;
-        $("#Result3").text = `AVG Time:  ${avgTime ? avgTime.toFixed(3) : "-"}`;
-        $("#Result4").text = `Max Streak:  ${maxStreak}`;
-        $("#Result5").text = `Wards:  ${killedWards}/${totalWards}`;
+        const res1 = $("#Result1");
+        const res2 = $("#Result2");
+        const res3 = $("#Result3");
+        const res4 = $("#Result4");
+        const res5 = $("#Result5");
+        res1.text = `Points:  ${points}`;
+        res2.text = `Streak:  ${streak}`;
+        res3.text = `AVG Time:  ${avgTime ? avgTime.toFixed(3) : "-"}`;
+        res4.text = `Max Streak:  ${maxStreak}`;
+        res5.text = `Wards:  ${killedWards}/${totalWards}`;
+        res1.visible = true;
+        res2.visible = true;
+        res3.visible = true;
+        res4.visible = true;
+        res5.visible = true;
         $.Msg(avgTime.toFixed(3));
     }
     loadTable() {

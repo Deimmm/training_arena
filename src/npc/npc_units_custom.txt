@@ -1,0 +1,25 @@
+"DOTAUnits"
+{
+"npc_dummy_sniper"
+  {
+    "BaseClass"           "npc_dota_creature"
+    "Model"               "models/heroes/sniper/sniper.vmdl"
+    "ModelScale"          "1.0"
+    "SoundSet"            "Hero_Sniper" 
+    "ConsideredHero"      "1"
+
+    "Level"               "1"
+    "HealthBarOffset"     "140"
+
+    "AttackCapabilities"  "DOTA_UNIT_CAP_NO_ATTACK"
+    "AttackDamageMin"     "0"
+    "AttackDamageMax"     "0"
+
+    "MovementCapabilities" "DOTA_UNIT_CAP_MOVE_GROUND"
+    "BountyXP"             "0"
+    "BountyGoldMin"        "0"
+    "BountyGoldMax"        "0"
+
+  }
+
+}

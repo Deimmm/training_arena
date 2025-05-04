@@ -9,6 +9,7 @@ declare class TableBuilder {
         headers: HeaderConfig[];
     });
     get id(): string;
+    delete(): void;
     addHeader(columnHeaders: HeaderConfig[]): void;
     addRow(rowId: string, values: (string | number)[]): void;
 }

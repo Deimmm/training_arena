@@ -18,15 +18,16 @@ enum SideNavButton {
   MULTITASK = "Multitask",
   UNIT_CONTROL = "UnitControl",
 }
-var SIDE_NAV_CONFIG: SideNavConfig[] = [
-  { name: SideNavButton.LASTHIT, class: LastitNavigationButton },
-  { name: SideNavButton.AIM, class: AimNavButton },
-  // { name: SideNavButton.SPELL_DODGE, class: SpellDodgeNavButton },
-  // { name: SideNavButton.MULTITASK, class: MultitaskNavButton },
-  // { name: SideNavButton.UNIT_CONTROL, class: UnitControllNavButton },
-];
-
 enum PageNames {
   LASTHIT = "LasthitPage",
   AIM = "AimPage",
+  MULTITASK = "MultitaskPage",
 }
+
+var SIDE_NAV_CONFIG: SideNavConfig[] = [
+  { name: SideNavButton.LASTHIT, class: LastitNavigationButton },
+  { name: SideNavButton.AIM, class: AimNavButton },
+  // { name: SideNavButton.MULTITASK, class: MultitaskNavButton },
+  // { name: SideNavButton.SPELL_DODGE, class: SpellDodgeNavButton },
+  // { name: SideNavButton.UNIT_CONTROL, class: UnitControllNavButton },
+];

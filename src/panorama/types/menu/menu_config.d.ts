@@ -12,8 +12,9 @@ declare enum SideNavButton {
     MULTITASK = "Multitask",
     UNIT_CONTROL = "UnitControl"
 }
-declare var SIDE_NAV_CONFIG: SideNavConfig[];
 declare enum PageNames {
     LASTHIT = "LasthitPage",
-    AIM = "AimPage"
+    AIM = "AimPage",
+    MULTITASK = "MultitaskPage"
 }
+declare var SIDE_NAV_CONFIG: SideNavConfig[];

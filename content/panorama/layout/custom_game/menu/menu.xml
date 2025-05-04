@@ -14,8 +14,10 @@
         <include src="file://{resources}/layout/custom_game/pages/lasthit/options/lasthit_1v1.js"/>
         <include src="file://{resources}/layout/custom_game/pages/lasthit/options/lasthit_2v2.js"/>
         <include src="file://{resources}/layout/custom_game/pages/aim/options/common_aim.js"/>
+        <include src="file://{resources}/layout/custom_game/pages/aim/options/vector_aim.js"/>
         <include src="file://{resources}/layout/custom_game/pages/lasthit/lasthit.js"/>
         <include src="file://{resources}/layout/custom_game/pages/aim/aim.js"/>
+        <include src="file://{resources}/layout/custom_game/pages/multitask/multitask.js"/>
         <include src="file://{resources}/layout/custom_game/pages/page_config.js"/>
         <include src="file://{resources}/layout/custom_game/menu/menu_config.js"/>
         <include src="file://{resources}/layout/custom_game/menu/menu.js"/>
@@ -124,6 +126,40 @@
                     </Panel>
                     <Panel id="CommonAimFinishButton" class="FinishButton" onactivate="ClientEventBus.emit('game_finish.aim_common');">
                         <Label class="ButtonText" text="FINISH"/>
+                    </Panel>
+                </Panel>
+            </Panel>
+        </snippet>
+        <snippet name="VectorAIM">
+            <Panel class="SelectedOptionContainer" id ="VectorAIM" >
+                <Panel id="LeaderbordTable" class="TableContainer">
+                    <Panel id="TableHeader" class="TableHeader">
+                    </Panel>
+                    <Panel id="TableBody" class="TableBody"></Panel>
+                </Panel>
+                <Panel class="ButtonPanel">
+                    <Panel class="LaunchButton" onactivate="ClientEventBus.emit('game_launch', {game: 'aim_vector', player: Players.GetLocalPlayer() });">
+                        <Label class="ButtonText" text="START"/>
+                    </Panel>
+                    <Panel id="CommonAimFinishButton" class="FinishButton" onactivate="ClientEventBus.emit('game_finish.aim_vector');">
+                        <Label class="ButtonText" text="FINISH"/>
+                    </Panel>
+                </Panel>
+            </Panel>
+        </snippet>
+        <snippet name="MultitaskPage">
+            <Panel class="PageContainer" id ="LasthitPage">
+                <Panel class="PageOptions" id ="PageOptions">
+                </Panel>
+                <Panel class="PageContent" id ="PageContent">
+                    <Label text="Placeholder"/>
+                    <Panel class="ButtonPanel">
+                        <Panel class="LaunchButton" onactivate="ClientEventBus.emit('game_launch', {game: 'multitask', player: Players.GetLocalPlayer() });">
+                            <Label class="ButtonText" text="START"/>
+                        </Panel>
+                        <Panel id="MultitaskFinishButton" class="FinishButton" onactivate="ClientEventBus.emit('game_finish.multitask');">
+                            <Label class="ButtonText" text="FINISH"/>
+                        </Panel>
                     </Panel>
                 </Panel>
             </Panel>

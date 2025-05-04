@@ -17,7 +17,6 @@ class CommonAIMPageComponent extends PageComponent {
       isSingle: true,
       onReload: () => this.loadTable(),
     });
-    let x;
     this.load(root);
     this.eventBus();
   }
@@ -63,7 +62,7 @@ class CommonAIMPageComponent extends PageComponent {
         { playerId: Players.GetLocalPlayer() },
       );
       $("#CommonAimFinishButton").visible = true;
-      this.updateResultBoard(0, 0, 0, 0, 0, 120);
+      this.updateResultBoard(0, 0, 0, 0, 0, 100);
       this.countdown();
     });
 
@@ -103,7 +102,7 @@ class CommonAIMPageComponent extends PageComponent {
       );
     });
 
-    const listenerId = GameEvents.Subscribe<any>(
+    GameEvents.Subscribe<any>(
       "aim_common.table.get.response",
       (event: { data: any[] }) => {
         $.Msg("aim_common.table.get.response", event);
@@ -130,7 +129,7 @@ class CommonAIMPageComponent extends PageComponent {
             result: elem[1].result,
             avgTime: elem[1].avgTime.toFixed(3),
             maxStreal: elem[1].streak,
-            killedWards: elem[1].killedWards + "/120",
+            killedWards: elem[1].killedWards + "/100",
           };
         });
 
@@ -140,7 +139,6 @@ class CommonAIMPageComponent extends PageComponent {
         });
       },
     );
-    $.Msg("LISTENER FOR HTTP REQUEST ID: ", listenerId);
   }
 
   private countdown() {
@@ -169,13 +167,23 @@ class CommonAIMPageComponent extends PageComponent {
     totalWards: number,
   ) {
     $("#ResultBoard").visible = true;
-    ($("#Result1") as LabelPanel).text = `Points:  ${points}`;
-    ($("#Result2") as LabelPanel).text = `Streak:  ${streak}`;
-    ($("#Result3") as LabelPanel).text = `AVG Time:  ${
-      avgTime ? avgTime.toFixed(3) : "-"
-    }`;
-    ($("#Result4") as LabelPanel).text = `Max Streak:  ${maxStreak}`;
-    ($("#Result5") as LabelPanel).text = `Wards:  ${killedWards}/${totalWards}`;
+    const res1 = $("#Result1") as LabelPanel;
+    const res2 = $("#Result2") as LabelPanel;
+    const res3 = $("#Result3") as LabelPanel;
+    const res4 = $("#Result4") as LabelPanel;
+    const res5 = $("#Result5") as LabelPanel;
+
+    res1.text = `Points:  ${points}`;
+    res2.text = `Streak:  ${streak}`;
+    res3.text = `AVG Time:  ${avgTime ? avgTime.toFixed(3) : "-"}`;
+    res4.text = `Max Streak:  ${maxStreak}`;
+    res5.text = `Wards:  ${killedWards}/${totalWards}`;
+
+    res1.visible = true;
+    res2.visible = true;
+    res3.visible = true;
+    res4.visible = true;
+    res5.visible = true;
 
     $.Msg(avgTime.toFixed(3));
   }

@@ -12,6 +12,7 @@ class TableBuilder {
     },
   ) {
     this._id = id;
+    // this.delete();
     this.headers = config.headers;
     this.addHeader(config.headers);
   }
@@ -20,6 +21,12 @@ class TableBuilder {
     return "#" + this._id;
   }
 
+  delete() {
+    try {
+      $(this.id).RemoveAndDeleteChildren();
+      // $(this.id).DeleteAsync(0);
+    } catch (err) {}
+  }
   addHeader(columnHeaders: HeaderConfig[]) {
     const tableContainer = $(this.id);
     if (!tableContainer) {

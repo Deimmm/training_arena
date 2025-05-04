@@ -1,14 +1,21 @@
 import { CommonAimUpdateDTO } from "./dto/common-aim.dto";
+import { VectorAimUpdateDTO } from "./dto/vector-aim.dto";
 export class API {
-  private static url: string = "http://training-arena.coduluz.com";
+  private static url: string = "https://training-arena.coduluz.com";
   constructor() {}
   listenEvents() {
-    DeepPrintTable(CustomGameEventManager);
     CustomGameEventManager.RegisterListener(
       "aim_common.table.get",
       async (event: any) => {
         print("[SERVER] aim_common.table.get");
         API.getCommonAim();
+      },
+    );
+    CustomGameEventManager.RegisterListener(
+      "aim_vector.table.get",
+      async (event: any) => {
+        print("[SERVER] aim_vector.table.get");
+        API.getVectorAim();
       },
     );
   }
@@ -30,11 +37,9 @@ export class API {
     request.Send((res) => {
       if (res.StatusCode < 200 || res.StatusCode > 299) {
         print("HTTP ERROR: ", res.StatusCode, res.Body);
-        DeepPrintTable(res);
       } else {
         print("HTTP SUCCESS", res.Body);
         const body = json.decode(res.Body)[0];
-        DeepPrintTable(body);
         CustomNetTables.SetTableValue(
           //@ts-ignore
           "common-aim",
@@ -45,6 +50,40 @@ export class API {
           "aim_common.table.get.response",
           { good: true },
         );
+      }
+    });
+  }
+
+  public static async getVectorAim() {
+    const request = CreateHTTPRequest("GET", `${this.url}/vector-aim`);
+
+    request.Send((res) => {
+      if (res.StatusCode < 200 || res.StatusCode > 299) {
+        print("HTTP ERROR: ", res.StatusCode, res.Body);
+      } else {
+        print("HTTP SUCCESS", res.Body);
+        const body = json.decode(res.Body)[0];
+        CustomNetTables.SetTableValue(
+          //@ts-ignore
+          "vector-aim",
+          "table",
+          body,
+        );
+        CustomGameEventManager.Send_ServerToAllClients<any>(
+          "aim_vector.table.get.response",
+          { good: true },
+        );
+      }
+    });
+  }
+  public static updateVectorAim(input: VectorAimUpdateDTO) {
+    const request = CreateHTTPRequest("POST", `${this.url}/vector-aim`);
+    request.SetHTTPRequestRawPostBody("application/json", json.encode(input));
+    request.Send((res) => {
+      if (res.StatusCode < 200 || res.StatusCode > 299) {
+        print("HTTP ERROR: ", res.StatusCode, res.Body);
+      } else {
+        print("HTTP SUCCESS");
       }
     });
   }

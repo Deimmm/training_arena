@@ -1,4 +1,4 @@
-const games = ["aim_common", "1v1"];
+const games = ["aim_common", "1v1", "aim_vector", "multitask"];
 class GameLauncher {
     constructor() { }
     listenEvents() {
@@ -12,7 +12,6 @@ class GameLauncher {
                 return;
             }
             const launchedGame = this.launchedGame;
-            $.Msg("LAUNCHED GAME: ", launchedGame);
             if (!launchedGame) {
                 ClientEventBus.emit(`game_launch.${game}`, { playerId });
             }

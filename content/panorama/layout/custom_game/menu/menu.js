@@ -93,11 +93,11 @@ class MenuComponent {
     }
     renderPage(event) {
         const { playerId, page } = event;
-        $.Msg(this.initializedPages);
         $.Msg("RENDER: ", event);
         if (Players.GetLocalPlayer() !== playerId) {
             return;
         }
+        $.Msg("PAGES: ", this.pages);
         var _page = this.pages.find((p) => p.name === page);
         if (!_page) {
             return;

@@ -4,8 +4,8 @@ class AimPageComponent extends PageComponent {
       isSingle: true,
       snippet: "AimPage",
       pageOptions: [
-        { name: "Common", component: CommonAIMPageComponent },
-        // { name: "Intermidiate", component: "" },
+        { name: "Obs", component: CommonAIMPageComponent },
+        { name: "Snipers", component: VectorAIMPageComponent },
         // { name: "Pro", component: "" },
       ],
     });

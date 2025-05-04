@@ -65,6 +65,8 @@ class ONE_V_ONELasthitPageComponent extends PageComponent {
         "close-menu",
         { playerId: Players.GetLocalPlayer() },
       );
+
+      this.updateResultBoard(0, 0, 0, 0);
       $("#1V1FinishButton").visible = true;
     });
 
@@ -79,6 +81,16 @@ class ONE_V_ONELasthitPageComponent extends PageComponent {
         { playerId: Players.GetLocalPlayer() },
       );
       $("#1V1FinishButton").visible = true;
+    });
+
+    GameEvents.Subscribe("1v1.result_update", (event: any) => {
+      $.Msg("aim_vector.result_update", event);
+      GameEvents.SendCustomGameEventToAllClients<{ playerId: PlayerID }>(
+        "result_update",
+        { playerId: Players.GetLocalPlayer() },
+      );
+      const { pKills, pDenies, sKills, sDenies } = event;
+      this.updateResultBoard(pKills, pDenies, sKills, sDenies);
     });
   }
 
@@ -98,7 +110,32 @@ class ONE_V_ONELasthitPageComponent extends PageComponent {
     const btn = $(selector) as RadioButton;
     if (btn) {
       btn.checked = true;
-      btn.SetFocus();
     }
+  }
+
+  private updateResultBoard(
+    pKills: number,
+    pDenies: number,
+    sKills: number,
+    sDenies: number,
+  ) {
+    $("#ResultBoard").visible = true;
+    const res1 = $("#Result1") as LabelPanel;
+    const res2 = $("#Result2") as LabelPanel;
+    const res3 = $("#Result3") as LabelPanel;
+    const res4 = $("#Result4") as LabelPanel;
+    const res5 = $("#Result5") as LabelPanel;
+    const res6 = $("#Result6") as LabelPanel;
+    res1.text = `Player:  ${pKills} / ${pDenies}`;
+    res2.text = `Sniper: ${sKills} / ${sDenies}`;
+    res3.text = ``;
+    res4.text = ``;
+    res5.text = ``;
+    res6.text = ``;
+
+    res3.visible = false;
+    res4.visible = false;
+    res5.visible = false;
+    res6.visible = false;
   }
 }

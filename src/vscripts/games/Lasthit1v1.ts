@@ -6,6 +6,11 @@ export class Lasthit1V1 extends GameBase {
   private sniper?: CBaseEntity;
   private spawns: CreepSpawn[] = [];
 
+  private pKills: number = 0;
+  private pDenies: number = 0;
+  private sKills: number = 0;
+  private sDenies: number = 0;
+
   constructor() {
     super("1v1");
   }
@@ -16,6 +21,11 @@ export class Lasthit1V1 extends GameBase {
   }
 
   launch(options: any) {
+    this.pKills = 0;
+    this.pDenies = 0;
+    this.sKills = 0;
+    this.sDenies = 0;
+
     const controller = this.controller;
     const { isSniper, terrain } = options;
     this.moveHero(controller, terrain);
@@ -127,8 +137,8 @@ export class Lasthit1V1 extends GameBase {
         if (this.sniper.IsNull()) {
           return;
         }
+        const entity = EntIndexToHScript(event.entindex_killed);
         if (event.entindex_attacker === sniper_hero.GetEntityIndex()) {
-          const entity = EntIndexToHScript(event.entindex_killed);
           if (entity) {
             const position = entity.GetAbsOrigin();
             const particle = ParticleManager.CreateParticle(
@@ -136,9 +146,35 @@ export class Lasthit1V1 extends GameBase {
               8,
               undefined,
             );
+            EmitSoundOn("sheep", this.controller.GetAssignedHero());
             ParticleManager.SetParticleControl(particle, 0, position);
+            entity.GetTeam() === DotaTeam.GOODGUYS
+              ? (this.sKills = this.sKills + 1)
+              : (this.sDenies = this.sDenies + 1);
           }
         }
+        print("ATTACKER: ", event.entindex_attacker);
+        print(
+          "PLAYER CONTROLLER: ",
+          this.controller.GetAssignedHero().GetEntityIndex(),
+        );
+        if (
+          event.entindex_attacker ===
+          this.controller.GetAssignedHero().GetEntityIndex()
+        ) {
+          entity.GetTeam() === DotaTeam.BADGUYS
+            ? (this.pKills = this.pKills + 1)
+            : (this.pDenies = this.pDenies + 1);
+        }
+        CustomGameEventManager.Send_ServerToAllClients<any>(
+          "1v1.result_update",
+          {
+            pKills: this.pKills,
+            pDenies: this.pDenies,
+            sKills: this.sKills,
+            sDenies: this.sDenies,
+          },
+        );
       },
       this.context,
     );

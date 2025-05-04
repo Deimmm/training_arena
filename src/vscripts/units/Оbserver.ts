@@ -1,5 +1,5 @@
 import { eventBus } from "../core/event-bus/event-bus";
-import { Box } from "../utils/Box";
+import { Geometry } from "../utils/Box";
 
 interface ObserverWardOptions {
   position: Vector;
@@ -72,7 +72,11 @@ export class AIMCOMMON_ObserverWardSpawn {
   private isFirstLaunch = true;
 
   wards: ObserverWard[] = [];
-  spawn(outerBox: Box, innerBox: Box, config: { wards_count: number }) {
+  spawn(
+    outerGeometry: Geometry,
+    innerGeometry: Geometry,
+    config: { wards_count: number },
+  ) {
     let interval = 2.5;
     const wards_count: number = config.wards_count;
 
@@ -112,9 +116,9 @@ export class AIMCOMMON_ObserverWardSpawn {
           interval = 0.4;
           break;
       }
-      const spawnPos = Box.twoBoxRandomPoint(
-        outerBox.boxPoints,
-        innerBox.boxPoints,
+      const spawnPos = Geometry.twoBoxRandomPoint(
+        outerGeometry.boxPoints,
+        innerGeometry.boxPoints,
       );
 
       const ward = new ObserverWard({ position: spawnPos });

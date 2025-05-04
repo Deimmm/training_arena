@@ -8,4 +8,5 @@ declare class ONE_V_ONELasthitPageComponent extends PageComponent {
     eventBus(): void;
     private prefillForm;
     checkRadioBtn(selector: string): void;
+    private updateResultBoard;
 }

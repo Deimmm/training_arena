@@ -7,9 +7,8 @@ local __TS__New = ____lualib.__TS__New
 local __TS__ArrayFind = ____lualib.__TS__ArrayFind
 local __TS__ArrayReduce = ____lualib.__TS__ArrayReduce
 local __TS__Number = ____lualib.__TS__Number
-local __TS__NumberToFixed = ____lualib.__TS__NumberToFixed
 local __TS__SourceMapTraceBack = ____lualib.__TS__SourceMapTraceBack
-__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["14"] = 1,["15"] = 1,["16"] = 2,["17"] = 2,["18"] = 3,["19"] = 3,["20"] = 5,["21"] = 5,["22"] = 6,["23"] = 6,["24"] = 7,["25"] = 7,["26"] = 9,["27"] = 9,["28"] = 9,["29"] = 9,["31"] = 9,["32"] = 14,["33"] = 15,["34"] = 16,["35"] = 17,["36"] = 18,["37"] = 19,["38"] = 20,["39"] = 22,["40"] = 26,["41"] = 27,["42"] = 28,["43"] = 31,["44"] = 32,["45"] = 33,["46"] = 31,["47"] = 36,["48"] = 37,["49"] = 38,["50"] = 39,["51"] = 40,["52"] = 41,["53"] = 42,["54"] = 43,["55"] = 44,["56"] = 45,["57"] = 46,["58"] = 47,["59"] = 47,["60"] = 47,["61"] = 47,["63"] = 51,["64"] = 52,["65"] = 52,["66"] = 52,["67"] = 52,["68"] = 53,["69"] = 54,["70"] = 55,["71"] = 57,["72"] = 36,["73"] = 60,["74"] = 61,["75"] = 62,["76"] = 63,["77"] = 64,["80"] = 67,["81"] = 68,["82"] = 69,["83"] = 71,["84"] = 72,["85"] = 74,["86"] = 60,["87"] = 77,["88"] = 78,["91"] = 81,["92"] = 86,["93"] = 90,["94"] = 90,["95"] = 90,["96"] = 90,["97"] = 92,["98"] = 92,["99"] = 93,["100"] = 93,["101"] = 94,["102"] = 95,["103"] = 95,["104"] = 95,["105"] = 95,["106"] = 98,["107"] = 99,["108"] = 100,["109"] = 102,["110"] = 103,["111"] = 104,["112"] = 104,["113"] = 105,["114"] = 106,["115"] = 107,["117"] = 109,["118"] = 109,["119"] = 109,["120"] = 110,["121"] = 109,["122"] = 109,["123"] = 109,["124"] = 112,["125"] = 113,["126"] = 114,["127"] = 115,["128"] = 115,["129"] = 115,["130"] = 115,["131"] = 115,["134"] = 93,["135"] = 93,["136"] = 124,["137"] = 124,["138"] = 125,["139"] = 125,["140"] = 126,["141"] = 125,["142"] = 125,["143"] = 129,["144"] = 129,["145"] = 130,["146"] = 130,["147"] = 131,["148"] = 132,["149"] = 132,["150"] = 132,["151"] = 132,["152"] = 130,["153"] = 130,["154"] = 135,["155"] = 135,["156"] = 136,["157"] = 136,["158"] = 137,["159"] = 137,["160"] = 137,["161"] = 137,["162"] = 138,["163"] = 138,["164"] = 138,["165"] = 138,["166"] = 145,["167"] = 145,["168"] = 145,["169"] = 145,["170"] = 145,["171"] = 145,["172"] = 145,["173"] = 136,["174"] = 136,["175"] = 77,["176"] = 159,["177"] = 160,["178"] = 163,["179"] = 163,["180"] = 163,["181"] = 163,["182"] = 163,["183"] = 163,["184"] = 160,["185"] = 159,["186"] = 173,["187"] = 174,["188"] = 175,["189"] = 173,["190"] = 177,["191"] = 178,["192"] = 179,["193"] = 180,["194"] = 183,["195"] = 184,["196"] = 185,["197"] = 177,["198"] = 188,["199"] = 189,["200"] = 190,["201"] = 191,["202"] = 192,["203"] = 188,["204"] = 194,["205"] = 195,["206"] = 196,["207"] = 198,["208"] = 199,["211"] = 202,["212"] = 203,["213"] = 204,["214"] = 204,["215"] = 204,["216"] = 204,["217"] = 194,["218"] = 207,["219"] = 208,["220"] = 209,["221"] = 210,["224"] = 213,["225"] = 214,["226"] = 215,["227"] = 215,["228"] = 215,["229"] = 215,["230"] = 207,["231"] = 217,["232"] = 218,["233"] = 218,["234"] = 220,["235"] = 218,["236"] = 218,["237"] = 222,["238"] = 222,["239"] = 217});
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["13"] = 1,["14"] = 1,["15"] = 2,["16"] = 2,["17"] = 3,["18"] = 3,["19"] = 5,["20"] = 5,["21"] = 6,["22"] = 6,["23"] = 7,["24"] = 7,["25"] = 8,["26"] = 8,["27"] = 10,["28"] = 10,["29"] = 10,["30"] = 10,["32"] = 10,["33"] = 17,["34"] = 18,["35"] = 19,["36"] = 20,["37"] = 21,["38"] = 22,["39"] = 23,["40"] = 25,["41"] = 33,["42"] = 34,["43"] = 35,["44"] = 38,["45"] = 39,["46"] = 40,["47"] = 38,["48"] = 43,["49"] = 44,["50"] = 45,["51"] = 46,["52"] = 47,["53"] = 48,["54"] = 49,["55"] = 50,["56"] = 51,["57"] = 52,["58"] = 53,["59"] = 54,["60"] = 54,["61"] = 54,["62"] = 54,["64"] = 58,["65"] = 59,["66"] = 59,["67"] = 59,["68"] = 59,["69"] = 60,["70"] = 61,["71"] = 62,["72"] = 64,["73"] = 43,["74"] = 67,["75"] = 68,["76"] = 69,["77"] = 70,["78"] = 71,["81"] = 74,["82"] = 75,["83"] = 76,["84"] = 76,["85"] = 76,["86"] = 76,["87"] = 76,["88"] = 76,["89"] = 76,["90"] = 81,["91"] = 82,["92"] = 82,["93"] = 82,["94"] = 82,["95"] = 82,["96"] = 82,["97"] = 82,["98"] = 87,["99"] = 67,["100"] = 90,["101"] = 91,["104"] = 94,["105"] = 95,["106"] = 96,["107"] = 96,["108"] = 96,["109"] = 96,["110"] = 97,["111"] = 90,["112"] = 100,["113"] = 101,["114"] = 102,["115"] = 103,["116"] = 100,["117"] = 108,["118"] = 109,["119"] = 109,["120"] = 110,["121"] = 110,["122"] = 111,["123"] = 112,["124"] = 112,["125"] = 112,["126"] = 112,["127"] = 115,["128"] = 116,["129"] = 117,["130"] = 119,["131"] = 120,["132"] = 122,["133"] = 122,["134"] = 123,["135"] = 124,["136"] = 125,["138"] = 127,["139"] = 127,["140"] = 127,["141"] = 128,["142"] = 127,["143"] = 127,["144"] = 127,["145"] = 130,["146"] = 131,["147"] = 132,["150"] = 110,["151"] = 110,["152"] = 138,["153"] = 138,["154"] = 139,["155"] = 139,["156"] = 140,["157"] = 141,["158"] = 141,["159"] = 141,["160"] = 141,["161"] = 139,["162"] = 139,["163"] = 145,["164"] = 145,["165"] = 146,["166"] = 146,["167"] = 147,["168"] = 147,["169"] = 147,["170"] = 147,["171"] = 149,["172"] = 149,["173"] = 149,["174"] = 149,["175"] = 156,["176"] = 156,["177"] = 156,["178"] = 156,["179"] = 156,["180"] = 156,["181"] = 156,["182"] = 146,["183"] = 146,["184"] = 108,["185"] = 170,["186"] = 171,["187"] = 174,["188"] = 174,["189"] = 174,["190"] = 174,["191"] = 174,["192"] = 174,["193"] = 171,["194"] = 170,["195"] = 184,["196"] = 185,["197"] = 186,["198"] = 184,["199"] = 188,["200"] = 189,["201"] = 190,["202"] = 191,["203"] = 192,["204"] = 193,["205"] = 194,["206"] = 195,["207"] = 196,["208"] = 198,["209"] = 199,["210"] = 200,["211"] = 201,["213"] = 203,["214"] = 188,["215"] = 209,["216"] = 210,["217"] = 210,["218"] = 210,["219"] = 211,["220"] = 212,["221"] = 213,["222"] = 214,["223"] = 215,["224"] = 216,["225"] = 218,["226"] = 209,["227"] = 220,["228"] = 221,["229"] = 222,["230"] = 224,["231"] = 225,["234"] = 228,["235"] = 229,["236"] = 230,["237"] = 230,["238"] = 230,["239"] = 230,["240"] = 220,["241"] = 233,["242"] = 234,["243"] = 235,["244"] = 236,["247"] = 239,["248"] = 240,["249"] = 241,["250"] = 241,["251"] = 241,["252"] = 241,["253"] = 233,["254"] = 243,["255"] = 244,["256"] = 244,["257"] = 246,["258"] = 244,["259"] = 244,["260"] = 248,["261"] = 248,["262"] = 243,["263"] = 11});
 local ____exports = {}
 local ____VectorGroup = require("units.VectorGroup")
 local VectorGroupSpawn = ____VectorGroup.VectorGroupSpawn
@@ -18,25 +17,27 @@ local API = ____Api.API
 local ____event_2Dbus = require("core.event-bus.event-bus")
 local eventBus = ____event_2Dbus.eventBus
 local ____Box = require("utils.Box")
-local Box = ____Box.Box
+local Geometry = ____Box.Geometry
 local ____HeroInventory = require("utils.HeroInventory")
 local HeroInventory = ____HeroInventory.HeroInventory
 local ____Game = require("games.Game")
 local GameBase = ____Game.GameBase
+local ____vector_aim_hero_boost = require("modifiers.vector_aim_hero_boost")
+local vector_aim_hero_boost = ____vector_aim_hero_boost.vector_aim_hero_boost
 ____exports.AimVector = __TS__Class()
 local AimVector = ____exports.AimVector
 AimVector.name = "AimVector"
 __TS__ClassExtends(AimVector, GameBase)
 function AimVector.prototype.____constructor(self)
-    GameBase.prototype.____constructor(self, "aim_common")
+    GameBase.prototype.____constructor(self, ____exports.AimVector._game_name)
     self.result = 0
     self.streak = 0
     self.avgTime = 0
     self.maxStreak = 0
-    self.killedWards = 0
-    self.totalWards = 10
+    self.killedUnits = 0
+    self.totalUnits = 40
     self.killTimes = {}
-    self.heroPreviousState = {attack_capability = nil}
+    self.heroPreviousState = {attack_capability = nil, return_ability_name = nil}
     self.isGameRunning = false
     self.unsubs = {}
 end
@@ -45,13 +46,13 @@ function AimVector.prototype.relaunch(self, options)
     self:launch(options)
 end
 function AimVector.prototype.finish(self)
+    self.vectorSpawn:kill()
     self.isGameRunning = false
-    self.obsSpawn:kill()
     self.result = 0
     self.streak = 0
     self.avgTime = 0
     self.maxStreak = 0
-    self.killedWards = 0
+    self.killedUnits = 0
     self.killTimes = {}
     local listeners = self.listeners
     if #listeners > 0 then
@@ -78,10 +79,22 @@ function AimVector.prototype.launch(self, options)
         return
     end
     local startVector = startPosition:GetAbsOrigin()
-    self.outerBox = __TS__New(Box)
-    self.outerBox:createBox(startVector, 700, 150, true)
-    self.heroBox = __TS__New(Box)
-    self.heroBox:createBox(startVector, 75, 50, false)
+    self.outerBox = __TS__New(Geometry)
+    self.outerBox:createBox(
+        startVector,
+        700,
+        150,
+        true,
+        {widthCoef = 1.3, heightCoef = 0.9}
+    )
+    self.heroBox = __TS__New(Geometry)
+    self.heroBox:createBox(
+        startVector,
+        100,
+        50,
+        false,
+        {widthCoef = 1.3, heightCoef = 0.9}
+    )
     self:spawnEntities()
 end
 function AimVector.prototype.spawnEntities(self)
@@ -89,24 +102,32 @@ function AimVector.prototype.spawnEntities(self)
         return
     end
     self.isGameRunning = true
-    __TS__New(VectorGroupSpawn):spawn(self.outerBox, self.heroBox, {entities_count = 10})
+    self:spawnVectors()
     EmitSoundOn(
         "drums",
         self.controller:GetAssignedHero()
     )
+    self:listenVectorEvents()
+end
+function AimVector.prototype.spawnVectors(self)
+    self.isGameRunning = true
+    self.vectorSpawn = __TS__New(VectorGroupSpawn, self.controller)
+    self.vectorSpawn:spawn(self.outerBox, self.heroBox, {entities_count = self.totalUnits})
+end
+function AimVector.prototype.listenVectorEvents(self)
     local ____self_unsubs_1 = self.unsubs
     ____self_unsubs_1[#____self_unsubs_1 + 1] = eventBus:on(
-        "qblade.hit",
+        "vector_dummy.killed",
         function(____, event)
             if event.index then
-                local obs = __TS__ArrayFind(
-                    self.obsSpawn.wards,
+                local entity = __TS__ArrayFind(
+                    self.vectorSpawn.entities,
                     function(____, elem) return elem.index == event.index end
                 )
-                if obs then
-                    local ttd = 1000 - obs.ttl
+                if entity then
+                    local ttd = 3000 - entity.ttl
                     local streakCoef = self.streak == 0 and 1 or self.streak
-                    local points = 100 * (100 / ttd) * streakCoef
+                    local points = 100 * streakCoef
                     self.result = math.floor(self.result + points)
                     local ____self_killTimes_0 = self.killTimes
                     ____self_killTimes_0[#____self_killTimes_0 + 1] = ttd
@@ -121,28 +142,16 @@ function AimVector.prototype.spawnEntities(self)
                         end,
                         0
                     )
-                    self.killedWards = self.killedWards + 1
+                    self.killedUnits = self.killedUnits + 1
                     self.avgTime = __TS__Number(killTimeSum / #self.killTimes / 1000)
                     self:emitResultChange()
-                    GameRules:SendCustomMessage(
-                        "<b>Time</b>: " .. __TS__NumberToFixed(ttd / 1000, 3),
-                        0,
-                        2
-                    )
                 end
             end
         end
     )
     local ____self_unsubs_2 = self.unsubs
     ____self_unsubs_2[#____self_unsubs_2 + 1] = eventBus:on(
-        "qblade.miss",
-        function()
-            self:dropResult()
-        end
-    )
-    local ____self_unsubs_3 = self.unsubs
-    ____self_unsubs_3[#____self_unsubs_3 + 1] = eventBus:on(
-        "obs.expire",
+        "vector_dummy.expire",
         function()
             self:dropResult()
             EmitSoundOn(
@@ -151,9 +160,9 @@ function AimVector.prototype.spawnEntities(self)
             )
         end
     )
-    local ____self_unsubs_4 = self.unsubs
-    ____self_unsubs_4[#____self_unsubs_4 + 1] = eventBus:on(
-        "obsspawn.finish",
+    local ____self_unsubs_3 = self.unsubs
+    ____self_unsubs_3[#____self_unsubs_3 + 1] = eventBus:on(
+        "vector_spawn.finish",
         function()
             EmitSoundOn(
                 "drums",
@@ -161,26 +170,26 @@ function AimVector.prototype.spawnEntities(self)
             )
             Timers:CreateTimer(
                 3,
-                function() return CustomGameEventManager:Send_ServerToPlayer(self.controller, "round_finish.aim_common", {}) end
+                function() return CustomGameEventManager:Send_ServerToPlayer(self.controller, "round_finish.aim_vector", {}) end
             )
-            API:updateCommonAim({
+            API:updateVectorAim({
                 steamId = PlayerResource:GetSteamID(self.controller:GetPlayerID()):__tostring(),
                 result = self.result,
                 streak = self.maxStreak,
                 avgTime = self.avgTime,
-                killedWards = self.killedWards
+                killedUnits = self.killedUnits
             })
         end
     )
 end
 function AimVector.prototype.emitResultChange(self)
-    CustomGameEventManager:Send_ServerToPlayer(self.controller, "aim_common.result_update", {
+    CustomGameEventManager:Send_ServerToPlayer(self.controller, ____exports.AimVector._game_name .. ".result_update", {
         result = self.result,
         streak = self.streak,
         avgTime = self.avgTime,
-        totalWards = self.totalWards,
+        totalUnits = self.totalUnits,
         maxStreak = self.maxStreak,
-        killedWards = self.killedWards
+        killedUnits = self.killedUnits
     })
 end
 function AimVector.prototype.dropResult(self)
@@ -189,16 +198,30 @@ function AimVector.prototype.dropResult(self)
 end
 function AimVector.prototype.setupHero(self)
     local hero = self.controller:GetAssignedHero()
-    HeroInventory:reset(hero)
-    self.heroPreviousState = {attack_capability = hero:GetAttackCapability()}
+    local abilityName
+    local heroAttackCapability = hero:GetAttackCapability()
     hero:SetMoveCapability(0)
     hero:SetAttackCapability(0)
-    hero:AddItemByName("item_custom_qblade")
+    hero:AddAbility("muerta_dead_shot"):SetLevel(1)
+    hero:AddNewModifier(nil, nil, vector_aim_hero_boost.name, {})
+    local originalAbility = hero:GetAbilityByIndex(0)
+    if originalAbility then
+        local originalAbilityName = originalAbility:GetAbilityName()
+        abilityName = originalAbility:GetAbilityName()
+        hero:SwapAbilities("muerta_dead_shot", originalAbilityName, true, false)
+    end
+    self.heroPreviousState = {attack_capability = heroAttackCapability, return_ability_name = abilityName}
 end
 function AimVector.prototype.resetHero(self)
+    local ____self_heroPreviousState_4 = self.heroPreviousState
+    local attack_capability = ____self_heroPreviousState_4.attack_capability
+    local return_ability_name = ____self_heroPreviousState_4.return_ability_name
     local hero = self.controller:GetAssignedHero()
     hero:SetMoveCapability(1)
-    hero:SetAttackCapability(self.heroPreviousState.attack_capability)
+    hero:SetAttackCapability(attack_capability)
+    hero:SwapAbilities(return_ability_name, "muerta_dead_shot", true, true)
+    hero:RemoveAbility("muerta_dead_shot")
+    hero:RemoveModifierByName(vector_aim_hero_boost.name)
     HeroInventory:reset(hero)
 end
 function AimVector.prototype.moveHero(self, controller)
@@ -230,11 +253,12 @@ function AimVector.prototype.returnHero(self)
 end
 function AimVector.prototype.listen(self)
     local listener = CustomGameEventManager:RegisterListener(
-        "aim_common.table.get.response",
+        ____exports.AimVector._game_name .. ".table.get.response",
         function()
         end
     )
     local ____self_listeners_5 = self.listeners
     ____self_listeners_5[#____self_listeners_5 + 1] = listener
 end
+AimVector._game_name = "aim_vector"
 return ____exports

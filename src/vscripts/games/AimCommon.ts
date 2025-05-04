@@ -1,21 +1,21 @@
 import { API } from "../core/api/Api";
 import { eventBus } from "../core/event-bus/event-bus";
 import { AIMCOMMON_ObserverWardSpawn } from "../units/Оbserver";
-import { Box } from "../utils/Box";
+import { Geometry } from "../utils/Box";
 import { HeroInventory } from "../utils/HeroInventory";
 import { GameBase } from "./Game";
 
 export class AimCommon extends GameBase {
   private obsSpawn: AIMCOMMON_ObserverWardSpawn;
-  private outerBox: Box;
-  private heroBox: Box;
+  private outerBox: Geometry;
+  private heroBox: Geometry;
 
   private result: number = 0;
   private streak: number = 0;
   private avgTime: number = 0;
   private maxStreak: number = 0;
   private killedWards: number = 0;
-  private totalWards: number = 120;
+  private totalWards: number = 100;
   private killTimes: number[] = [];
 
   private heroPreviousState: { attack_capability: UnitAttackCapability } = {
@@ -64,11 +64,17 @@ export class AimCommon extends GameBase {
       return;
     }
     const startVector = startPosition.GetAbsOrigin();
-    this.outerBox = new Box();
-    this.outerBox.createBox(startVector, 700, 150, true);
+    this.outerBox = new Geometry();
+    this.outerBox.createBox(startVector, 700, 150, true, {
+      widthCoef: 1.3,
+      heightCoef: 0.9,
+    });
 
-    this.heroBox = new Box();
-    this.heroBox.createBox(startVector, 75, 50, false);
+    this.heroBox = new Geometry();
+    this.heroBox.createBox(startVector, 75, 50, false, {
+      widthCoef: 1.3,
+      heightCoef: 0.9,
+    });
 
     this.spawnEntities();
   }
@@ -107,11 +113,11 @@ export class AimCommon extends GameBase {
             this.killedWards = this.killedWards + 1;
             this.avgTime = Number(killTimeSum / this.killTimes.length / 1000);
             this.emitResultChange();
-            GameRules.SendCustomMessage(
-              `<b>Time</b>: ${(ttd / 1000).toFixed(3)}`,
-              0,
-              2,
-            );
+            // GameRules.SendCustomMessage(
+            //   `<b>Time</b>: ${(ttd / 1000).toFixed(3)}`,
+            //   0,
+            //   2,
+            // );
           }
         }
       }),

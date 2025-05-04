@@ -2,7 +2,7 @@ local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ArrayConcat = ____lualib.__TS__ArrayConcat
 local __TS__SourceMapTraceBack = ____lualib.__TS__SourceMapTraceBack
-__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["7"] = 12,["8"] = 12,["9"] = 12,["10"] = 18,["11"] = 14,["12"] = 15,["13"] = 19,["14"] = 18,["15"] = 22,["16"] = 23,["17"] = 24,["18"] = 24,["19"] = 26,["20"] = 27,["21"] = 28,["22"] = 29,["23"] = 30,["24"] = 31,["25"] = 32,["26"] = 33,["27"] = 33,["28"] = 35,["29"] = 36,["30"] = 37,["31"] = 38,["32"] = 40,["33"] = 46,["34"] = 33,["35"] = 33,["36"] = 54,["37"] = 54,["38"] = 56,["39"] = 57,["40"] = 58,["41"] = 59,["42"] = 60,["43"] = 54,["44"] = 54,["45"] = 67,["46"] = 68,["48"] = 24,["49"] = 24,["50"] = 76,["51"] = 76,["52"] = 22,["53"] = 78,["54"] = 78,["55"] = 79,["56"] = 79,["57"] = 80,["58"] = 80});
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["7"] = 12,["8"] = 12,["9"] = 12,["10"] = 18,["11"] = 14,["12"] = 15,["13"] = 19,["14"] = 18,["15"] = 22,["16"] = 23,["17"] = 24,["18"] = 24,["19"] = 26,["20"] = 27,["21"] = 28,["22"] = 29,["23"] = 30,["24"] = 31,["25"] = 32,["26"] = 33,["27"] = 33,["28"] = 35,["29"] = 36,["30"] = 37,["31"] = 38,["32"] = 40,["33"] = 46,["34"] = 33,["35"] = 33,["36"] = 54,["37"] = 54,["38"] = 56,["39"] = 57,["40"] = 58,["41"] = 59,["42"] = 60,["43"] = 54,["44"] = 54,["45"] = 67,["46"] = 68,["48"] = 24,["49"] = 24,["50"] = 76,["51"] = 76,["52"] = 22,["53"] = 78,["54"] = 78,["55"] = 79,["56"] = 79,["57"] = 80,["58"] = 80,["59"] = 82,["60"] = 86,["61"] = 88,["62"] = 89,["65"] = 92,["66"] = 93,["67"] = 94,["68"] = 94,["69"] = 94,["70"] = 94,["71"] = 82});
 local ____exports = {}
 ____exports.GameBase = __TS__Class()
 local GameBase = ____exports.GameBase
@@ -55,5 +55,18 @@ end
 function GameBase.prototype.relaunch(self, options)
 end
 function GameBase.prototype.finish(self)
+end
+function GameBase.moveHero(self, controller, spawn_name)
+    local hero = controller:GetAssignedHero()
+    local padawan_spawn = Entities:FindByName(nil, spawn_name)
+    if not padawan_spawn then
+        return
+    end
+    local vector = padawan_spawn:GetAbsOrigin()
+    hero:SetAbsOrigin(vector)
+    CenterCameraOnUnit(
+        controller:GetPlayerID(),
+        hero
+    )
 end
 return ____exports

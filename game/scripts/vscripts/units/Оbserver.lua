@@ -2,12 +2,12 @@ local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__New = ____lualib.__TS__New
 local __TS__SourceMapTraceBack = ____lualib.__TS__SourceMapTraceBack
-__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["7"] = 1,["8"] = 1,["9"] = 2,["10"] = 2,["11"] = 8,["12"] = 8,["13"] = 8,["14"] = 12,["15"] = 13,["16"] = 12,["17"] = 16,["18"] = 17,["19"] = 17,["20"] = 17,["21"] = 17,["22"] = 17,["23"] = 17,["24"] = 17,["25"] = 17,["26"] = 17,["27"] = 26,["28"] = 27,["29"] = 28,["30"] = 28,["31"] = 28,["32"] = 28,["33"] = 28,["34"] = 28,["35"] = 28,["36"] = 28,["37"] = 36,["38"] = 37,["39"] = 38,["40"] = 39,["41"] = 40,["42"] = 41,["43"] = 42,["44"] = 43,["45"] = 44,["46"] = 45,["49"] = 48,["50"] = 49,["51"] = 50,["53"] = 44,["54"] = 54,["55"] = 55,["56"] = 57,["57"] = 58,["58"] = 59,["59"] = 60,["62"] = 63,["63"] = 64,["65"] = 54,["66"] = 16,["67"] = 70,["68"] = 70,["69"] = 70,["71"] = 71,["72"] = 72,["73"] = 74,["74"] = 70,["75"] = 75,["76"] = 76,["77"] = 77,["78"] = 79,["79"] = 80,["80"] = 81,["81"] = 82,["84"] = 85,["87"] = 88,["88"] = 89,["89"] = 90,["92"] = 93,["93"] = 94,["95"] = 95,["98"] = 97,["100"] = 98,["103"] = 100,["105"] = 101,["108"] = 103,["110"] = 104,["113"] = 106,["115"] = 107,["118"] = 109,["120"] = 110,["122"] = 111,["124"] = 112,["128"] = 115,["129"] = 120,["130"] = 121,["131"] = 122,["132"] = 122,["133"] = 123,["134"] = 79,["135"] = 75,["136"] = 127,["137"] = 128,["138"] = 127});
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["7"] = 1,["8"] = 1,["9"] = 2,["10"] = 2,["11"] = 8,["12"] = 8,["13"] = 8,["14"] = 12,["15"] = 13,["16"] = 12,["17"] = 16,["18"] = 17,["19"] = 17,["20"] = 17,["21"] = 17,["22"] = 17,["23"] = 17,["24"] = 17,["25"] = 17,["26"] = 17,["27"] = 26,["28"] = 27,["29"] = 28,["30"] = 28,["31"] = 28,["32"] = 28,["33"] = 28,["34"] = 28,["35"] = 28,["36"] = 28,["37"] = 36,["38"] = 37,["39"] = 38,["40"] = 39,["41"] = 40,["42"] = 41,["43"] = 42,["44"] = 43,["45"] = 44,["46"] = 45,["49"] = 48,["50"] = 49,["51"] = 50,["53"] = 44,["54"] = 54,["55"] = 55,["56"] = 57,["57"] = 58,["58"] = 59,["59"] = 60,["62"] = 63,["63"] = 64,["65"] = 54,["66"] = 16,["67"] = 70,["68"] = 70,["69"] = 70,["71"] = 71,["72"] = 72,["73"] = 74,["74"] = 70,["75"] = 75,["76"] = 80,["77"] = 81,["78"] = 83,["79"] = 84,["80"] = 85,["81"] = 86,["84"] = 89,["87"] = 92,["88"] = 93,["89"] = 94,["92"] = 97,["93"] = 98,["95"] = 99,["98"] = 101,["100"] = 102,["103"] = 104,["105"] = 105,["108"] = 107,["110"] = 108,["113"] = 110,["115"] = 111,["118"] = 113,["120"] = 114,["122"] = 115,["124"] = 116,["128"] = 119,["129"] = 124,["130"] = 125,["131"] = 126,["132"] = 126,["133"] = 127,["134"] = 83,["135"] = 75,["136"] = 131,["137"] = 132,["138"] = 131});
 local ____exports = {}
 local ____event_2Dbus = require("core.event-bus.event-bus")
 local eventBus = ____event_2Dbus.eventBus
 local ____Box = require("utils.Box")
-local Box = ____Box.Box
+local Geometry = ____Box.Geometry
 ____exports.ObserverWard = __TS__Class()
 local ObserverWard = ____exports.ObserverWard
 ObserverWard.name = "ObserverWard"
@@ -72,7 +72,7 @@ function AIMCOMMON_ObserverWardSpawn.prototype.____constructor(self)
     self.isFirstLaunch = true
     self.wards = {}
 end
-function AIMCOMMON_ObserverWardSpawn.prototype.spawn(self, outerBox, innerBox, config)
+function AIMCOMMON_ObserverWardSpawn.prototype.spawn(self, outerGeometry, innerGeometry, config)
     local interval = 2.5
     local wards_count = config.wards_count
     Timers:CreateTimer(function()
@@ -125,7 +125,7 @@ function AIMCOMMON_ObserverWardSpawn.prototype.spawn(self, outerBox, innerBox, c
                 break
             end
         until true
-        local spawnPos = Box:twoBoxRandomPoint(outerBox.boxPoints, innerBox.boxPoints)
+        local spawnPos = Geometry:twoBoxRandomPoint(outerGeometry.boxPoints, innerGeometry.boxPoints)
         local ward = __TS__New(____exports.ObserverWard, {position = spawnPos})
         ward:spawn()
         local ____self_wards_0 = self.wards

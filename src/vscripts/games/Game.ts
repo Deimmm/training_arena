@@ -78,4 +78,19 @@ export class GameBase implements IGameBase {
   launch(options: any) {}
   relaunch(options: any) {}
   finish() {}
+
+  public static moveHero(
+    controller: CDOTAPlayerController,
+    spawn_name: string,
+  ) {
+    const hero = controller.GetAssignedHero();
+
+    const padawan_spawn = Entities.FindByName(undefined, spawn_name);
+    if (!padawan_spawn) {
+      return;
+    }
+    const vector = padawan_spawn.GetAbsOrigin();
+    hero.SetAbsOrigin(vector);
+    CenterCameraOnUnit(controller.GetPlayerID(), hero);
+  }
 }
