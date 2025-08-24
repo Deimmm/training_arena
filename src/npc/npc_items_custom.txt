@@ -3,7 +3,7 @@
  
     "item_custom_qblade"
     {
-        "ID"                            "6666"
+        "ID"                            "999912345"
         "BaseClass"                     "item_lua"
         "ScriptFile"                    "items/qblade.lua"
         "AbilityTextureName"            "item_quelling_blade"

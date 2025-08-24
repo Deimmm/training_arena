@@ -80,16 +80,16 @@ function AimCommon.prototype.launch(self, options)
     self.outerBox = __TS__New(Geometry)
     self.outerBox:createBox(
         startVector,
-        700,
-        150,
+        675,
+        125,
         true,
         {widthCoef = 1.3, heightCoef = 0.9}
     )
     self.heroBox = __TS__New(Geometry)
     self.heroBox:createBox(
         startVector,
+        100,
         75,
-        50,
         false,
         {widthCoef = 1.3, heightCoef = 0.9}
     )

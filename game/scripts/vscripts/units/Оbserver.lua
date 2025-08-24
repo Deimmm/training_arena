@@ -2,7 +2,7 @@ local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__New = ____lualib.__TS__New
 local __TS__SourceMapTraceBack = ____lualib.__TS__SourceMapTraceBack
-__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["7"] = 1,["8"] = 1,["9"] = 2,["10"] = 2,["11"] = 8,["12"] = 8,["13"] = 8,["14"] = 12,["15"] = 13,["16"] = 12,["17"] = 16,["18"] = 17,["19"] = 17,["20"] = 17,["21"] = 17,["22"] = 17,["23"] = 17,["24"] = 17,["25"] = 17,["26"] = 17,["27"] = 26,["28"] = 27,["29"] = 28,["30"] = 28,["31"] = 28,["32"] = 28,["33"] = 28,["34"] = 28,["35"] = 28,["36"] = 28,["37"] = 36,["38"] = 37,["39"] = 38,["40"] = 39,["41"] = 40,["42"] = 41,["43"] = 42,["44"] = 43,["45"] = 44,["46"] = 45,["49"] = 48,["50"] = 49,["51"] = 50,["53"] = 44,["54"] = 54,["55"] = 55,["56"] = 57,["57"] = 58,["58"] = 59,["59"] = 60,["62"] = 63,["63"] = 64,["65"] = 54,["66"] = 16,["67"] = 70,["68"] = 70,["69"] = 70,["71"] = 71,["72"] = 72,["73"] = 74,["74"] = 70,["75"] = 75,["76"] = 80,["77"] = 81,["78"] = 83,["79"] = 84,["80"] = 85,["81"] = 86,["84"] = 89,["87"] = 92,["88"] = 93,["89"] = 94,["92"] = 97,["93"] = 98,["95"] = 99,["98"] = 101,["100"] = 102,["103"] = 104,["105"] = 105,["108"] = 107,["110"] = 108,["113"] = 110,["115"] = 111,["118"] = 113,["120"] = 114,["122"] = 115,["124"] = 116,["128"] = 119,["129"] = 124,["130"] = 125,["131"] = 126,["132"] = 126,["133"] = 127,["134"] = 83,["135"] = 75,["136"] = 131,["137"] = 132,["138"] = 131});
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["7"] = 1,["8"] = 1,["9"] = 2,["10"] = 2,["11"] = 8,["12"] = 8,["13"] = 8,["14"] = 12,["15"] = 13,["16"] = 12,["17"] = 16,["18"] = 17,["19"] = 17,["20"] = 17,["21"] = 17,["22"] = 17,["23"] = 17,["24"] = 17,["25"] = 17,["26"] = 17,["27"] = 26,["28"] = 27,["29"] = 28,["30"] = 28,["31"] = 28,["32"] = 28,["33"] = 28,["34"] = 28,["35"] = 28,["36"] = 28,["37"] = 36,["38"] = 37,["39"] = 38,["40"] = 39,["41"] = 40,["42"] = 41,["43"] = 42,["44"] = 43,["45"] = 44,["46"] = 45,["49"] = 48,["50"] = 49,["51"] = 50,["53"] = 44,["54"] = 54,["55"] = 55,["56"] = 57,["57"] = 58,["58"] = 59,["59"] = 60,["62"] = 63,["63"] = 64,["65"] = 54,["66"] = 16,["67"] = 70,["68"] = 70,["69"] = 70,["71"] = 71,["72"] = 72,["73"] = 74,["74"] = 70,["75"] = 75,["76"] = 80,["77"] = 81,["78"] = 83,["79"] = 84,["80"] = 85,["81"] = 86,["84"] = 89,["87"] = 92,["88"] = 93,["89"] = 94,["92"] = 97,["93"] = 98,["95"] = 99,["98"] = 101,["100"] = 102,["103"] = 104,["105"] = 105,["108"] = 107,["110"] = 108,["113"] = 110,["115"] = 111,["118"] = 115,["120"] = 116,["124"] = 119,["125"] = 124,["126"] = 125,["127"] = 126,["128"] = 126,["129"] = 127,["130"] = 83,["131"] = 75,["132"] = 131,["133"] = 132,["134"] = 131});
 local ____exports = {}
 local ____event_2Dbus = require("core.event-bus.event-bus")
 local eventBus = ____event_2Dbus.eventBus
@@ -16,13 +16,13 @@ function ObserverWard.prototype.____constructor(self, options)
 end
 function ObserverWard.prototype.spawn(self)
     local sizes = {
-        {8, 0.6},
+        {9, 0.65},
         {10, 0.7},
         {12, 0.8},
         {12, 0.8},
         {12, 0.8},
-        {14, 1},
-        {14, 1}
+        {14, 0.9},
+        {14, 0.9}
     }
     local randomIndex = math.random(1, #sizes) - 1
     local hullRadius, modelScale = unpack(sizes[randomIndex + 1])
@@ -73,7 +73,7 @@ function AIMCOMMON_ObserverWardSpawn.prototype.____constructor(self)
     self.wards = {}
 end
 function AIMCOMMON_ObserverWardSpawn.prototype.spawn(self, outerGeometry, innerGeometry, config)
-    local interval = 2.5
+    local interval = 2.1
     local wards_count = config.wards_count
     Timers:CreateTimer(function()
         local count = #self.wards
@@ -92,32 +92,28 @@ function AIMCOMMON_ObserverWardSpawn.prototype.spawn(self, outerGeometry, innerG
             local ____switch16 = true
             local ____cond16 = ____switch16 == (count >= 4 and count < 8)
             if ____cond16 then
-                interval = 1.75
+                interval = 1.65
                 break
             end
             ____cond16 = ____cond16 or ____switch16 == (count >= 8 and count < 12)
             if ____cond16 then
-                interval = 1.5
+                interval = 1.35
                 break
             end
             ____cond16 = ____cond16 or ____switch16 == (count >= 12 and count < 16)
             if ____cond16 then
-                interval = 1.25
+                interval = 1.05
                 break
             end
             ____cond16 = ____cond16 or ____switch16 == (count >= 16 and count < 22)
             if ____cond16 then
-                interval = 0.75
+                interval = 0.65
                 break
             end
-            ____cond16 = ____cond16 or ____switch16 == (count >= 22 and count < 28)
-            if ____cond16 then
-                interval = 0.5
-                break
-            end
-            ____cond16 = ____cond16 or ____switch16 == (count >= 28 and count < 80)
+            ____cond16 = ____cond16 or ____switch16 == (count >= 22 and count < 80)
             if ____cond16 then
                 interval = 0.45
+                break
             end
             ____cond16 = ____cond16 or ____switch16 == (count >= 80)
             if ____cond16 then

@@ -65,13 +65,13 @@ export class AimCommon extends GameBase {
     }
     const startVector = startPosition.GetAbsOrigin();
     this.outerBox = new Geometry();
-    this.outerBox.createBox(startVector, 700, 150, true, {
+    this.outerBox.createBox(startVector, 675, 125, true, {
       widthCoef: 1.3,
       heightCoef: 0.9,
     });
 
     this.heroBox = new Geometry();
-    this.heroBox.createBox(startVector, 75, 50, false, {
+    this.heroBox.createBox(startVector, 100, 75, false, {
       widthCoef: 1.3,
       heightCoef: 0.9,
     });

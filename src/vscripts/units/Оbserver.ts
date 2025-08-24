@@ -15,13 +15,13 @@ export class ObserverWard {
 
   spawn() {
     const sizes = [
-      [8, 0.6],
+      [9, 0.65],
       [10, 0.7],
       [12, 0.8],
       [12, 0.8],
       [12, 0.8],
-      [14, 1],
-      [14, 1],
+      [14, 0.9],
+      [14, 0.9],
     ];
     const randomIndex = math.random(1, sizes.length) - 1;
     const [hullRadius, modelScale] = sizes[randomIndex];
@@ -77,7 +77,7 @@ export class AIMCOMMON_ObserverWardSpawn {
     innerGeometry: Geometry,
     config: { wards_count: number },
   ) {
-    let interval = 2.5;
+    let interval = 2.1;
     const wards_count: number = config.wards_count;
 
     Timers.CreateTimer(() => {
@@ -96,22 +96,22 @@ export class AIMCOMMON_ObserverWardSpawn {
 
       switch (true) {
         case count >= 4 && count < 8:
-          interval = 1.75;
+          interval = 1.65;
           break;
         case count >= 8 && count < 12:
-          interval = 1.5;
+          interval = 1.35;
           break;
         case count >= 12 && count < 16:
-          interval = 1.25;
+          interval = 1.05;
           break;
         case count >= 16 && count < 22:
-          interval = 0.75;
+          interval = 0.65;
           break;
-        case count >= 22 && count < 28:
-          interval = 0.5;
-          break;
-        case count >= 28 && count < 80:
+        case count >= 22 && count < 80:
           interval = 0.45;
+          break;
+        // case count >= 28 && count < 80:
+        //   interval = 0.48;
         case count >= 80:
           interval = 0.4;
           break;
