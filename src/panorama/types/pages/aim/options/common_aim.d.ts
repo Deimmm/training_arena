@@ -12,6 +12,7 @@ declare interface CustomNetTableDeclarations {
     };
 }
 declare class CommonAIMPageComponent extends PageComponent {
+    private root;
     constructor(id: string, root: Panel);
     private form;
     private shedules;

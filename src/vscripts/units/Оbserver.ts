@@ -33,7 +33,7 @@ export class ObserverWard {
       undefined,
       DotaTeam.NOTEAM,
     );
-    ward.SetRenderColor(119, 218, 233);
+    ward.SetRenderColor(7, 110, 245);
     this.index = ward.GetEntityIndex();
     ward.SetDeathXP(0);
     ward.SetMaximumGoldBounty(0);
@@ -79,7 +79,6 @@ export class AIMCOMMON_ObserverWardSpawn {
   ) {
     let interval = 2.1;
     const wards_count: number = config.wards_count;
-
     Timers.CreateTimer(() => {
       const count = this.wards.length;
       if (count === wards_count) {

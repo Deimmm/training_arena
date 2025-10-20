@@ -11,12 +11,15 @@ declare interface CustomNetTableDeclarations {
   };
 }
 class CommonAIMPageComponent extends PageComponent {
+  private root: Panel;
   constructor(id: string, root: Panel) {
     super(id, {
       snippet: "CommonAIM",
       isSingle: true,
       onReload: () => this.loadTable(),
     });
+
+    this.root = root;
     this.load(root);
     this.eventBus();
   }
@@ -76,11 +79,11 @@ class CommonAIMPageComponent extends PageComponent {
     });
     GameEvents.Subscribe("round_finish.aim_common", (event) => {
       $.Msg("round_finish.aim_common", event);
+      // this.load(this.root);
       GameEvents.SendCustomGameEventToAllClients<{ playerId: PlayerID }>(
         "open-menu",
         { playerId: Players.GetLocalPlayer() },
       );
-
       $("#CommonAimFinishButton").visible = true;
     });
 

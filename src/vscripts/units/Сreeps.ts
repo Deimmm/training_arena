@@ -5,12 +5,14 @@ export class LaneCreep {
     type: "melee" | "range" | "business";
     position: Vector;
     team: DotaTeam;
-    waypoint: Vector;
+    waypoints: Vector[];
   }) {
-    const { type, position, team, waypoint } = config;
+    const { type, position, team, waypoints } = config;
     this.self = this.spawn(type, position, team);
-    if (waypoint) {
-      this.move(waypoint);
+    if (waypoints && waypoints.length > 0) {
+      for (const waypoint of waypoints) {
+        this.move(waypoint);
+      }
     }
   }
   typeMap = new Map([
@@ -61,7 +63,7 @@ export class CreepSpawn {
 
   async startSpawn(
     position: Vector,
-    movePosition: Vector,
+    movePositions: Vector[],
     creeps: {
       melee: number;
       range: number;
@@ -81,7 +83,7 @@ export class CreepSpawn {
               type: "melee",
               position,
               team,
-              waypoint: movePosition,
+              waypoints: movePositions,
             });
           }
           for (let i = 0; i < range; i++) {
@@ -89,7 +91,7 @@ export class CreepSpawn {
               type: "range",
               position,
               team,
-              waypoint: movePosition,
+              waypoints: movePositions,
             });
           }
           for (let i = 0; i < business; i++) {
@@ -97,7 +99,7 @@ export class CreepSpawn {
               type: "business",
               position,
               team,
-              waypoint: movePosition,
+              waypoints: movePositions,
             });
           }
           return interval;

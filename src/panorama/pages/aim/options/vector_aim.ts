@@ -11,12 +11,14 @@ declare interface CustomNetTableDeclarations {
   };
 }
 class VectorAIMPageComponent extends PageComponent {
+  private root: Panel;
   constructor(id: string, root: Panel) {
     super(id, {
       snippet: "VectorAIM",
       isSingle: true,
       onReload: () => this.loadTable(),
     });
+    this.root = root;
     this.load(root);
     this.eventBus();
   }
@@ -80,7 +82,6 @@ class VectorAIMPageComponent extends PageComponent {
         "open-menu",
         { playerId: Players.GetLocalPlayer() },
       );
-
       $("#CommonAimFinishButton").visible = true;
     });
 

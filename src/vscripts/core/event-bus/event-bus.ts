@@ -3,7 +3,7 @@ type EventCallback<T = any> = (payload: T) => void;
 class EventBus {
   private listeners: Record<string, EventCallback[]> = {};
 
-  on<T = any>(eventName: string, callback: EventCallback<T>) {
+  on<T = any>(eventName: string, callback: EventCallback<T>): () => void {
     if (!this.listeners[eventName]) {
       this.listeners[eventName] = [];
     }

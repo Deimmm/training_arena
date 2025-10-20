@@ -153,16 +153,18 @@ export class AimVector extends GameBase {
             {},
           ),
         );
-        API.updateVectorAim({
-          steamId: PlayerResource.GetSteamID(
-            this.controller.GetPlayerID(),
-          ).__tostring(),
+        Timers.CreateTimer(1, () =>
+          API.updateVectorAim({
+            steamId: PlayerResource.GetSteamID(
+              this.controller.GetPlayerID(),
+            ).__tostring(),
 
-          result: this.result,
-          streak: this.maxStreak,
-          avgTime: this.avgTime,
-          killedUnits: this.killedUnits,
-        });
+            result: this.result,
+            streak: this.maxStreak,
+            avgTime: this.avgTime,
+            killedUnits: this.killedUnits,
+          }),
+        );
       }),
     );
   }

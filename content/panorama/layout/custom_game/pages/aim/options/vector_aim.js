@@ -7,6 +7,7 @@ class VectorAIMPageComponent extends PageComponent {
         });
         this.form = {};
         this.shedules = [];
+        this.root = root;
         this.load(root);
         this.eventBus();
     }

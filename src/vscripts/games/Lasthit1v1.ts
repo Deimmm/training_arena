@@ -59,12 +59,17 @@ export class Lasthit1V1 extends GameBase {
   }
 
   private initCreepSpawns(terrain: "plain" | "river") {
-    const padawan_spawn_name =
-      terrain === "plain" ? "radiant_creep_spawn_plain" : "radiant_creep_spawn";
-    const sniper_spawn_name =
-      terrain === "plain" ? "dire_creep_spawn_plain" : "dire_creep_spawn";
+    const isPlain = terrain === "plain";
+    const padawan_spawn_name = isPlain
+      ? "radiant_creep_spawn_plain"
+      : "radiant_creep_spawn";
+    const sniper_spawn_name = isPlain
+      ? "dire_creep_spawn_plain"
+      : "dire_creep_spawn";
+
     const padawan_spawn = Entities.FindByName(undefined, padawan_spawn_name);
     const sniper_spawn = Entities.FindByName(undefined, sniper_spawn_name);
+
     if (!padawan_spawn || !sniper_spawn) {
       print("WARNING: ", "Cant find spawns");
       return;
@@ -73,16 +78,36 @@ export class Lasthit1V1 extends GameBase {
     const badguys_spawn = new CreepSpawn();
     const goodguys_spawn = new CreepSpawn();
     this.spawns = this.spawns.concat([goodguys_spawn, badguys_spawn]);
-    badguys_spawn.startSpawn(
+
+    const wayp_1 = Entities.FindByName(undefined, "creep_mpoint_plain_1");
+    const wayp_2 = Entities.FindByName(undefined, "creep_mpoint_plain_2");
+
+    const radiant_waypoints = isPlain
+      ? [
+          wayp_1.GetAbsOrigin(),
+          wayp_2.GetAbsOrigin(),
+          sniper_spawn.GetAbsOrigin(),
+        ]
+      : [sniper_spawn.GetAbsOrigin()];
+
+    const dire_waypoints = isPlain
+      ? [
+          wayp_2.GetAbsOrigin(),
+          wayp_1.GetAbsOrigin(),
+          padawan_spawn.GetAbsOrigin(),
+        ]
+      : [padawan_spawn.GetAbsOrigin()];
+
+    goodguys_spawn.startSpawn(
       padawan_spawn.GetAbsOrigin(),
-      sniper_spawn.GetAbsOrigin(),
+      radiant_waypoints,
       { melee: 3, range: 1, business: 0 },
       30,
       DotaTeam.GOODGUYS,
     );
-    goodguys_spawn.startSpawn(
+    badguys_spawn.startSpawn(
       sniper_spawn.GetAbsOrigin(),
-      padawan_spawn.GetAbsOrigin(),
+      dire_waypoints,
       { melee: 3, range: 1, business: 0 },
       30,
       DotaTeam.BADGUYS,

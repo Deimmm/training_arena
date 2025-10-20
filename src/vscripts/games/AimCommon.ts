@@ -136,23 +136,24 @@ export class AimCommon extends GameBase {
     this.unsubs.push(
       eventBus.on("obsspawn.finish", () => {
         EmitSoundOn("drums", this.controller.GetAssignedHero());
-        Timers.CreateTimer(3, () =>
+        Timers.CreateTimer(3, () => {
           CustomGameEventManager.Send_ServerToPlayer<any>(
             this.controller,
             "round_finish.aim_common",
             {},
-          ),
-        );
-        API.updateCommonAim({
-          steamId: PlayerResource.GetSteamID(
-            this.controller.GetPlayerID(),
-          ).__tostring(),
-
-          result: this.result,
-          streak: this.maxStreak,
-          avgTime: this.avgTime,
-          killedWards: this.killedWards,
+          );
         });
+        Timers.CreateTimer(1, () =>
+          API.updateCommonAim({
+            steamId: PlayerResource.GetSteamID(
+              this.controller.GetPlayerID(),
+            ).__tostring(),
+            result: this.result,
+            streak: this.maxStreak,
+            avgTime: this.avgTime,
+            killedWards: this.killedWards,
+          }),
+        );
       }),
     );
   }
