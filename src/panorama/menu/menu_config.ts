@@ -5,13 +5,15 @@ type NavButtons =
   | AimNavButton
   | SpellDodgeNavButton
   | MultitaskNavButton
-  | UnitControllNavButton;
+  | UnitControllNavButton
+  | HeroesChoiseNavigationButton;
 
 interface SideNavConfig {
   name: string;
   class: ButtonConstructor<NavButtons>;
 }
 enum SideNavButton {
+  HEROES_CHOISE = "Heroes Choise",
   LASTHIT = "Lasthit",
   SPELL_DODGE = "Spell Dodge",
   AIM = "Aim",
@@ -25,6 +27,7 @@ enum PageNames {
 }
 
 var SIDE_NAV_CONFIG: SideNavConfig[] = [
+  { name: SideNavButton.HEROES_CHOISE, class: HeroesChoiseNavigationButton },
   { name: SideNavButton.LASTHIT, class: LastitNavigationButton },
   { name: SideNavButton.AIM, class: AimNavButton },
   // { name: SideNavButton.MULTITASK, class: MultitaskNavButton },

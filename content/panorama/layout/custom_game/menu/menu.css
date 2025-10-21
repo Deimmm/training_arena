@@ -9,7 +9,7 @@
   margin-top: 100px;
   horizontal-align: left;
   vertical-align: bottom;
-  flow-children: right;
+  flow-children: down;
 }
 
 .MenuContainer {
@@ -34,8 +34,9 @@
 }
 /* Show Hide Button*/
 .ShowHideButton {
-  width: 80px;
+  width: 100px;
   height: 50px;
+  margin-top: 45px;
   background-color: gradient(linear, 0% 0%, 0% 15%, from(#232326), to(#434446));
 }
 /* Button*/
@@ -47,16 +48,33 @@
   margin-bottom: 15px;
   border-bottom: 1px solid #32383677;
 }
+
 .ButtonContainer:hover {
   border-bottom: 1px solid #828a8777;
+}
+
+.HeroesButtonContainer:hover {
+  border: 1px solid #c3c9c777;
+}
+
+.HeroesButtonContainer {
+  width: 65%;
+  height: 100%;
+  max-height: 60px;
+  horizontal-align: center;
+  margin-bottom: 20px;
+  background-color: #1a1a1a;
+  border: 1px solid #828a8777;
+  border-radius: 5px 5px;
 }
 
 .ButtonText:hover {
   color: white;
 }
-.ButonText:active {
+.ButtonText:active {
   color: white;
 }
+
 .ButtonText {
   width: 100%;
   text-align: center;
@@ -65,6 +83,7 @@
   color: #c0c0c0;
   font-size: 24;
   text-transform: uppercase;
+  text-overflow: clip;
 }
 .ButtonPanel {
   width: 100%;

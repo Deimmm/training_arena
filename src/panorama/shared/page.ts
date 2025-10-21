@@ -29,7 +29,6 @@ class PageComponent {
     this.render(root);
     this.loadPageOptions();
     this.openDefaultPageOption();
-    $.Msg("PAGE Is LAODED: ");
     this.onReload && this.onReload();
   }
 
@@ -63,8 +62,8 @@ class PageComponent {
       $(this.idSelector).DeleteAsync(0);
     } catch (err) {}
   }
+
   public openDefaultPageOption() {
-    $.Msg(this.pageOptions);
     if (this.pageOptions && this.pageOptions?.length > 0) {
       this.renderPageOption({
         playerId: Players.GetLocalPlayer(),
@@ -80,7 +79,6 @@ class PageComponent {
 
   private renderPageOption(event: { playerId: number; page: string }) {
     var pageOptions = this.pageOptions;
-    $.Msg(pageOptions);
     if (!pageOptions) return;
 
     const { playerId, page } = event;

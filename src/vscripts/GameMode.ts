@@ -52,6 +52,7 @@ export class GameMode {
           event.PlayerID,
           DotaTeam.GOODGUYS,
         );
+        this.debug(event.PlayerID);
       },
       undefined,
     );
@@ -61,6 +62,11 @@ export class GameMode {
       (event) => this.onNPCSpawned(event),
       this.context,
     );
+
+    CustomGameEventManager.RegisterListener("heroes.restart", () => {
+      print("[SERVER] heroes.restart");
+      GameRules.ResetToHeroSelection();
+    });
 
     new API().listenEvents();
     new Lasthit1V1().listenEvents();
@@ -83,6 +89,8 @@ export class GameMode {
   }
 
   private gameRules(): void {
+    GameRules.SetCustomGameTeamMaxPlayers(DotaTeam.BADGUYS, 0);
+    GameRules.SetCustomGameTeamMaxPlayers(DotaTeam.GOODGUYS, 1);
     GameRules.SetCustomGameSetupTimeout(0);
     GameRules.SetHeroSelectionTime(9999);
     GameRules.SetStrategyTime(9999);
@@ -90,8 +98,27 @@ export class GameMode {
     GameRules.SetPreGameTime(0);
     GameRules.SetTimeOfDay(0);
     GameRules.SetUseUniversalShopMode(true);
+
     const gameMode = GameRules.GetGameModeEntity();
     gameMode.SetFogOfWarDisabled(true);
     SpawnDOTAShopTriggerRadiusApproximate(Vector(), 999999);
+  }
+
+  private debug(playerId) {
+    //   ListenToGameEvent(
+    //     "dota_game_state_change",
+    //     (event) => {
+    //       DeepPrintTable(event);
+    //       if (event.new_state === GameState.GAME_IN_PROGRESS) {
+    //         const player = PlayerResource.GetPlayer(playerId);
+    //         PrecacheUnitByNameAsync("npc_dota_hero_phoenix", (precacheId) => {
+    //           Timers.CreateTimer(10, () => {
+    //             GameRules.ResetToHeroSelection();
+    //           });
+    //         });
+    //       }
+    //     },
+    //     this.context,
+    //   );
   }
 }

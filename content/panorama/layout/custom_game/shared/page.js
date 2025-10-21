@@ -15,7 +15,6 @@ class PageComponent {
         this.render(root);
         this.loadPageOptions();
         this.openDefaultPageOption();
-        $.Msg("PAGE Is LAODED: ");
         this.onReload && this.onReload();
     }
     get idSelector() {
@@ -45,7 +44,6 @@ class PageComponent {
     }
     openDefaultPageOption() {
         var _a;
-        $.Msg(this.pageOptions);
         if (this.pageOptions && ((_a = this.pageOptions) === null || _a === void 0 ? void 0 : _a.length) > 0) {
             this.renderPageOption({
                 playerId: Players.GetLocalPlayer(),
@@ -59,7 +57,6 @@ class PageComponent {
     renderPageOption(event) {
         var _a;
         var pageOptions = this.pageOptions;
-        $.Msg(pageOptions);
         if (!pageOptions)
             return;
         const { playerId, page } = event;

@@ -69,6 +69,9 @@ class MenuComponent {
     $.Msg(id);
   }
 
+  public static startHeroChoise() {
+    ServerEventBus.emit("heroes.restart", null);
+  }
   private initShowHideBtn() {
     var panel = $("#ShowHideBtn");
     panel.BLoadLayoutSnippet("ShowHideButton");

@@ -8,6 +8,7 @@ class CommonAIMPageComponent extends PageComponent {
         this.form = {};
         this.shedules = [];
         this.root = root;
+        $.Msg("MY ROIOOOOOT", root);
         this.load(root);
         this.eventBus();
     }
@@ -41,8 +42,8 @@ class CommonAIMPageComponent extends PageComponent {
         });
         GameEvents.Subscribe("round_finish.aim_common", (event) => {
             $.Msg("round_finish.aim_common", event);
-            // this.load(this.root);
             GameEvents.SendCustomGameEventToAllClients("open-menu", { playerId: Players.GetLocalPlayer() });
+            this.load($("#PageContent"));
             $("#CommonAimFinishButton").visible = true;
         });
         GameEvents.Subscribe("aim_common.result_update", (event) => {

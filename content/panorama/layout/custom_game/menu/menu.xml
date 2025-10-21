@@ -10,6 +10,7 @@
         <include src="file://{resources}/layout/custom_game/menu/buttons/multitask-nav-btn.js"/>
         <include src="file://{resources}/layout/custom_game/menu/buttons/spelldodge-nav-btn.js"/>
         <include src="file://{resources}/layout/custom_game/menu/buttons/unitcontroll-nav-btn.js"/>
+        <include src="file://{resources}/layout/custom_game/menu/buttons/heroeschoise-nav-btn.js"/>
         <include src="file://{resources}/layout/custom_game/pages/lasthit/options/lasthit_solo.js"/>
         <include src="file://{resources}/layout/custom_game/pages/lasthit/options/lasthit_1v1.js"/>
         <include src="file://{resources}/layout/custom_game/pages/lasthit/options/lasthit_2v2.js"/>
@@ -29,11 +30,12 @@
         <snippet name="Menu">
             <Panel class="MenuRoot">
                 <Panel id="MenuRoot" class="MenuRoot2">
+                    <Panel id="ShowHideBtn"></Panel>
                     <Panel class='MenuContainer' id="MenuContainer">
-                        <Panel class='SideNav' id="SideNav"></Panel>
+                        <Panel class='SideNav' id="SideNav">
+                        </Panel>
                         <Panel class="PageContentContainer" id="PageContainer"></Panel>
                     </Panel>
-                    <Panel id="ShowHideBtn"></Panel>
                 </Panel>
                 <Panel class="Timer">
                     <Label  id="Timer"/>
@@ -51,6 +53,11 @@
         <snippet name="ShowHideButton">
             <Panel class="ShowHideButton" onactivate="$('#Menu')">
                 <Label class="ButtonText" id="ShowHide" text="HIDE"/>
+            </Panel>
+        </snippet>
+        <snippet name="HeroesButton">
+            <Panel class="HeroesButtonContainer" >
+                <Label class="ButtonText" text="Placeholder"/>
             </Panel>
         </snippet>
         <snippet name="NavButton">

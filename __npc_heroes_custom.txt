@@ -752,12 +752,8 @@
     }
     "npc_dota_hero_phantom_assassin"
     {
-        "override_hero" "1"
-        "precache"
-        {
-            "model"         "models/heroes/phantom_assassin/pa_arcana.vmdl"
-            "model_folder" "models/items/phantom_assassin"
-        }
+        "override_hero" "0"
+
     }
     "npc_dota_hero_phantom_lancer"
     {

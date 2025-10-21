@@ -1,5 +1,6 @@
 var SideNavButton;
 (function (SideNavButton) {
+    SideNavButton["HEROES_CHOISE"] = "Heroes Choise";
     SideNavButton["LASTHIT"] = "Lasthit";
     SideNavButton["SPELL_DODGE"] = "Spell Dodge";
     SideNavButton["AIM"] = "Aim";
@@ -13,6 +14,7 @@ var PageNames;
     PageNames["MULTITASK"] = "MultitaskPage";
 })(PageNames || (PageNames = {}));
 var SIDE_NAV_CONFIG = [
+    { name: SideNavButton.HEROES_CHOISE, class: HeroesChoiseNavigationButton },
     { name: SideNavButton.LASTHIT, class: LastitNavigationButton },
     { name: SideNavButton.AIM, class: AimNavButton },
     // { name: SideNavButton.MULTITASK, class: MultitaskNavButton },

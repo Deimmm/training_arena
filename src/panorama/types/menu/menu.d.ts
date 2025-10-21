@@ -20,6 +20,7 @@ declare class MenuComponent {
     private deleteAll;
     private eventBus;
     emitBtn(id: string): void;
+    static startHeroChoise(): void;
     private initShowHideBtn;
     private setShowHideBtnVisibility;
     private toogleShowHideBtn;
