@@ -8,7 +8,7 @@
         <include src="file://{resources}/layout/custom_game/menu/buttons/aim-nav-btn.js"/>
         <include src="file://{resources}/layout/custom_game/menu/buttons/lasthit-nav-btn.js"/>
         <include src="file://{resources}/layout/custom_game/menu/buttons/multitask-nav-btn.js"/>
-        <include src="file://{resources}/layout/custom_game/menu/buttons/spelldodge-nav-btn.js"/>
+        <include src="file://{resources}/layout/custom_game/menu/buttons/mantadodge-nav-btn.js"/>
         <include src="file://{resources}/layout/custom_game/menu/buttons/unitcontroll-nav-btn.js"/>
         <include src="file://{resources}/layout/custom_game/menu/buttons/heroeschoise-nav-btn.js"/>
         <include src="file://{resources}/layout/custom_game/pages/lasthit/options/lasthit_solo.js"/>
@@ -19,6 +19,7 @@
         <include src="file://{resources}/layout/custom_game/pages/lasthit/lasthit.js"/>
         <include src="file://{resources}/layout/custom_game/pages/aim/aim.js"/>
         <include src="file://{resources}/layout/custom_game/pages/multitask/multitask.js"/>
+        <include src="file://{resources}/layout/custom_game/pages/manta-dodge/mantadodge.js"/>
         <include src="file://{resources}/layout/custom_game/pages/page_config.js"/>
         <include src="file://{resources}/layout/custom_game/menu/menu_config.js"/>
         <include src="file://{resources}/layout/custom_game/menu/menu.js"/>
@@ -155,7 +156,7 @@
             </Panel>
         </snippet>
         <snippet name="MultitaskPage">
-            <Panel class="PageContainer" id ="LasthitPage">
+            <Panel class="PageContainer" id ="MultitaskPage">
                 <Panel class="PageOptions" id ="PageOptions">
                 </Panel>
                 <Panel class="PageContent" id ="PageContent">
@@ -165,6 +166,23 @@
                             <Label class="ButtonText" text="START"/>
                         </Panel>
                         <Panel id="MultitaskFinishButton" class="FinishButton" onactivate="ClientEventBus.emit('game_finish.multitask');">
+                            <Label class="ButtonText" text="FINISH"/>
+                        </Panel>
+                    </Panel>
+                </Panel>
+            </Panel>
+        </snippet>
+        <snippet name="MantaDodgePage">
+            <Panel class="PageContainer" id ="MantaDodgePage">
+                <Panel class="PageContent" id ="PageContent">
+                    <Panel class="Placeholder">
+                        <Label text="Placeholder"/>
+                    </Panel>
+                    <Panel class="ButtonPanel">
+                        <Panel class="LaunchButton" onactivate="ClientEventBus.emit('game_launch', {game: 'manta_dodge', player: Players.GetLocalPlayer() });">
+                            <Label class="ButtonText" text="START"/>
+                        </Panel>
+                        <Panel id="MultitaskFinishButton" class="FinishButton" onactivate="ClientEventBus.emit('game_finish.manta_dodge');">
                             <Label class="ButtonText" text="FINISH"/>
                         </Panel>
                     </Panel>

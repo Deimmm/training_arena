@@ -4,6 +4,7 @@ import { Lasthit1V1 } from "./games/Lasthit1v1";
 import { reloadable } from "./lib/tstl-utils";
 import { AimVector } from "games/AimVector";
 import { Multitask } from "games/multitask/Multitask";
+import { MantaDodge } from "games/manta-dodge/MantaDodge";
 
 declare global {
   interface CDOTAGameRules {
@@ -72,6 +73,7 @@ export class GameMode {
     new Lasthit1V1().listenEvents();
     new AimCommon().listenEvents();
     new AimVector().listenEvents();
+    new MantaDodge().listenEvents();
     // new Multitask().listenEvents();
   }
 

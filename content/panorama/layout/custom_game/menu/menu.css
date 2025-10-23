@@ -130,6 +130,7 @@
   height: 100%;
   border-top: 1px solid #808a9246;
   padding: 20px;
+  flow-children: down;
   /* background-color: #212931;
   background-color: gradient(linear, 0% 0%, 0% 100%, from(#212931), to(black)); */
 }
@@ -347,4 +348,8 @@ HTMLVerticalScrollBar .ScrollThumb {
   height: 20px;
   vertical-align: center;
   text-align: justify;
+}
+.Placeholder {
+  height: 80%;
+  width: 100%;
 }

@@ -1,4 +1,4 @@
-const games = ["aim_common", "1v1", "aim_vector", "multitask"];
+const games = ["aim_common", "1v1", "aim_vector", "multitask", "manta_dodge"];
 class GameLauncher {
   launchedGame?: string;
   constructor() {}
