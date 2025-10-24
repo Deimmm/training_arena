@@ -556,8 +556,7 @@
 
         "precache"
         {
-            "model_folder" "models/heroes/lycan"
-            "model_folder" "models/items/lycan"
+            "model_folder"     "models/heroes/lycan"
         }
     }
     "npc_dota_hero_magnataur"
@@ -566,8 +565,7 @@
 
         "precache"
         {
-            "model_folder" "models/heroes/magnataur"
-            "model_folder" "models/items/magnataur"
+            "model_folder"      "models/heroes/magnataur"
         }
     }
     "npc_dota_hero_marci"

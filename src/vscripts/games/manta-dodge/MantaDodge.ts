@@ -2,7 +2,9 @@ import { GameBase } from "games/Game";
 import { manta_modifier } from "modifiers/manta";
 import { HeroInventory } from "utils/HeroInventory";
 
-interface LaunchOptions {}
+interface LaunchOptions {
+  spells: any;
+}
 export class MantaDodge extends GameBase {
   private unsubs: (() => void)[] = [];
 
@@ -23,9 +25,21 @@ export class MantaDodge extends GameBase {
     // While Game Run -> Set Hero, Cast Spell
     // 
    */
-  public launch(otions: LaunchOptions) {
+  public launch(options: LaunchOptions) {
     this.moveHero(this.controller);
     this.setupHero();
+
+    const spells = [
+      {
+        hero: "npc_dota_hero_magnataur",
+        ability_name: "magnataur_reverse_polarity",
+      },
+    ];
+
+    this.preCacheHeroes(spells.map((e) => e.hero));
+    Timers.CreateTimer(3, () => {
+      this.castSpell(spells[0]);
+    });
   }
 
   public finish() {
@@ -45,6 +59,51 @@ export class MantaDodge extends GameBase {
   }
 
   public relaunch() {}
+
+  public preCacheHeroes(heroes: string[]) {
+    heroes.forEach((hero) => {
+      PrecacheUnitByNameAsync(hero, () => {
+        print("PRECACHE FINISH ", hero);
+      });
+    });
+  }
+
+  /**
+   * <<--- SPELLS --->>
+   */
+
+  public setupSkills() {}
+  public castSpell(config) {
+    const hero = CreateUnitByName(
+      config.hero,
+      Vector(),
+      false,
+      undefined,
+      undefined,
+      DotaTeam.BADGUYS,
+    );
+    hero.SetAttackCapability(0);
+    hero.SetMoveCapability(1);
+    const spawn_name = "main_training_spawn";
+
+    const padawan_spawn = Entities.FindByName(undefined, spawn_name);
+    if (!padawan_spawn) {
+      return;
+    }
+    const vector = padawan_spawn.GetAbsOrigin();
+    hero.SetAbsOrigin(vector.__add(Vector(100, 0, 0)));
+    const ability = hero.FindAbilityByName(config.ability_name);
+    ability.SetLevel(1);
+    print(ability.GetName());
+    DeepPrintTable(this.controller.GetAssignedHero());
+    Timers.CreateTimer(1, () => {
+      hero.CastAbilityOnPosition(
+        this.controller.GetAssignedHero().GetAbsOrigin(),
+        ability,
+        0,
+      );
+    });
+  }
 
   /**
    * <<--- HERO --->>

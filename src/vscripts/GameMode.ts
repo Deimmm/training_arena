@@ -20,19 +20,14 @@ export class GameMode {
     PrecacheUnitByNameSync("npc_dummy_sniper", context);
     PrecacheResource("soundfile", "soundevents/sounds.vsndevts", context);
     PrecacheResource("particle", "particles/msg_fx/msg_death.vpcf", context);
-    // PrecacheResource(
-    //   "model",
-    //   "models/heroes/phantom_assassin/pa_arcana_weapons.vmdl",
-    //   context,
-    // );
     PrecacheResource(
       "particle",
-      "particles/custom/range_display_line_red.vpcf",
+      "particles/units/heroes/hero_muerta/muerta_deadshot.vpcf",
       context,
     );
     PrecacheResource(
       "particle",
-      "particles/units/heroes/hero_muerta/muerta_deadshot.vpcf",
+      "particles/custom/range_display_line_red.vpcf",
       context,
     );
   }
