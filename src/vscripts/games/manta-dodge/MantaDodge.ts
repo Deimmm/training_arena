@@ -1,13 +1,21 @@
+import { eventBus } from "core/event-bus/event-bus";
 import { GameBase } from "games/Game";
+import { BaseAbility } from "lib/dota_ts_adapter";
 import { manta_modifier } from "modifiers/manta";
 import { HeroInventory } from "utils/HeroInventory";
+import { Utils } from "utils/Utils";
 
 interface LaunchOptions {
   spells: any;
 }
+
+interface CastAbility {
+  hero: string;
+  ability_name: string;
+}
 export class MantaDodge extends GameBase {
   private unsubs: (() => void)[] = [];
-
+  private isRunning: boolean = false;
   private heroPreviousState: { attack_capability: UnitAttackCapability } = {
     attack_capability: null,
   };
@@ -17,32 +25,61 @@ export class MantaDodge extends GameBase {
   }
 
   /**
-   *     // Set Hero
-    // Assign Manta Item
-    // Parse Options
-    // Setup skill pool
-    // Start Random Spell Casting
-    // While Game Run -> Set Hero, Cast Spell
-    // 
+   * TODO:
+   * - Little box for hero to move
+   * - Check more spells
+   * - Caster Dynamics. Using blink-dager, throwing spells from shadow etc
    */
   public launch(options: LaunchOptions) {
+    this.isRunning = true;
     this.moveHero(this.controller);
     this.setupHero();
 
-    const spells = [
+    const spells: CastAbility[] = [
       {
         hero: "npc_dota_hero_magnataur",
         ability_name: "magnataur_reverse_polarity",
       },
     ];
+    const heroes = spells.map((e) => e.hero);
 
-    this.preCacheHeroes(spells.map((e) => e.hero));
-    Timers.CreateTimer(3, () => {
-      this.castSpell(spells[0]);
+    this.preCacheHeroes(heroes);
+
+    const cache = [];
+
+    eventBus.on("manta_dodge.cache_finish", (data: { hero: string }) => {
+      if (data.hero) {
+        cache.push(data.hero);
+        if (heroes.every((hero) => cache.includes(hero))) {
+          Timers.CreateTimer(1, () => {
+            print("MANTA DODGE CACHE FINISH!!!");
+            if (this.isRunning) {
+              this.trigerrSpellCast(spells);
+            }
+          });
+        }
+      }
     });
+
+    eventBus.on("manta_dodge.cast_spell_finish", () => {
+      print("manta_dodge.cast_spell_finish");
+      if (this.isRunning) {
+        this.trigerrSpellCast(spells);
+      }
+    });
+    ListenToGameEvent(
+      "dota_illusions_created",
+      (event) => {
+        DeepPrintTable(event);
+        GetTreeIdForEntityIndex(event.original_entindex);
+        Entities.FindByTarget;
+      },
+      this.context,
+    );
   }
 
   public finish() {
+    this.isRunning = false;
     const listeners = this.listeners;
     if (listeners.length > 0) {
       listeners.forEach((listener) =>
@@ -63,6 +100,7 @@ export class MantaDodge extends GameBase {
   public preCacheHeroes(heroes: string[]) {
     heroes.forEach((hero) => {
       PrecacheUnitByNameAsync(hero, () => {
+        eventBus.emit("manta_dodge.cache_finish", { hero });
         print("PRECACHE FINISH ", hero);
       });
     });
@@ -72,8 +110,11 @@ export class MantaDodge extends GameBase {
    * <<--- SPELLS --->>
    */
 
-  public setupSkills() {}
-  public castSpell(config) {
+  private trigerrSpellCast(spells: CastAbility[]) {
+    const index = Math.floor(Math.random() * spells.length);
+    this.castSpell(spells[index]);
+  }
+  private castSpell(config: CastAbility) {
     const hero = CreateUnitByName(
       config.hero,
       Vector(),
@@ -82,42 +123,42 @@ export class MantaDodge extends GameBase {
       undefined,
       DotaTeam.BADGUYS,
     );
+    hero.SetUnitCanRespawn(false);
     hero.SetAttackCapability(0);
     hero.SetMoveCapability(1);
     const spawn_name = "main_training_spawn";
 
-    const padawan_spawn = Entities.FindByName(undefined, spawn_name);
-    if (!padawan_spawn) {
-      return;
-    }
-    const vector = padawan_spawn.GetAbsOrigin();
-    hero.SetAbsOrigin(vector.__add(Vector(100, 0, 0)));
+    Utils.moveEntityToEntity(hero, spawn_name, Vector(200, 200));
+
     const ability = hero.FindAbilityByName(config.ability_name);
     ability.SetLevel(1);
-    print(ability.GetName());
-    DeepPrintTable(this.controller.GetAssignedHero());
+
     Timers.CreateTimer(1, () => {
       hero.CastAbilityOnPosition(
         this.controller.GetAssignedHero().GetAbsOrigin(),
         ability,
         0,
       );
+
+      Timers.CreateTimer(0.5, () => {
+        hero.ForceKill(false);
+        print("KILLING manta_dodge.cast_spell_finish");
+        Timers.CreateTimer(1, () => {
+          print("EMITING manta_dodge.cast_spell_finish");
+          eventBus.emit("manta_dodge.cast_spell_finish", null);
+        });
+      });
     });
   }
 
   /**
    * <<--- HERO --->>
    */
+
   private moveHero(controller: CDOTAPlayerController) {
     const hero = controller.GetAssignedHero();
     const spawn_name = "main_training_spawn";
-
-    const padawan_spawn = Entities.FindByName(undefined, spawn_name);
-    if (!padawan_spawn) {
-      return;
-    }
-    const vector = padawan_spawn.GetAbsOrigin();
-    hero.SetAbsOrigin(vector);
+    Utils.moveEntityToEntity(hero, spawn_name);
     CenterCameraOnUnit(controller.GetPlayerID(), hero);
   }
 
@@ -130,7 +171,11 @@ export class MantaDodge extends GameBase {
     hero.SetMoveCapability(0);
     hero.SetAttackCapability(0);
     hero.AddNewModifier(undefined, undefined, manta_modifier.name, {});
-    hero.AddItemByName("item_manta");
+    const item = hero.AddItemByName("item_custom_manta");
+    const mod = hero.FindModifierByName(item.GetIntrinsicModifierName());
+    DeepPrintTable(mod);
+    print(item.GetModifierValue());
+    print(item.GetIntrinsicModifierName());
   }
 
   private resetHero() {

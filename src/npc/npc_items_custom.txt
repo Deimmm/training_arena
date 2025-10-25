@@ -12,4 +12,23 @@
         "AbilityUnitTargetType"         "DOTA_UNIT_TARGET_ALL"
         "AbilityUnitTargetFlags"        "DOTA_UNIT_TARGET_FLAG_NONE"
     }
+
+    "item_custom_manta"
+    {
+        "ID"                            "999912346"
+        "BaseClass"                     "item_manta"
+        "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+        "AbilityCooldown"               "0.75"
+        "AbilityCastPoint"              "0.0"
+        "AbilityValues"
+        {
+                "images_count"          "2"
+                "illusion_duration"         "0.5"
+                "images_do_damage_percent_ranged"   "-100"
+                "images_do_damage_percent_melee"    "-100"
+                "invuln_duration"       "0.1"
+        }
+
+
+    }
 }
