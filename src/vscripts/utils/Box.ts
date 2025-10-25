@@ -51,12 +51,14 @@ export class Geometry {
     const p4 = Vector(x - width, y + height + offsetY, z);
 
     const boxPoints = [p1, p2, p3, p4];
+
     const boxParticles = isParticle && [
       this.createParticleLine(p1, p2),
       this.createParticleLine(p2, p3),
       this.createParticleLine(p3, p4),
       this.createParticleLine(p4, p1),
     ];
+
     this.boxParticles = boxParticles || [];
     this.boxPoints = boxPoints;
     return {

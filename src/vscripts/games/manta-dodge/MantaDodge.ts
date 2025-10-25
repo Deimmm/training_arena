@@ -2,6 +2,7 @@ import { eventBus } from "core/event-bus/event-bus";
 import { GameBase } from "games/Game";
 import { BaseAbility } from "lib/dota_ts_adapter";
 import { manta_modifier } from "modifiers/manta";
+import { Geometry } from "utils/Box";
 import { HeroInventory } from "utils/HeroInventory";
 import { Utils } from "utils/Utils";
 
@@ -16,6 +17,8 @@ interface CastAbility {
 export class MantaDodge extends GameBase {
   private unsubs: (() => void)[] = [];
   private isRunning: boolean = false;
+
+  private heroBox: Geometry;
   private heroPreviousState: { attack_capability: UnitAttackCapability } = {
     attack_capability: null,
   };
@@ -111,6 +114,7 @@ export class MantaDodge extends GameBase {
    */
 
   private trigerrSpellCast(spells: CastAbility[]) {
+    return;
     const index = Math.floor(Math.random() * spells.length);
     this.castSpell(spells[index]);
   }
@@ -163,12 +167,16 @@ export class MantaDodge extends GameBase {
   }
 
   private setupHero() {
+    const startPosition = Entities.FindByName(undefined, "main_training_spawn");
+    this.heroBox = new Geometry();
+    this.heroBox.createBox(startPosition.GetAbsOrigin(), 375, 100, true, {});
+
     const hero = this.controller.GetAssignedHero();
     HeroInventory.reset(hero);
     this.heroPreviousState = {
       attack_capability: hero.GetAttackCapability(),
     };
-    hero.SetMoveCapability(0);
+    // hero.SetMoveCapability(0);
     hero.SetAttackCapability(0);
     hero.AddNewModifier(undefined, undefined, manta_modifier.name, {});
     const item = hero.AddItemByName("item_custom_manta");
