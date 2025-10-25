@@ -2,6 +2,7 @@ import { eventBus } from "core/event-bus/event-bus";
 import { GameBase } from "games/Game";
 import { BaseAbility } from "lib/dota_ts_adapter";
 import { manta_modifier } from "modifiers/manta";
+import { InvisibileWall } from "units/Invisible";
 import { Geometry } from "utils/Box";
 import { HeroInventory } from "utils/HeroInventory";
 import { Utils } from "utils/Utils";
@@ -170,6 +171,7 @@ export class MantaDodge extends GameBase {
     const startPosition = Entities.FindByName(undefined, "main_training_spawn");
     this.heroBox = new Geometry();
     this.heroBox.createBox(startPosition.GetAbsOrigin(), 375, 100, true, {});
+    InvisibileWall.wrapBox(this.heroBox);
 
     const hero = this.controller.GetAssignedHero();
     HeroInventory.reset(hero);
@@ -179,11 +181,7 @@ export class MantaDodge extends GameBase {
     // hero.SetMoveCapability(0);
     hero.SetAttackCapability(0);
     hero.AddNewModifier(undefined, undefined, manta_modifier.name, {});
-    const item = hero.AddItemByName("item_custom_manta");
-    const mod = hero.FindModifierByName(item.GetIntrinsicModifierName());
-    DeepPrintTable(mod);
-    print(item.GetModifierValue());
-    print(item.GetIntrinsicModifierName());
+    hero.AddItemByName("item_custom_manta");
   }
 
   private resetHero() {
