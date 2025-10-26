@@ -7,7 +7,7 @@ local __TS__ArrayEvery = ____lualib.__TS__ArrayEvery
 local __TS__ArrayForEach = ____lualib.__TS__ArrayForEach
 local __TS__New = ____lualib.__TS__New
 local __TS__SourceMapTraceBack = ____lualib.__TS__SourceMapTraceBack
-__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["12"] = 1,["13"] = 1,["14"] = 2,["15"] = 2,["16"] = 4,["17"] = 4,["18"] = 5,["19"] = 5,["20"] = 6,["21"] = 6,["22"] = 7,["23"] = 7,["24"] = 8,["25"] = 8,["26"] = 18,["27"] = 18,["28"] = 18,["29"] = 18,["31"] = 18,["32"] = 19,["33"] = 20,["34"] = 23,["35"] = 27,["36"] = 37,["37"] = 38,["38"] = 39,["39"] = 40,["40"] = 42,["41"] = 48,["42"] = 48,["43"] = 48,["44"] = 48,["45"] = 50,["46"] = 52,["47"] = 54,["48"] = 54,["49"] = 54,["50"] = 55,["51"] = 56,["52"] = 57,["53"] = 57,["54"] = 57,["55"] = 57,["56"] = 58,["57"] = 58,["58"] = 58,["59"] = 59,["60"] = 60,["61"] = 61,["63"] = 58,["64"] = 58,["67"] = 54,["68"] = 54,["69"] = 68,["70"] = 68,["71"] = 68,["72"] = 69,["73"] = 70,["74"] = 71,["76"] = 68,["77"] = 68,["78"] = 74,["79"] = 74,["80"] = 76,["81"] = 77,["82"] = 78,["83"] = 79,["84"] = 74,["85"] = 74,["86"] = 74,["87"] = 37,["88"] = 85,["89"] = 86,["90"] = 87,["91"] = 88,["92"] = 89,["93"] = 89,["94"] = 89,["95"] = 89,["97"] = 93,["98"] = 95,["99"] = 95,["100"] = 95,["101"] = 95,["102"] = 97,["103"] = 98,["104"] = 99,["105"] = 85,["106"] = 102,["107"] = 102,["108"] = 104,["109"] = 105,["110"] = 105,["111"] = 105,["112"] = 106,["113"] = 106,["114"] = 106,["115"] = 107,["116"] = 108,["117"] = 106,["118"] = 106,["119"] = 105,["120"] = 105,["121"] = 104,["122"] = 117,["124"] = 117,["125"] = 122,["126"] = 123,["127"] = 123,["128"] = 123,["129"] = 123,["130"] = 123,["131"] = 123,["132"] = 123,["133"] = 123,["134"] = 131,["135"] = 132,["136"] = 133,["137"] = 134,["138"] = 136,["139"] = 136,["140"] = 136,["141"] = 136,["142"] = 136,["143"] = 138,["144"] = 139,["145"] = 141,["146"] = 141,["147"] = 141,["148"] = 142,["149"] = 142,["150"] = 142,["151"] = 142,["152"] = 142,["153"] = 148,["154"] = 148,["155"] = 148,["156"] = 149,["157"] = 150,["158"] = 151,["159"] = 151,["160"] = 151,["161"] = 152,["162"] = 153,["163"] = 151,["164"] = 151,["165"] = 148,["166"] = 148,["167"] = 141,["168"] = 141,["169"] = 122,["170"] = 163,["171"] = 164,["172"] = 165,["173"] = 166,["174"] = 167,["175"] = 167,["176"] = 167,["177"] = 167,["178"] = 163,["179"] = 170,["180"] = 171,["181"] = 172,["182"] = 173,["183"] = 173,["184"] = 173,["185"] = 173,["186"] = 173,["187"] = 173,["188"] = 173,["189"] = 174,["190"] = 176,["191"] = 177,["192"] = 178,["193"] = 182,["194"] = 183,["195"] = 184,["196"] = 170,["197"] = 187,["198"] = 188,["199"] = 189,["200"] = 190,["201"] = 191,["202"] = 192,["203"] = 187,["204"] = 195,["205"] = 196,["206"] = 197,["207"] = 198,["210"] = 201,["211"] = 202,["212"] = 203,["213"] = 203,["214"] = 203,["215"] = 203,["216"] = 195});
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["12"] = 1,["13"] = 1,["14"] = 2,["15"] = 2,["16"] = 4,["17"] = 4,["18"] = 5,["19"] = 5,["20"] = 7,["21"] = 7,["22"] = 8,["23"] = 8,["24"] = 9,["25"] = 9,["26"] = 19,["27"] = 19,["28"] = 19,["29"] = 19,["31"] = 19,["32"] = 20,["33"] = 21,["34"] = 24,["35"] = 28,["36"] = 38,["37"] = 39,["38"] = 40,["39"] = 41,["40"] = 43,["41"] = 57,["42"] = 57,["43"] = 57,["44"] = 57,["45"] = 59,["46"] = 61,["47"] = 63,["48"] = 63,["49"] = 63,["50"] = 64,["51"] = 65,["52"] = 66,["53"] = 66,["54"] = 66,["55"] = 66,["56"] = 67,["57"] = 67,["58"] = 67,["59"] = 68,["60"] = 69,["61"] = 70,["63"] = 67,["64"] = 67,["67"] = 63,["68"] = 63,["69"] = 77,["70"] = 77,["71"] = 77,["72"] = 78,["73"] = 79,["74"] = 80,["76"] = 77,["77"] = 77,["78"] = 83,["79"] = 83,["80"] = 85,["81"] = 86,["82"] = 87,["85"] = 90,["86"] = 91,["87"] = 91,["88"] = 91,["89"] = 91,["90"] = 92,["91"] = 92,["92"] = 92,["93"] = 92,["95"] = 83,["96"] = 83,["97"] = 83,["98"] = 38,["99"] = 101,["100"] = 102,["101"] = 103,["102"] = 104,["103"] = 105,["104"] = 105,["105"] = 105,["106"] = 105,["108"] = 109,["109"] = 111,["110"] = 111,["111"] = 111,["112"] = 111,["113"] = 113,["114"] = 114,["115"] = 115,["116"] = 101,["117"] = 118,["118"] = 118,["119"] = 120,["120"] = 121,["121"] = 121,["122"] = 121,["123"] = 122,["124"] = 122,["125"] = 122,["126"] = 123,["127"] = 124,["128"] = 122,["129"] = 122,["130"] = 121,["131"] = 121,["132"] = 120,["133"] = 133,["134"] = 134,["135"] = 135,["136"] = 133,["137"] = 137,["138"] = 138,["139"] = 138,["140"] = 138,["141"] = 138,["142"] = 138,["143"] = 138,["144"] = 138,["145"] = 138,["146"] = 146,["147"] = 147,["148"] = 148,["149"] = 149,["150"] = 150,["151"] = 152,["152"] = 152,["153"] = 152,["154"] = 152,["155"] = 152,["156"] = 154,["157"] = 155,["158"] = 156,["159"] = 156,["160"] = 156,["161"] = 157,["162"] = 159,["163"] = 159,["164"] = 159,["165"] = 159,["166"] = 163,["167"] = 164,["168"] = 164,["169"] = 164,["171"] = 166,["172"] = 190,["173"] = 167,["175"] = 168,["176"] = 168,["177"] = 168,["178"] = 168,["179"] = 168,["180"] = 168,["181"] = 168,["182"] = 176,["183"] = 176,["184"] = 176,["185"] = 176,["186"] = 176,["187"] = 176,["190"] = 183,["192"] = 184,["193"] = 184,["194"] = 184,["195"] = 184,["196"] = 184,["197"] = 184,["198"] = 190,["199"] = 191,["200"] = 192,["201"] = 192,["202"] = 192,["203"] = 193,["204"] = 196,["205"] = 197,["206"] = 197,["207"] = 197,["208"] = 197,["209"] = 197,["210"] = 197,["211"] = 197,["212"] = 192,["213"] = 192,["217"] = 207,["221"] = 156,["222"] = 156,["223"] = 137,["224"] = 217,["225"] = 218,["226"] = 219,["227"] = 220,["228"] = 221,["229"] = 221,["230"] = 221,["231"] = 221,["232"] = 217,["233"] = 224,["234"] = 225,["235"] = 226,["236"] = 226,["237"] = 226,["238"] = 227,["239"] = 227,["240"] = 227,["241"] = 227,["242"] = 227,["243"] = 227,["244"] = 227,["245"] = 229,["246"] = 230,["247"] = 231,["248"] = 235,["249"] = 236,["250"] = 237,["251"] = 243,["252"] = 224,["253"] = 246,["254"] = 247,["255"] = 248,["256"] = 249,["257"] = 250,["258"] = 251,["259"] = 246,["260"] = 254,["261"] = 255,["262"] = 256,["263"] = 257,["266"] = 260,["267"] = 261,["268"] = 262,["269"] = 262,["270"] = 262,["271"] = 262,["272"] = 254});
 local ____exports = {}
 local ____event_2Dbus = require("core.event-bus.event-bus")
 local eventBus = ____event_2Dbus.eventBus
@@ -15,8 +15,8 @@ local ____Game = require("games.Game")
 local GameBase = ____Game.GameBase
 local ____manta = require("modifiers.manta")
 local manta_modifier = ____manta.manta_modifier
-local ____Invisible = require("units.Invisible")
-local InvisibileWall = ____Invisible.InvisibileWall
+local ____soft_2Dwall = require("modifiers.soft-wall")
+local soft_wall = ____soft_2Dwall.soft_wall
 local ____Box = require("utils.Box")
 local Geometry = ____Box.Geometry
 local ____HeroInventory = require("utils.HeroInventory")
@@ -37,7 +37,7 @@ function MantaDodge.prototype.launch(self, options)
     self.isRunning = true
     self:moveHero(self.controller)
     self:setupHero()
-    local spells = {{hero = "npc_dota_hero_magnataur", ability_name = "magnataur_reverse_polarity"}}
+    local spells = {{hero = "npc_dota_hero_magnataur", ability_name = "magnataur_reverse_polarity"}, {hero = "npc_dota_hero_axe", ability_name = "axe_berserkers_call"}, {hero = "npc_dota_hero_alchemist", ability_name = "alchemist_unstable_concoction"}}
     local heroes = __TS__ArrayMap(
         spells,
         function(____, e) return e.hero end
@@ -76,11 +76,22 @@ function MantaDodge.prototype.launch(self, options)
         end
     )
     ListenToGameEvent(
-        "dota_illusions_created",
+        "dota_non_player_used_ability",
         function(____, event)
-            DeepPrintTable(event)
-            GetTreeIdForEntityIndex(event.original_entindex)
-            local ____ = Entities.FindByTarget
+            local ent = EntIndexToHScript(event.caster_entindex)
+            if event.abilityname == "alchemist_unstable_concoction" then
+                return
+            end
+            if ent then
+                Timers:CreateTimer(
+                    0.5,
+                    function() return ent:Destroy() end
+                )
+                Timers:CreateTimer(
+                    1,
+                    function() return eventBus:emit("manta_dodge.cast_spell_finish", nil) end
+                )
+            end
         end,
         self.context
     )
@@ -120,7 +131,8 @@ function MantaDodge.prototype.preCacheHeroes(self, heroes)
     )
 end
 function MantaDodge.prototype.trigerrSpellCast(self, spells)
-    return
+    local index = math.floor(math.random() * #spells)
+    self:castSpell(spells[index + 1])
 end
 function MantaDodge.prototype.castSpell(self, config)
     local hero = CreateUnitByName(
@@ -134,6 +146,7 @@ function MantaDodge.prototype.castSpell(self, config)
     hero:SetUnitCanRespawn(false)
     hero:SetAttackCapability(0)
     hero:SetMoveCapability(1)
+    hero:SetBaseMoveSpeed(400)
     local spawn_name = "main_training_spawn"
     Utils:moveEntityToEntity(
         hero,
@@ -145,25 +158,66 @@ function MantaDodge.prototype.castSpell(self, config)
     Timers:CreateTimer(
         1,
         function()
-            hero:CastAbilityOnPosition(
-                self.controller:GetAssignedHero():GetAbsOrigin(),
-                ability,
-                0
+            local hero_pos = self.controller:GetAssignedHero():GetAbsOrigin()
+            local cast_range = ability:GetEffectiveCastRange(
+                hero:GetAbsOrigin(),
+                self.controller:GetAssignedHero()
             )
-            Timers:CreateTimer(
-                0.5,
-                function()
-                    hero:ForceKill(false)
-                    print("KILLING manta_dodge.cast_spell_finish")
+            local isNoTarget = bit.band(
+                ability:GetBehavior(),
+                DOTA_ABILITY_BEHAVIOR_NO_TARGET
+            ) ~= 0
+            repeat
+                local ____switch29 = true
+                local randomThrowTime
+                local ____cond29 = ____switch29 == (isNoTarget and cast_range == 0)
+                if ____cond29 then
+                    ExecuteOrderFromTable({
+                        OrderType = DOTA_UNIT_ORDER_MOVE_TO_TARGET,
+                        UnitIndex = hero:GetEntityIndex(),
+                        TargetIndex = self.controller:GetAssignedHero():GetEntityIndex(),
+                        Position = hero_pos,
+                        Queue = true
+                    })
+                    ExecuteOrderFromTable({
+                        OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+                        UnitIndex = hero:GetEntityIndex(),
+                        AbilityIndex = ability:GetEntityIndex(),
+                        Queue = true
+                    })
+                    break
+                end
+                ____cond29 = ____cond29 or ____switch29 == (config.ability_name == "alchemist_unstable_concoction")
+                if ____cond29 then
+                    ExecuteOrderFromTable({
+                        OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+                        UnitIndex = hero:GetEntityIndex(),
+                        AbilityIndex = ability:GetEntityIndex(),
+                        Queue = true
+                    })
+                    randomThrowTime = (math.floor(math.random() * 9) + 2) * 0.5
+                    print("RANDOM TIME: ", randomThrowTime)
                     Timers:CreateTimer(
-                        1,
+                        randomThrowTime,
                         function()
-                            print("EMITING manta_dodge.cast_spell_finish")
-                            eventBus:emit("manta_dodge.cast_spell_finish", nil)
+                            local throw_abilitiy = hero:FindAbilityByName("alchemist_unstable_concoction_throw")
+                            print(throw_abilitiy:GetName())
+                            ExecuteOrderFromTable({
+                                OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+                                UnitIndex = hero:GetEntityIndex(),
+                                TargetIndex = self.controller:GetAssignedHero():GetEntityIndex(),
+                                AbilityIndex = throw_abilitiy:GetEntityIndex(),
+                                Queue = true
+                            })
                         end
                     )
+                    break
                 end
-            )
+                do
+                    hero:CastAbilityOnPosition(hero_pos, ability, 0)
+                    break
+                end
+            until true
         end
     )
 end
@@ -178,7 +232,9 @@ function MantaDodge.prototype.moveHero(self, controller)
 end
 function MantaDodge.prototype.setupHero(self)
     local startPosition = Entities:FindByName(nil, "main_training_spawn")
-    self.heroBox = __TS__New(Geometry)
+    local ____TS__New_result_0 = __TS__New(Geometry)
+    self.heroBox = ____TS__New_result_0
+    local box = ____TS__New_result_0
     self.heroBox:createBox(
         startPosition:GetAbsOrigin(),
         375,
@@ -186,12 +242,12 @@ function MantaDodge.prototype.setupHero(self)
         true,
         {}
     )
-    InvisibileWall:wrapBox(self.heroBox)
     local hero = self.controller:GetAssignedHero()
     HeroInventory:reset(hero)
     self.heroPreviousState = {attack_capability = hero:GetAttackCapability()}
     hero:SetAttackCapability(0)
     hero:AddNewModifier(nil, nil, manta_modifier.name, {})
+    hero:AddNewModifier(nil, nil, soft_wall.name, {minX = box.boxPoints[1].x, maxX = box.boxPoints[3].x, minY = box.boxPoints[1].y, maxY = box.boxPoints[3].y})
     hero:AddItemByName("item_custom_manta")
 end
 function MantaDodge.prototype.resetHero(self)

@@ -22,4 +22,43 @@
 
   }
 
+  "npc_dota_invisible_wall"
+{
+    "BaseClass"             "npc_dota_rotatable_building"
+    "Model"                 "models/development/invisiblebox.vmdl"
+    "ModelScale"            "1.0"
+
+    "HullRadius"            "64"
+
+    "MovementCapabilities"  "DOTA_UNIT_CAP_MOVE_NONE"
+    "AttackCapabilities"    "DOTA_UNIT_CAP_NO_ATTACK"
+    "HasInventory"          "0"
+    "HealthBarOffset"       "0"
+    "StatusHealth"          "1"
+    "StatusHealthRegen"     "100"
+    
+    "BountyXP"              "0"
+    "BountyGoldMin"         "0"
+    "BountyGoldMax"         "0"
+
+    "IsAncient"             "1"
+    "IsNeutralUnitType"     "1"
+    "IsSummoned"            "1"
+    "IsControllableByPlayer" "0"
+    "IsAutoAttackable"      "0"
+
+    "TeamName"              "DOTA_TEAM_NEUTRALS"
+    "UnitRelationshipClass" "DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+
+    "VisionDaytimeRange"    "0"
+    "VisionNighttimeRange"  "0"
+
+    "SelectionGroup"        "NO_SELECTION"       
+    "MinimapIcon"           "minimap_blank"      
+    "MinimapDisable"        "1"
+    "TargetReticleMaterial" ""
+
+    "DisableTargeting"      "1" 
+}
+
 }

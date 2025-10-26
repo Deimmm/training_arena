@@ -2,6 +2,7 @@ import { eventBus } from "core/event-bus/event-bus";
 import { GameBase } from "games/Game";
 import { BaseAbility } from "lib/dota_ts_adapter";
 import { manta_modifier } from "modifiers/manta";
+import { soft_wall } from "modifiers/soft-wall";
 import { InvisibileWall } from "units/Invisible";
 import { Geometry } from "utils/Box";
 import { HeroInventory } from "utils/HeroInventory";
@@ -44,6 +45,14 @@ export class MantaDodge extends GameBase {
         hero: "npc_dota_hero_magnataur",
         ability_name: "magnataur_reverse_polarity",
       },
+      {
+        hero: "npc_dota_hero_axe",
+        ability_name: "axe_berserkers_call",
+      },
+      {
+        hero: "npc_dota_hero_alchemist",
+        ability_name: "alchemist_unstable_concoction",
+      },
     ];
     const heroes = spells.map((e) => e.hero);
 
@@ -72,11 +81,18 @@ export class MantaDodge extends GameBase {
       }
     });
     ListenToGameEvent(
-      "dota_illusions_created",
+      "dota_non_player_used_ability",
       (event) => {
-        DeepPrintTable(event);
-        GetTreeIdForEntityIndex(event.original_entindex);
-        Entities.FindByTarget;
+        const ent = EntIndexToHScript(event.caster_entindex) as CDOTA_BaseNPC;
+        if (event.abilityname === "alchemist_unstable_concoction") {
+          return;
+        }
+        if (ent) {
+          Timers.CreateTimer(0.5, () => ent.Destroy());
+          Timers.CreateTimer(1, () =>
+            eventBus.emit("manta_dodge.cast_spell_finish", null),
+          );
+        }
       },
       this.context,
     );
@@ -115,7 +131,6 @@ export class MantaDodge extends GameBase {
    */
 
   private trigerrSpellCast(spells: CastAbility[]) {
-    return;
     const index = Math.floor(Math.random() * spells.length);
     this.castSpell(spells[index]);
   }
@@ -131,28 +146,67 @@ export class MantaDodge extends GameBase {
     hero.SetUnitCanRespawn(false);
     hero.SetAttackCapability(0);
     hero.SetMoveCapability(1);
+    hero.SetBaseMoveSpeed(400);
     const spawn_name = "main_training_spawn";
 
     Utils.moveEntityToEntity(hero, spawn_name, Vector(200, 200));
 
     const ability = hero.FindAbilityByName(config.ability_name);
     ability.SetLevel(1);
-
     Timers.CreateTimer(1, () => {
-      hero.CastAbilityOnPosition(
-        this.controller.GetAssignedHero().GetAbsOrigin(),
-        ability,
-        0,
-      );
+      const hero_pos = this.controller.GetAssignedHero().GetAbsOrigin();
 
-      Timers.CreateTimer(0.5, () => {
-        hero.ForceKill(false);
-        print("KILLING manta_dodge.cast_spell_finish");
-        Timers.CreateTimer(1, () => {
-          print("EMITING manta_dodge.cast_spell_finish");
-          eventBus.emit("manta_dodge.cast_spell_finish", null);
-        });
-      });
+      const cast_range = ability.GetEffectiveCastRange(
+        hero.GetAbsOrigin(),
+        this.controller.GetAssignedHero(),
+      );
+      const isNoTarget =
+        ((ability.GetBehavior() as number) & AbilityBehavior.NO_TARGET) !== 0;
+
+      switch (true) {
+        case isNoTarget && cast_range === 0:
+          ExecuteOrderFromTable({
+            OrderType: UnitOrder.MOVE_TO_TARGET,
+            UnitIndex: hero.GetEntityIndex(),
+            TargetIndex: this.controller.GetAssignedHero().GetEntityIndex(),
+            Position: hero_pos,
+            Queue: true,
+          });
+
+          ExecuteOrderFromTable({
+            OrderType: UnitOrder.CAST_NO_TARGET,
+            UnitIndex: hero.GetEntityIndex(),
+            AbilityIndex: ability.GetEntityIndex(),
+            Queue: true,
+          });
+          break;
+        case config.ability_name === "alchemist_unstable_concoction":
+          ExecuteOrderFromTable({
+            OrderType: UnitOrder.CAST_NO_TARGET,
+            UnitIndex: hero.GetEntityIndex(),
+            AbilityIndex: ability.GetEntityIndex(),
+            Queue: true,
+          });
+          const randomThrowTime = (Math.floor(Math.random() * 9) + 2) * 0.5;
+          print("RANDOM TIME: ", randomThrowTime);
+          Timers.CreateTimer(randomThrowTime, () => {
+            const throw_abilitiy = hero.FindAbilityByName(
+              "alchemist_unstable_concoction_throw",
+            );
+            print(throw_abilitiy.GetName());
+            ExecuteOrderFromTable({
+              OrderType: UnitOrder.CAST_TARGET,
+              UnitIndex: hero.GetEntityIndex(),
+              TargetIndex: this.controller.GetAssignedHero().GetEntityIndex(),
+              AbilityIndex: throw_abilitiy.GetEntityIndex(),
+              Queue: true,
+            });
+          });
+          break;
+        default:
+          hero.CastAbilityOnPosition(hero_pos, ability, 0);
+          break;
+      }
     });
   }
 
@@ -169,9 +223,8 @@ export class MantaDodge extends GameBase {
 
   private setupHero() {
     const startPosition = Entities.FindByName(undefined, "main_training_spawn");
-    this.heroBox = new Geometry();
+    const box = (this.heroBox = new Geometry());
     this.heroBox.createBox(startPosition.GetAbsOrigin(), 375, 100, true, {});
-    InvisibileWall.wrapBox(this.heroBox);
 
     const hero = this.controller.GetAssignedHero();
     HeroInventory.reset(hero);
@@ -181,6 +234,12 @@ export class MantaDodge extends GameBase {
     // hero.SetMoveCapability(0);
     hero.SetAttackCapability(0);
     hero.AddNewModifier(undefined, undefined, manta_modifier.name, {});
+    hero.AddNewModifier(undefined, undefined, soft_wall.name, {
+      minX: box.boxPoints[0].x,
+      maxX: box.boxPoints[2].x,
+      minY: box.boxPoints[0].y,
+      maxY: box.boxPoints[2].y,
+    });
     hero.AddItemByName("item_custom_manta");
   }
 
