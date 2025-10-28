@@ -98,6 +98,7 @@ export class GameMode {
 
     const gameMode = GameRules.GetGameModeEntity();
     gameMode.SetFogOfWarDisabled(true);
+
     SpawnDOTAShopTriggerRadiusApproximate(Vector(), 999999);
   }
 

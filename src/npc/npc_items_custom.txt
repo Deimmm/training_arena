@@ -18,7 +18,7 @@
         "ID"                            "999912346"
         "BaseClass"                     "item_manta"
         "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
-        "AbilityCooldown"               "0.75"
+        "AbilityCooldown"               "1"
         "AbilityCastPoint"              "0.0"
         "AbilityValues"
         {

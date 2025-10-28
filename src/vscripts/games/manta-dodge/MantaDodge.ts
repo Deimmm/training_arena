@@ -1,9 +1,8 @@
 import { eventBus } from "core/event-bus/event-bus";
 import { GameBase } from "games/Game";
-import { BaseAbility } from "lib/dota_ts_adapter";
+
 import { manta_modifier } from "modifiers/manta";
 import { soft_wall } from "modifiers/soft-wall";
-import { InvisibileWall } from "units/Invisible";
 import { Geometry } from "utils/Box";
 import { HeroInventory } from "utils/HeroInventory";
 import { Utils } from "utils/Utils";
@@ -15,6 +14,7 @@ interface LaunchOptions {
 interface CastAbility {
   hero: string;
   ability_name: string;
+  useBlink: boolean;
 }
 export class MantaDodge extends GameBase {
   private unsubs: (() => void)[] = [];
@@ -39,21 +39,165 @@ export class MantaDodge extends GameBase {
     this.isRunning = true;
     this.moveHero(this.controller);
     this.setupHero();
-
+    // npc_dota_hero_rattletrap
     const spells: CastAbility[] = [
-      {
-        hero: "npc_dota_hero_magnataur",
-        ability_name: "magnataur_reverse_polarity",
-      },
-      {
-        hero: "npc_dota_hero_axe",
-        ability_name: "axe_berserkers_call",
-      },
-      {
-        hero: "npc_dota_hero_alchemist",
-        ability_name: "alchemist_unstable_concoction",
-      },
+      //todo
+      // {
+      //   hero: "npc_dota_hero_phoenix",
+      //   ability_name: "phoenix_supernova",
+      //   useBlink: false,
+      // },
+      //todo
+      // {
+      //   hero: "npc_dota_hero_drow_ranger",
+      //   ability_name: "drow_ranger_silence",
+      //   useBlink: false,
+      // },
+      //todo
+      // {
+      //   hero: "npc_dota_hero_zuus",
+      //   ability_name: "zuus_thundergods_wrath",
+      //   useBlink: false,
+      // },
+      //todo
+      // {
+      //   hero: "npc_dota_hero_witch_doctor",
+      //   ability_name: "witch_doctor_maledict",
+      //   useBlink: false,
+      // },
+      // {
+      //   hero: "npc_dota_hero_witch_doctor",
+      //   ability_name: "witch_doctor_paralyzing_cask",
+      //   useBlink: false,
+      // },
+      //todo
+      // {
+      //   hero: "npc_dota_hero_warlock",
+      //   ability_name: "warlock_rain_of_chaos",
+      //   useBlink: false,
+      // },
+      // {
+      //   hero: "npc_dota_hero_techies",
+      //   ability_name: "techies_suicide",
+      //   useBlink: false,
+      // },
+      // {
+      //   hero: "npc_dota_hero_sven",
+      //   ability_name: "sven_storm_bolt",
+      //   useBlink: false,
+      // },
+      // {
+      //   hero: "npc_dota_hero_slardar",
+      //   ability_name: "slardar_slithereen_crush",
+      //   useBlink: true,
+      // },
+      //todo
+      // {
+      //   hero: "npc_dota_hero_ringmaster",
+      //   ability_name: "ringmaster_tame_the_beasts",
+      //   useBlink: false,
+      // },
+      // {
+      //   hero: "npc_dota_hero_rattletrap",
+      //   ability_name: "rattletrap_hookshot",
+      //   useBlink: false,
+      // },
+      // {
+      //   hero: "npc_dota_hero_primal_beast",
+      //   ability_name: "primal_beast_rock_throw",
+      //   useBlink: false,
+      // },
+      // {
+      //   hero: "npc_dota_hero_obsidian_destroyer",
+      //   ability_name: "obsidian_destroyer_sanity_eclipse",
+      //   useBlink: false,
+      // },
+      //todo
+      // {
+      //   hero: "npc_dota_hero_nevermore",
+      //   ability_name: "nevermore_shadowraze3",
+      //   useBlink: false,
+      // },
+      //todo
+      // {
+      //   hero: "npc_dota_hero_nevermore",
+      //   ability_name: "nevermore_requiem",
+      //   useBlink: true,
+      // },
+      // {
+      //   hero: "npc_dota_hero_monkey_king",
+      //   ability_name: "monkey_king_boundless_strike",
+      //   useBlink: false,
+      // },
+      // {
+      //   hero: "npc_dota_hero_lion",
+      //   ability_name: "lion_impale",
+      //   useBlink: false,
+      // },
+      // {
+      //   hero: "npc_dota_hero_lich",
+      //   ability_name: "lich_chain_frost",
+      //   useBlink: false,
+      // },
+      // {
+      //   hero: "npc_dota_hero_leshrac",
+      //   ability_name: "leshrac_split_earth",
+      //   useBlink: false,
+      // },
+      // {
+      //   hero: "npc_dota_hero_huskar",
+      //   ability_name: "huskar_life_break",
+      //   useBlink: false,
+      // },
+      //todo
+      // {
+      //   hero: "npc_dota_hero_dragon_knight",
+      //   ability_name: "dragon_knight_dragon_tail",
+      //   useBlink: false,
+      // },
+      //todo
+      // {
+      //   hero: "npc_dota_hero_disruptor",
+      //   ability_name: "disruptor_glimpse",
+      //   useBlink: false,
+      // },
+      // {
+      //   hero: "npc_dota_hero_chaos_knight",
+      //   ability_name: "chaos_knight_chaos_bolt",
+      //   useBlink: false,
+      // },
+      // {
+      //   hero: "npc_dota_hero_centaur",
+      //   ability_name: "centaur_hoof_stomp",
+      //   useBlink: true,
+      // },
+      // {
+      //   hero: "npc_dota_hero_lina",
+      //   ability_name: "lina_light_strike_array",
+      //   useBlink: false,
+      // },
+      // {
+      //   hero: "npc_dota_hero_lina",
+      //   ability_name: "lina_laguna_blade",
+      //   useBlink: false,
+      // },
+      // {
+      //   hero: "npc_dota_hero_magnataur",
+      //   ability_name: "magnataur_reverse_polarity",
+      //   useBlink: true,
+      // },
+      // {
+      //   hero: "npc_dota_hero_axe",
+      //   ability_name: "axe_berserkers_call",
+      //   useBlink: true,
+      // },
+      // {
+      //   hero: "npc_dota_hero_alchemist",
+      //   ability_name: "alchemist_unstable_concoction",
+      //   useBlink: false,
+      // },
     ];
+    this.controller.GetAssignedHero().SetDayTimeVisionRange(500);
     const heroes = spells.map((e) => e.hero);
 
     this.preCacheHeroes(heroes);
@@ -75,7 +219,6 @@ export class MantaDodge extends GameBase {
     });
 
     eventBus.on("manta_dodge.cast_spell_finish", () => {
-      print("manta_dodge.cast_spell_finish");
       if (this.isRunning) {
         this.trigerrSpellCast(spells);
       }
@@ -84,12 +227,16 @@ export class MantaDodge extends GameBase {
       "dota_non_player_used_ability",
       (event) => {
         const ent = EntIndexToHScript(event.caster_entindex) as CDOTA_BaseNPC;
-        if (event.abilityname === "alchemist_unstable_concoction") {
+        const ability_blacklist = [
+          "alchemist_unstable_concoction",
+          "item_blink",
+        ];
+        if (ability_blacklist.includes(event.abilityname)) {
           return;
         }
         if (ent) {
-          Timers.CreateTimer(0.5, () => ent.Destroy());
-          Timers.CreateTimer(1, () =>
+          Timers.CreateTimer(1, () => ent.Destroy());
+          Timers.CreateTimer(1.5, () =>
             eventBus.emit("manta_dodge.cast_spell_finish", null),
           );
         }
@@ -106,6 +253,7 @@ export class MantaDodge extends GameBase {
         CustomGameEventManager.UnregisterListener(listener),
       );
     }
+
     StopListeningToAllGameEvents(this.context);
 
     this.unsubs.map((e) => e());
@@ -146,10 +294,11 @@ export class MantaDodge extends GameBase {
     hero.SetUnitCanRespawn(false);
     hero.SetAttackCapability(0);
     hero.SetMoveCapability(1);
-    hero.SetBaseMoveSpeed(400);
+    hero.SetBaseMoveSpeed(500);
+    hero.AddItemByName("item_aghanims_shard");
     const spawn_name = "main_training_spawn";
 
-    Utils.moveEntityToEntity(hero, spawn_name, Vector(200, 200));
+    Utils.moveEntityToEntity(hero, spawn_name, Vector(0, 500));
 
     const ability = hero.FindAbilityByName(config.ability_name);
     ability.SetLevel(1);
@@ -160,8 +309,28 @@ export class MantaDodge extends GameBase {
         hero.GetAbsOrigin(),
         this.controller.GetAssignedHero(),
       );
+      // DeepPrintTable(GetAbilityKeyValuesByName(config.ability_name));
       const isNoTarget =
         ((ability.GetBehavior() as number) & AbilityBehavior.NO_TARGET) !== 0;
+
+      const isPoint =
+        ((ability.GetBehavior() as number) & AbilityBehavior.POINT) !== 0;
+
+      const isTarget =
+        ((ability.GetBehavior() as number) & AbilityBehavior.UNIT_TARGET) !== 0;
+      if (config.useBlink) {
+        const blink = hero.AddItemByName("item_blink");
+        const blink_position = this.pickRandomPositionInRadius(
+          this.controller.GetAssignedHero().GetAbsOrigin(),
+          150,
+        );
+        ExecuteOrderFromTable({
+          OrderType: UnitOrder.CAST_POSITION,
+          UnitIndex: hero.GetEntityIndex(),
+          AbilityIndex: blink.GetEntityIndex(),
+          Position: blink_position,
+        });
+      }
 
       switch (true) {
         case isNoTarget && cast_range === 0:
@@ -188,12 +357,10 @@ export class MantaDodge extends GameBase {
             Queue: true,
           });
           const randomThrowTime = (Math.floor(Math.random() * 9) + 2) * 0.5;
-          print("RANDOM TIME: ", randomThrowTime);
           Timers.CreateTimer(randomThrowTime, () => {
             const throw_abilitiy = hero.FindAbilityByName(
               "alchemist_unstable_concoction_throw",
             );
-            print(throw_abilitiy.GetName());
             ExecuteOrderFromTable({
               OrderType: UnitOrder.CAST_TARGET,
               UnitIndex: hero.GetEntityIndex(),
@@ -203,8 +370,42 @@ export class MantaDodge extends GameBase {
             });
           });
           break;
+        case isNoTarget:
+          ExecuteOrderFromTable({
+            OrderType: UnitOrder.CAST_NO_TARGET,
+            UnitIndex: hero.GetEntityIndex(),
+            AbilityIndex: ability.GetEntityIndex(),
+            Queue: true,
+          });
+          break;
+        case isPoint:
+          ExecuteOrderFromTable({
+            OrderType: UnitOrder.CAST_POSITION,
+            UnitIndex: hero.GetEntityIndex(),
+            AbilityIndex: ability.GetEntityIndex(),
+            Position: this.controller.GetAssignedHero().GetAbsOrigin(),
+            Queue: true,
+          });
+          break;
+        case isTarget:
+          let tryCount = 0;
+          Timers.CreateTimer(() => {
+            if (tryCount === 3) {
+              return;
+            }
+            ExecuteOrderFromTable({
+              OrderType: UnitOrder.CAST_TARGET,
+              UnitIndex: hero.GetEntityIndex(),
+              AbilityIndex: ability.GetEntityIndex(),
+              TargetIndex: this.controller.GetAssignedHero().GetEntityIndex(),
+              Queue: true,
+            });
+            tryCount += 1;
+            return 0.5;
+          });
+
+          break;
         default:
-          hero.CastAbilityOnPosition(hero_pos, ability, 0);
           break;
       }
     });
@@ -231,7 +432,7 @@ export class MantaDodge extends GameBase {
     this.heroPreviousState = {
       attack_capability: hero.GetAttackCapability(),
     };
-    // hero.SetMoveCapability(0);
+
     hero.SetAttackCapability(0);
     hero.AddNewModifier(undefined, undefined, manta_modifier.name, {});
     hero.AddNewModifier(undefined, undefined, soft_wall.name, {
@@ -248,6 +449,7 @@ export class MantaDodge extends GameBase {
     hero.SetMoveCapability(1);
     hero.SetAttackCapability(this.heroPreviousState.attack_capability);
     hero.RemoveModifierByName(manta_modifier.name);
+    hero.RemoveModifierByName(soft_wall.name);
     HeroInventory.reset(hero);
   }
 
@@ -260,5 +462,11 @@ export class MantaDodge extends GameBase {
     const vector = game_start.GetAbsOrigin();
     hero.SetAbsOrigin(vector);
     CenterCameraOnUnit(this.controller.GetPlayerID(), hero);
+  }
+
+  private pickRandomPositionInRadius(origin: Vector, radius: number) {
+    const r = radius * math.sqrt(RandomFloat(0, 1));
+    const offset = RandomVector(r); // random direction, exact length r
+    return Vector(origin.x + offset.x, origin.y + offset.y, 0);
   }
 }
