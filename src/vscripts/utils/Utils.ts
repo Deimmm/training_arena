@@ -11,4 +11,9 @@ export class Utils {
     const vector = targetEnt.GetAbsOrigin().__add(offset);
     entity.SetAbsOrigin(vector);
   }
+
+  public static randomInt(min: number, max: number, step: number = 1): number {
+    const range = Math.floor((max - min) / step);
+    return Math.floor(Math.random() * (range + 1)) * step + min;
+  }
 }

@@ -7,7 +7,7 @@ local __TS__ArrayEvery = ____lualib.__TS__ArrayEvery
 local __TS__ArrayForEach = ____lualib.__TS__ArrayForEach
 local __TS__New = ____lualib.__TS__New
 local __TS__SourceMapTraceBack = ____lualib.__TS__SourceMapTraceBack
-__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["12"] = 1,["13"] = 1,["14"] = 2,["15"] = 2,["16"] = 4,["17"] = 4,["18"] = 5,["19"] = 5,["20"] = 6,["21"] = 6,["22"] = 7,["23"] = 7,["24"] = 8,["25"] = 8,["26"] = 19,["27"] = 19,["28"] = 19,["29"] = 19,["31"] = 19,["32"] = 20,["33"] = 21,["34"] = 24,["35"] = 28,["36"] = 38,["37"] = 39,["38"] = 40,["39"] = 41,["40"] = 43,["41"] = 200,["42"] = 201,["43"] = 201,["44"] = 201,["45"] = 201,["46"] = 203,["47"] = 205,["48"] = 207,["49"] = 207,["50"] = 207,["51"] = 208,["52"] = 209,["53"] = 210,["54"] = 210,["55"] = 210,["56"] = 210,["57"] = 211,["58"] = 211,["59"] = 211,["60"] = 212,["61"] = 213,["62"] = 214,["64"] = 211,["65"] = 211,["68"] = 207,["69"] = 207,["70"] = 221,["71"] = 221,["72"] = 221,["73"] = 222,["74"] = 223,["76"] = 221,["77"] = 221,["78"] = 226,["79"] = 226,["80"] = 228,["81"] = 229,["82"] = 230,["83"] = 234,["86"] = 237,["87"] = 238,["88"] = 238,["89"] = 238,["90"] = 238,["91"] = 239,["92"] = 239,["93"] = 239,["94"] = 239,["96"] = 226,["97"] = 226,["98"] = 226,["99"] = 38,["100"] = 248,["101"] = 249,["102"] = 250,["103"] = 251,["104"] = 252,["105"] = 252,["106"] = 252,["107"] = 252,["109"] = 257,["110"] = 259,["111"] = 259,["112"] = 259,["113"] = 259,["114"] = 261,["115"] = 262,["116"] = 263,["117"] = 248,["118"] = 266,["119"] = 266,["120"] = 268,["121"] = 269,["122"] = 269,["123"] = 269,["124"] = 270,["125"] = 270,["126"] = 270,["127"] = 271,["128"] = 272,["129"] = 270,["130"] = 270,["131"] = 269,["132"] = 269,["133"] = 268,["134"] = 281,["135"] = 282,["136"] = 283,["137"] = 281,["138"] = 285,["139"] = 286,["140"] = 286,["141"] = 286,["142"] = 286,["143"] = 286,["144"] = 286,["145"] = 286,["146"] = 286,["147"] = 294,["148"] = 295,["149"] = 296,["150"] = 297,["151"] = 298,["152"] = 299,["153"] = 301,["154"] = 301,["155"] = 301,["156"] = 301,["157"] = 301,["158"] = 303,["159"] = 304,["160"] = 305,["161"] = 305,["162"] = 305,["163"] = 306,["164"] = 308,["165"] = 308,["166"] = 308,["167"] = 308,["168"] = 313,["169"] = 314,["170"] = 314,["171"] = 314,["172"] = 316,["173"] = 317,["174"] = 317,["175"] = 317,["176"] = 319,["177"] = 320,["178"] = 320,["179"] = 320,["180"] = 321,["181"] = 322,["182"] = 323,["183"] = 323,["184"] = 323,["185"] = 323,["186"] = 327,["187"] = 327,["188"] = 327,["189"] = 327,["190"] = 327,["191"] = 327,["194"] = 335,["195"] = 359,["196"] = 336,["198"] = 337,["199"] = 337,["200"] = 337,["201"] = 337,["202"] = 337,["203"] = 337,["204"] = 337,["205"] = 345,["206"] = 345,["207"] = 345,["208"] = 345,["209"] = 345,["210"] = 345,["213"] = 352,["215"] = 353,["216"] = 353,["217"] = 353,["218"] = 353,["219"] = 353,["220"] = 353,["221"] = 359,["222"] = 360,["223"] = 360,["224"] = 360,["225"] = 361,["226"] = 364,["227"] = 364,["228"] = 364,["229"] = 364,["230"] = 364,["231"] = 364,["232"] = 364,["233"] = 360,["234"] = 360,["237"] = 373,["239"] = 374,["240"] = 374,["241"] = 374,["242"] = 374,["243"] = 374,["244"] = 374,["247"] = 381,["249"] = 382,["250"] = 382,["251"] = 382,["252"] = 382,["253"] = 382,["254"] = 382,["255"] = 382,["258"] = 390,["260"] = 391,["261"] = 392,["262"] = 393,["265"] = 396,["266"] = 396,["267"] = 396,["268"] = 396,["269"] = 396,["270"] = 396,["271"] = 396,["272"] = 403,["273"] = 404,["274"] = 392,["281"] = 305,["282"] = 305,["283"] = 285,["284"] = 418,["285"] = 419,["286"] = 420,["287"] = 421,["288"] = 422,["289"] = 422,["290"] = 422,["291"] = 422,["292"] = 418,["293"] = 425,["294"] = 426,["295"] = 427,["296"] = 427,["297"] = 427,["298"] = 428,["299"] = 428,["300"] = 428,["301"] = 428,["302"] = 428,["303"] = 428,["304"] = 428,["305"] = 430,["306"] = 431,["307"] = 432,["308"] = 436,["309"] = 437,["310"] = 438,["311"] = 444,["312"] = 425,["313"] = 447,["314"] = 448,["315"] = 449,["316"] = 450,["317"] = 451,["318"] = 452,["319"] = 453,["320"] = 447,["321"] = 456,["322"] = 457,["323"] = 458,["324"] = 459,["327"] = 462,["328"] = 463,["329"] = 464,["330"] = 464,["331"] = 464,["332"] = 464,["333"] = 456,["334"] = 467,["335"] = 468,["336"] = 469,["337"] = 470,["338"] = 467});
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["12"] = 1,["13"] = 1,["14"] = 2,["15"] = 2,["16"] = 4,["17"] = 4,["18"] = 5,["19"] = 5,["20"] = 6,["21"] = 6,["22"] = 7,["23"] = 7,["24"] = 8,["25"] = 8,["26"] = 24,["27"] = 24,["28"] = 24,["29"] = 24,["31"] = 24,["32"] = 25,["33"] = 26,["34"] = 29,["35"] = 33,["36"] = 37,["37"] = 38,["38"] = 39,["39"] = 40,["40"] = 42,["41"] = 43,["42"] = 43,["43"] = 43,["44"] = 43,["45"] = 42,["46"] = 216,["47"] = 217,["48"] = 217,["49"] = 217,["50"] = 217,["51"] = 219,["52"] = 221,["53"] = 223,["54"] = 223,["55"] = 223,["56"] = 224,["57"] = 225,["58"] = 226,["59"] = 226,["60"] = 226,["61"] = 226,["62"] = 227,["63"] = 227,["64"] = 227,["65"] = 228,["66"] = 229,["67"] = 230,["69"] = 227,["70"] = 227,["73"] = 223,["74"] = 223,["75"] = 237,["76"] = 237,["77"] = 237,["78"] = 238,["79"] = 239,["81"] = 237,["82"] = 237,["83"] = 242,["84"] = 242,["85"] = 244,["86"] = 245,["87"] = 246,["88"] = 247,["89"] = 248,["90"] = 248,["91"] = 248,["92"] = 248,["93"] = 249,["94"] = 249,["95"] = 249,["96"] = 249,["98"] = 242,["99"] = 242,["100"] = 242,["101"] = 256,["102"] = 256,["103"] = 258,["104"] = 259,["105"] = 260,["106"] = 261,["107"] = 261,["108"] = 261,["109"] = 261,["110"] = 261,["111"] = 261,["112"] = 261,["113"] = 261,["114"] = 269,["117"] = 272,["118"] = 273,["119"] = 273,["120"] = 273,["121"] = 273,["122"] = 274,["123"] = 274,["124"] = 274,["125"] = 274,["127"] = 256,["128"] = 256,["129"] = 256,["130"] = 281,["131"] = 281,["132"] = 283,["133"] = 284,["134"] = 285,["135"] = 286,["136"] = 287,["137"] = 288,["139"] = 281,["140"] = 281,["141"] = 281,["142"] = 37,["143"] = 295,["144"] = 296,["145"] = 297,["146"] = 298,["147"] = 299,["148"] = 299,["149"] = 299,["150"] = 299,["152"] = 304,["153"] = 306,["154"] = 306,["155"] = 306,["156"] = 306,["157"] = 308,["158"] = 309,["159"] = 310,["160"] = 295,["161"] = 313,["162"] = 313,["163"] = 315,["164"] = 316,["165"] = 316,["166"] = 316,["167"] = 317,["168"] = 317,["169"] = 317,["170"] = 318,["171"] = 319,["172"] = 317,["173"] = 317,["174"] = 316,["175"] = 316,["176"] = 315,["177"] = 328,["178"] = 329,["179"] = 330,["180"] = 328,["181"] = 332,["182"] = 333,["183"] = 333,["184"] = 333,["185"] = 333,["186"] = 333,["187"] = 333,["188"] = 333,["189"] = 333,["190"] = 341,["191"] = 342,["192"] = 343,["193"] = 344,["194"] = 345,["195"] = 346,["196"] = 347,["197"] = 347,["198"] = 347,["199"] = 347,["200"] = 347,["201"] = 348,["202"] = 349,["203"] = 351,["204"] = 352,["207"] = 355,["208"] = 355,["209"] = 355,["210"] = 356,["211"] = 358,["212"] = 359,["213"] = 359,["214"] = 359,["215"] = 361,["216"] = 362,["217"] = 362,["218"] = 362,["219"] = 364,["220"] = 365,["221"] = 365,["222"] = 365,["223"] = 367,["224"] = 368,["225"] = 369,["226"] = 371,["227"] = 371,["228"] = 371,["229"] = 371,["230"] = 371,["231"] = 371,["234"] = 379,["235"] = 398,["236"] = 380,["238"] = 381,["239"] = 381,["240"] = 381,["241"] = 381,["242"] = 381,["243"] = 381,["246"] = 388,["248"] = 389,["249"] = 389,["250"] = 389,["251"] = 389,["252"] = 389,["253"] = 389,["254"] = 389,["257"] = 397,["259"] = 398,["260"] = 399,["261"] = 400,["264"] = 403,["265"] = 403,["266"] = 403,["267"] = 403,["268"] = 403,["269"] = 403,["270"] = 403,["271"] = 410,["272"] = 411,["273"] = 399,["280"] = 355,["281"] = 355,["282"] = 332,["283"] = 425,["284"] = 426,["285"] = 427,["286"] = 428,["287"] = 429,["288"] = 429,["289"] = 429,["290"] = 429,["291"] = 425,["292"] = 432,["293"] = 433,["294"] = 434,["295"] = 434,["296"] = 434,["297"] = 435,["298"] = 435,["299"] = 435,["300"] = 435,["301"] = 435,["302"] = 435,["303"] = 435,["304"] = 437,["305"] = 438,["306"] = 439,["307"] = 443,["308"] = 444,["309"] = 445,["310"] = 451,["311"] = 432,["312"] = 454,["313"] = 455,["314"] = 456,["315"] = 457,["316"] = 458,["317"] = 459,["318"] = 460,["319"] = 454,["320"] = 463,["321"] = 464,["322"] = 465,["323"] = 466,["326"] = 469,["327"] = 470,["328"] = 471,["329"] = 471,["330"] = 471,["331"] = 471,["332"] = 463,["333"] = 474,["334"] = 475,["335"] = 476,["336"] = 477,["337"] = 474,["338"] = 483,["339"] = 488,["340"] = 488,["341"] = 488,["342"] = 488,["343"] = 488,["344"] = 488,["345"] = 494,["346"] = 494,["347"] = 494,["348"] = 494,["349"] = 494,["350"] = 494,["351"] = 483,["352"] = 502,["353"] = 507,["354"] = 508,["355"] = 509,["356"] = 509,["357"] = 509,["358"] = 510,["359"] = 510,["360"] = 510,["361"] = 510,["362"] = 510,["363"] = 510,["364"] = 509,["365"] = 509,["366"] = 502,["367"] = 519,["368"] = 525,["369"] = 526,["370"] = 527,["371"] = 529,["372"] = 529,["373"] = 529,["374"] = 530,["375"] = 531,["376"] = 532,["377"] = 532,["378"] = 532,["379"] = 532,["380"] = 536,["381"] = 536,["382"] = 536,["383"] = 536,["384"] = 536,["385"] = 536,["387"] = 544,["388"] = 544,["389"] = 544,["390"] = 544,["391"] = 544,["392"] = 544,["393"] = 529,["394"] = 529,["395"] = 519,["396"] = 553,["397"] = 558,["398"] = 559,["399"] = 559,["400"] = 559,["401"] = 560,["402"] = 561,["403"] = 562,["404"] = 562,["405"] = 562,["406"] = 562,["407"] = 562,["408"] = 567,["409"] = 568,["410"] = 569,["413"] = 572,["414"] = 572,["415"] = 572,["416"] = 572,["417"] = 572,["418"] = 572,["419"] = 572,["420"] = 579,["421"] = 580,["422"] = 568,["423"] = 559,["424"] = 559,["425"] = 553,["426"] = 585,["427"] = 590,["428"] = 592,["429"] = 592,["430"] = 592,["431"] = 593,["432"] = 594,["433"] = 595,["434"] = 595,["435"] = 595,["436"] = 595,["437"] = 599,["438"] = 599,["439"] = 599,["440"] = 599,["441"] = 599,["442"] = 599,["444"] = 607,["445"] = 607,["446"] = 607,["447"] = 607,["448"] = 607,["449"] = 607,["450"] = 607,["451"] = 615,["452"] = 615,["453"] = 615,["454"] = 615,["455"] = 615,["456"] = 615,["457"] = 592,["458"] = 592,["459"] = 585,["460"] = 624,["461"] = 629,["462"] = 629,["463"] = 629,["464"] = 629,["465"] = 629,["466"] = 629,["467"] = 635,["468"] = 636,["469"] = 636,["470"] = 636,["471"] = 637,["472"] = 640,["473"] = 640,["474"] = 640,["475"] = 640,["476"] = 640,["477"] = 640,["478"] = 640,["479"] = 636,["480"] = 636,["481"] = 624,["482"] = 649,["483"] = 654,["484"] = 655,["485"] = 655,["486"] = 655,["487"] = 656,["488"] = 656,["489"] = 656,["490"] = 656,["491"] = 656,["492"] = 656,["493"] = 655,["494"] = 655,["495"] = 649,["496"] = 665,["497"] = 665,["498"] = 673,["499"] = 694,["500"] = 694,["501"] = 694,["502"] = 694,["503"] = 694,["504"] = 694,["505"] = 673});
 local ____exports = {}
 local ____event_2Dbus = require("core.event-bus.event-bus")
 local eventBus = ____event_2Dbus.eventBus
@@ -37,7 +37,12 @@ function MantaDodge.prototype.launch(self, options)
     self.isRunning = true
     self:moveHero(self.controller)
     self:setupHero()
-    local spells = {}
+    local spells = {{
+        hero = "npc_dota_hero_pangolier",
+        ability_name = "pangolier_shield_crash",
+        useBlink = false,
+        processor = function(____, caster, ability, config) return self:pangoShieldCrush(caster, ability, config) end
+    }}
     self.controller:GetAssignedHero():SetDayTimeVisionRange(500)
     local heroes = __TS__ArrayMap(
         spells,
@@ -76,10 +81,36 @@ function MantaDodge.prototype.launch(self, options)
         end
     )
     ListenToGameEvent(
+        "dota_ability_channel_finished",
+        function(____, event)
+            DeepPrintTable(event)
+            local ent = EntIndexToHScript(event.caster_entindex)
+            if ent then
+                Timers:CreateTimer(
+                    1,
+                    function() return ent:Destroy() end
+                )
+                Timers:CreateTimer(
+                    1.5,
+                    function() return eventBus:emit("manta_dodge.cast_spell_finish", nil) end
+                )
+            end
+        end,
+        self.context
+    )
+    ListenToGameEvent(
         "dota_non_player_used_ability",
         function(____, event)
+            DeepPrintTable(event)
             local ent = EntIndexToHScript(event.caster_entindex)
-            local ability_blacklist = {"alchemist_unstable_concoction", "item_blink"}
+            local ability_blacklist = {
+                "alchemist_unstable_concoction",
+                "item_blink",
+                "phoenix_supernova",
+                "ringmaster_tame_the_beasts",
+                "dragon_knight_elder_dragon_form",
+                "windrunner_powershot"
+            }
             if __TS__ArrayIncludes(ability_blacklist, event.abilityname) then
                 return
             end
@@ -92,6 +123,18 @@ function MantaDodge.prototype.launch(self, options)
                     1.5,
                     function() return eventBus:emit("manta_dodge.cast_spell_finish", nil) end
                 )
+            end
+        end,
+        self.context
+    )
+    ListenToGameEvent(
+        "npc_spawned",
+        function(____, event)
+            local entity = EntIndexToHScript(event.entindex)
+            local entityName = entity:GetName()
+            local destory_entities = {"npc_dota_warlock_golem"}
+            if __TS__ArrayIncludes(destory_entities, entityName) then
+                entity:Destroy()
             end
         end,
         self.context
@@ -157,14 +200,14 @@ function MantaDodge.prototype.castSpell(self, config)
     )
     local ability = hero:FindAbilityByName(config.ability_name)
     ability:SetLevel(1)
+    if config.processor then
+        config:processor(hero, ability, config)
+        return
+    end
     Timers:CreateTimer(
         1,
         function()
             local hero_pos = self.controller:GetAssignedHero():GetAbsOrigin()
-            local cast_range = ability:GetEffectiveCastRange(
-                hero:GetAbsOrigin(),
-                self.controller:GetAssignedHero()
-            )
             local isNoTarget = bit.band(
                 ability:GetBehavior(),
                 DOTA_ABILITY_BEHAVIOR_NO_TARGET
@@ -179,10 +222,7 @@ function MantaDodge.prototype.castSpell(self, config)
             ) ~= 0
             if config.useBlink then
                 local blink = hero:AddItemByName("item_blink")
-                local blink_position = self:pickRandomPositionInRadius(
-                    self.controller:GetAssignedHero():GetAbsOrigin(),
-                    150
-                )
+                local blink_position = self:pickRandomPositionInRadius(hero_pos, 150)
                 ExecuteOrderFromTable({
                     OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
                     UnitIndex = hero:GetEntityIndex(),
@@ -191,17 +231,10 @@ function MantaDodge.prototype.castSpell(self, config)
                 })
             end
             repeat
-                local ____switch30 = true
-                local randomThrowTime, tryCount
-                local ____cond30 = ____switch30 == (isNoTarget and cast_range == 0)
-                if ____cond30 then
-                    ExecuteOrderFromTable({
-                        OrderType = DOTA_UNIT_ORDER_MOVE_TO_TARGET,
-                        UnitIndex = hero:GetEntityIndex(),
-                        TargetIndex = self.controller:GetAssignedHero():GetEntityIndex(),
-                        Position = hero_pos,
-                        Queue = true
-                    })
+                local ____switch38 = true
+                local tryCount
+                local ____cond38 = ____switch38 == isNoTarget
+                if ____cond38 then
                     ExecuteOrderFromTable({
                         OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
                         UnitIndex = hero:GetEntityIndex(),
@@ -210,53 +243,19 @@ function MantaDodge.prototype.castSpell(self, config)
                     })
                     break
                 end
-                ____cond30 = ____cond30 or ____switch30 == (config.ability_name == "alchemist_unstable_concoction")
-                if ____cond30 then
-                    ExecuteOrderFromTable({
-                        OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-                        UnitIndex = hero:GetEntityIndex(),
-                        AbilityIndex = ability:GetEntityIndex(),
-                        Queue = true
-                    })
-                    randomThrowTime = (math.floor(math.random() * 9) + 2) * 0.5
-                    Timers:CreateTimer(
-                        randomThrowTime,
-                        function()
-                            local throw_abilitiy = hero:FindAbilityByName("alchemist_unstable_concoction_throw")
-                            ExecuteOrderFromTable({
-                                OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-                                UnitIndex = hero:GetEntityIndex(),
-                                TargetIndex = self.controller:GetAssignedHero():GetEntityIndex(),
-                                AbilityIndex = throw_abilitiy:GetEntityIndex(),
-                                Queue = true
-                            })
-                        end
-                    )
-                    break
-                end
-                ____cond30 = ____cond30 or ____switch30 == isNoTarget
-                if ____cond30 then
-                    ExecuteOrderFromTable({
-                        OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
-                        UnitIndex = hero:GetEntityIndex(),
-                        AbilityIndex = ability:GetEntityIndex(),
-                        Queue = true
-                    })
-                    break
-                end
-                ____cond30 = ____cond30 or ____switch30 == isPoint
-                if ____cond30 then
+                ____cond38 = ____cond38 or ____switch38 == isPoint
+                if ____cond38 then
                     ExecuteOrderFromTable({
                         OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
                         UnitIndex = hero:GetEntityIndex(),
                         AbilityIndex = ability:GetEntityIndex(),
-                        Position = self.controller:GetAssignedHero():GetAbsOrigin(),
+                        Position = hero_pos,
                         Queue = true
                     })
                     break
                 end
-                ____cond30 = ____cond30 or ____switch30 == isTarget
-                if ____cond30 then
+                ____cond38 = ____cond38 or ____switch38 == isTarget
+                if ____cond38 then
                     tryCount = 0
                     Timers:CreateTimer(function()
                         if tryCount == 3 then
@@ -335,5 +334,173 @@ function MantaDodge.prototype.pickRandomPositionInRadius(self, origin, radius)
     local r = radius * math.sqrt(RandomFloat(0, 1))
     local offset = RandomVector(r)
     return Vector(origin.x + offset.x, origin.y + offset.y, 0)
+end
+function MantaDodge.prototype.pangoShieldCrush(self, caster, ability, config)
+    ExecuteOrderFromTable({
+        OrderType = DOTA_UNIT_ORDER_MOVE_TO_TARGET,
+        UnitIndex = caster:GetEntityIndex(),
+        TargetIndex = self.controller:GetAssignedHero():GetEntityIndex(),
+        Queue = true
+    })
+    ExecuteOrderFromTable({
+        OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+        UnitIndex = caster:GetEntityIndex(),
+        AbilityIndex = ability:GetEntityIndex(),
+        Queue = true
+    })
+end
+function MantaDodge.prototype.nevermoreRaze(self, caster, ability, config)
+    local randomTime = Utils:randomInt(0.25, 0.5, 0.25)
+    caster:FaceTowards(self.controller:GetAssignedHero():GetAbsOrigin())
+    Timers:CreateTimer(
+        randomTime,
+        function()
+            ExecuteOrderFromTable({
+                OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+                UnitIndex = caster:GetEntityIndex(),
+                AbilityIndex = ability:GetEntityIndex(),
+                Queue = true
+            })
+        end
+    )
+end
+function MantaDodge.prototype.nevermoreRequiem(self, caster, ability, config)
+    print(caster:FindAllModifiers()[1]:GetName())
+    caster:SetModifierStackCount("modifier_nevermore_necromastery", caster, 20)
+    local randomTime = Utils:randomInt(0.5, 1, 0.25)
+    Timers:CreateTimer(
+        randomTime,
+        function()
+            if config.useBlink then
+                local blink = caster:AddItemByName("item_blink")
+                local blink_position = self:pickRandomPositionInRadius(
+                    self.controller:GetAssignedHero():GetAbsOrigin(),
+                    0
+                )
+                ExecuteOrderFromTable({
+                    OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+                    UnitIndex = caster:GetEntityIndex(),
+                    AbilityIndex = blink:GetEntityIndex(),
+                    Position = blink_position
+                })
+            end
+            ExecuteOrderFromTable({
+                OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+                UnitIndex = caster:GetEntityIndex(),
+                AbilityIndex = ability:GetEntityIndex(),
+                Queue = true
+            })
+        end
+    )
+end
+function MantaDodge.prototype.dragonKnightStun(self, caster, ability, config)
+    local randomTime = Utils:randomInt(0.5, 1.25, 0.25)
+    Timers:CreateTimer(
+        randomTime,
+        function()
+            local ult = caster:FindAbilityByName("dragon_knight_elder_dragon_form")
+            ult:SetLevel(1)
+            ExecuteOrderFromTable({
+                OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+                UnitIndex = caster:GetEntityIndex(),
+                AbilityIndex = ult:GetEntityIndex()
+            })
+            local tryCount = 0
+            Timers:CreateTimer(function()
+                if tryCount == 3 then
+                    return
+                end
+                ExecuteOrderFromTable({
+                    OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+                    UnitIndex = caster:GetEntityIndex(),
+                    AbilityIndex = ability:GetEntityIndex(),
+                    TargetIndex = self.controller:GetAssignedHero():GetEntityIndex(),
+                    Queue = true
+                })
+                tryCount = tryCount + 1
+                return 0.5
+            end)
+        end
+    )
+end
+function MantaDodge.prototype.axeCall(self, caster, ability, config)
+    local randomTime = Utils:randomInt(0.5, 1.5, 0.25)
+    Timers:CreateTimer(
+        randomTime,
+        function()
+            if config.useBlink then
+                local blink = caster:AddItemByName("item_blink")
+                local blink_position = self:pickRandomPositionInRadius(
+                    self.controller:GetAssignedHero():GetAbsOrigin(),
+                    150
+                )
+                ExecuteOrderFromTable({
+                    OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
+                    UnitIndex = caster:GetEntityIndex(),
+                    AbilityIndex = blink:GetEntityIndex(),
+                    Position = blink_position
+                })
+            end
+            ExecuteOrderFromTable({
+                OrderType = DOTA_UNIT_ORDER_MOVE_TO_TARGET,
+                UnitIndex = caster:GetEntityIndex(),
+                TargetIndex = self.controller:GetAssignedHero():GetEntityIndex(),
+                Position = self.controller:GetAssignedHero():GetAbsOrigin(),
+                Queue = true
+            })
+            ExecuteOrderFromTable({
+                OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+                UnitIndex = caster:GetEntityIndex(),
+                AbilityIndex = ability:GetEntityIndex(),
+                Queue = true
+            })
+        end
+    )
+end
+function MantaDodge.prototype.alchConcotions(self, caster, ability, config)
+    ExecuteOrderFromTable({
+        OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+        UnitIndex = caster:GetEntityIndex(),
+        AbilityIndex = ability:GetEntityIndex(),
+        Queue = true
+    })
+    local randomThrowTime = (math.floor(math.random() * 9) + 2) * 0.5
+    Timers:CreateTimer(
+        randomThrowTime,
+        function()
+            local throw_abilitiy = caster:FindAbilityByName("alchemist_unstable_concoction_throw")
+            ExecuteOrderFromTable({
+                OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+                UnitIndex = caster:GetEntityIndex(),
+                TargetIndex = self.controller:GetAssignedHero():GetEntityIndex(),
+                AbilityIndex = throw_abilitiy:GetEntityIndex(),
+                Queue = true
+            })
+        end
+    )
+end
+function MantaDodge.prototype.zeusThundergods(self, caster, ability, config)
+    local randomTime = Utils:randomInt(0.75, 1.5, 0.25)
+    Timers:CreateTimer(
+        randomTime,
+        function()
+            ExecuteOrderFromTable({
+                OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+                UnitIndex = caster:GetEntityIndex(),
+                AbilityIndex = ability:GetEntityIndex(),
+                Queue = true
+            })
+        end
+    )
+end
+function MantaDodge.prototype.witchDoctorMaledict(self, caster, ability, config)
+end
+function MantaDodge.prototype.phoneixSuperNova(self, caster, ability, config)
+    ExecuteOrderFromTable({
+        OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
+        UnitIndex = caster:GetEntityIndex(),
+        AbilityIndex = ability:GetEntityIndex(),
+        Queue = true
+    })
 end
 return ____exports
