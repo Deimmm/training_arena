@@ -1,18 +1,23 @@
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
+local __TS__ObjectEntries = ____lualib.__TS__ObjectEntries
+local __TS__ArrayFind = ____lualib.__TS__ArrayFind
+local __TS__ArrayFilter = ____lualib.__TS__ArrayFilter
 local __TS__ArrayMap = ____lualib.__TS__ArrayMap
 local __TS__ArrayIncludes = ____lualib.__TS__ArrayIncludes
 local __TS__ArrayEvery = ____lualib.__TS__ArrayEvery
 local __TS__ArrayForEach = ____lualib.__TS__ArrayForEach
 local __TS__New = ____lualib.__TS__New
 local __TS__SourceMapTraceBack = ____lualib.__TS__SourceMapTraceBack
-__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["12"] = 1,["13"] = 1,["14"] = 2,["15"] = 2,["16"] = 4,["17"] = 4,["18"] = 5,["19"] = 5,["20"] = 6,["21"] = 6,["22"] = 7,["23"] = 7,["24"] = 8,["25"] = 8,["26"] = 24,["27"] = 24,["28"] = 24,["29"] = 24,["31"] = 24,["32"] = 25,["33"] = 26,["34"] = 29,["35"] = 33,["36"] = 37,["37"] = 38,["38"] = 39,["39"] = 40,["40"] = 42,["41"] = 43,["42"] = 43,["43"] = 43,["44"] = 43,["45"] = 42,["46"] = 216,["47"] = 217,["48"] = 217,["49"] = 217,["50"] = 217,["51"] = 219,["52"] = 221,["53"] = 223,["54"] = 223,["55"] = 223,["56"] = 224,["57"] = 225,["58"] = 226,["59"] = 226,["60"] = 226,["61"] = 226,["62"] = 227,["63"] = 227,["64"] = 227,["65"] = 228,["66"] = 229,["67"] = 230,["69"] = 227,["70"] = 227,["73"] = 223,["74"] = 223,["75"] = 237,["76"] = 237,["77"] = 237,["78"] = 238,["79"] = 239,["81"] = 237,["82"] = 237,["83"] = 242,["84"] = 242,["85"] = 244,["86"] = 245,["87"] = 246,["88"] = 247,["89"] = 248,["90"] = 248,["91"] = 248,["92"] = 248,["93"] = 249,["94"] = 249,["95"] = 249,["96"] = 249,["98"] = 242,["99"] = 242,["100"] = 242,["101"] = 256,["102"] = 256,["103"] = 258,["104"] = 259,["105"] = 260,["106"] = 261,["107"] = 261,["108"] = 261,["109"] = 261,["110"] = 261,["111"] = 261,["112"] = 261,["113"] = 261,["114"] = 269,["117"] = 272,["118"] = 273,["119"] = 273,["120"] = 273,["121"] = 273,["122"] = 274,["123"] = 274,["124"] = 274,["125"] = 274,["127"] = 256,["128"] = 256,["129"] = 256,["130"] = 281,["131"] = 281,["132"] = 283,["133"] = 284,["134"] = 285,["135"] = 286,["136"] = 287,["137"] = 288,["139"] = 281,["140"] = 281,["141"] = 281,["142"] = 37,["143"] = 295,["144"] = 296,["145"] = 297,["146"] = 298,["147"] = 299,["148"] = 299,["149"] = 299,["150"] = 299,["152"] = 304,["153"] = 306,["154"] = 306,["155"] = 306,["156"] = 306,["157"] = 308,["158"] = 309,["159"] = 310,["160"] = 295,["161"] = 313,["162"] = 313,["163"] = 315,["164"] = 316,["165"] = 316,["166"] = 316,["167"] = 317,["168"] = 317,["169"] = 317,["170"] = 318,["171"] = 319,["172"] = 317,["173"] = 317,["174"] = 316,["175"] = 316,["176"] = 315,["177"] = 328,["178"] = 329,["179"] = 330,["180"] = 328,["181"] = 332,["182"] = 333,["183"] = 333,["184"] = 333,["185"] = 333,["186"] = 333,["187"] = 333,["188"] = 333,["189"] = 333,["190"] = 341,["191"] = 342,["192"] = 343,["193"] = 344,["194"] = 345,["195"] = 346,["196"] = 347,["197"] = 347,["198"] = 347,["199"] = 347,["200"] = 347,["201"] = 348,["202"] = 349,["203"] = 351,["204"] = 352,["207"] = 355,["208"] = 355,["209"] = 355,["210"] = 356,["211"] = 358,["212"] = 359,["213"] = 359,["214"] = 359,["215"] = 361,["216"] = 362,["217"] = 362,["218"] = 362,["219"] = 364,["220"] = 365,["221"] = 365,["222"] = 365,["223"] = 367,["224"] = 368,["225"] = 369,["226"] = 371,["227"] = 371,["228"] = 371,["229"] = 371,["230"] = 371,["231"] = 371,["234"] = 379,["235"] = 398,["236"] = 380,["238"] = 381,["239"] = 381,["240"] = 381,["241"] = 381,["242"] = 381,["243"] = 381,["246"] = 388,["248"] = 389,["249"] = 389,["250"] = 389,["251"] = 389,["252"] = 389,["253"] = 389,["254"] = 389,["257"] = 397,["259"] = 398,["260"] = 399,["261"] = 400,["264"] = 403,["265"] = 403,["266"] = 403,["267"] = 403,["268"] = 403,["269"] = 403,["270"] = 403,["271"] = 410,["272"] = 411,["273"] = 399,["280"] = 355,["281"] = 355,["282"] = 332,["283"] = 425,["284"] = 426,["285"] = 427,["286"] = 428,["287"] = 429,["288"] = 429,["289"] = 429,["290"] = 429,["291"] = 425,["292"] = 432,["293"] = 433,["294"] = 434,["295"] = 434,["296"] = 434,["297"] = 435,["298"] = 435,["299"] = 435,["300"] = 435,["301"] = 435,["302"] = 435,["303"] = 435,["304"] = 437,["305"] = 438,["306"] = 439,["307"] = 443,["308"] = 444,["309"] = 445,["310"] = 451,["311"] = 432,["312"] = 454,["313"] = 455,["314"] = 456,["315"] = 457,["316"] = 458,["317"] = 459,["318"] = 460,["319"] = 454,["320"] = 463,["321"] = 464,["322"] = 465,["323"] = 466,["326"] = 469,["327"] = 470,["328"] = 471,["329"] = 471,["330"] = 471,["331"] = 471,["332"] = 463,["333"] = 474,["334"] = 475,["335"] = 476,["336"] = 477,["337"] = 474,["338"] = 483,["339"] = 488,["340"] = 488,["341"] = 488,["342"] = 488,["343"] = 488,["344"] = 488,["345"] = 494,["346"] = 494,["347"] = 494,["348"] = 494,["349"] = 494,["350"] = 494,["351"] = 483,["352"] = 502,["353"] = 507,["354"] = 508,["355"] = 509,["356"] = 509,["357"] = 509,["358"] = 510,["359"] = 510,["360"] = 510,["361"] = 510,["362"] = 510,["363"] = 510,["364"] = 509,["365"] = 509,["366"] = 502,["367"] = 519,["368"] = 525,["369"] = 526,["370"] = 527,["371"] = 529,["372"] = 529,["373"] = 529,["374"] = 530,["375"] = 531,["376"] = 532,["377"] = 532,["378"] = 532,["379"] = 532,["380"] = 536,["381"] = 536,["382"] = 536,["383"] = 536,["384"] = 536,["385"] = 536,["387"] = 544,["388"] = 544,["389"] = 544,["390"] = 544,["391"] = 544,["392"] = 544,["393"] = 529,["394"] = 529,["395"] = 519,["396"] = 553,["397"] = 558,["398"] = 559,["399"] = 559,["400"] = 559,["401"] = 560,["402"] = 561,["403"] = 562,["404"] = 562,["405"] = 562,["406"] = 562,["407"] = 562,["408"] = 567,["409"] = 568,["410"] = 569,["413"] = 572,["414"] = 572,["415"] = 572,["416"] = 572,["417"] = 572,["418"] = 572,["419"] = 572,["420"] = 579,["421"] = 580,["422"] = 568,["423"] = 559,["424"] = 559,["425"] = 553,["426"] = 585,["427"] = 590,["428"] = 592,["429"] = 592,["430"] = 592,["431"] = 593,["432"] = 594,["433"] = 595,["434"] = 595,["435"] = 595,["436"] = 595,["437"] = 599,["438"] = 599,["439"] = 599,["440"] = 599,["441"] = 599,["442"] = 599,["444"] = 607,["445"] = 607,["446"] = 607,["447"] = 607,["448"] = 607,["449"] = 607,["450"] = 607,["451"] = 615,["452"] = 615,["453"] = 615,["454"] = 615,["455"] = 615,["456"] = 615,["457"] = 592,["458"] = 592,["459"] = 585,["460"] = 624,["461"] = 629,["462"] = 629,["463"] = 629,["464"] = 629,["465"] = 629,["466"] = 629,["467"] = 635,["468"] = 636,["469"] = 636,["470"] = 636,["471"] = 637,["472"] = 640,["473"] = 640,["474"] = 640,["475"] = 640,["476"] = 640,["477"] = 640,["478"] = 640,["479"] = 636,["480"] = 636,["481"] = 624,["482"] = 649,["483"] = 654,["484"] = 655,["485"] = 655,["486"] = 655,["487"] = 656,["488"] = 656,["489"] = 656,["490"] = 656,["491"] = 656,["492"] = 656,["493"] = 655,["494"] = 655,["495"] = 649,["496"] = 665,["497"] = 665,["498"] = 673,["499"] = 694,["500"] = 694,["501"] = 694,["502"] = 694,["503"] = 694,["504"] = 694,["505"] = 673});
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["15"] = 1,["16"] = 1,["17"] = 2,["18"] = 2,["19"] = 3,["20"] = 3,["21"] = 5,["22"] = 5,["23"] = 6,["24"] = 6,["25"] = 7,["26"] = 7,["27"] = 8,["28"] = 8,["29"] = 9,["30"] = 9,["31"] = 25,["32"] = 25,["33"] = 25,["34"] = 25,["36"] = 25,["37"] = 26,["38"] = 27,["39"] = 28,["40"] = 31,["41"] = 35,["42"] = 36,["43"] = 36,["44"] = 36,["45"] = 36,["46"] = 36,["47"] = 35,["48"] = 43,["49"] = 43,["50"] = 43,["51"] = 43,["52"] = 43,["53"] = 35,["54"] = 35,["55"] = 35,["56"] = 60,["57"] = 60,["58"] = 60,["59"] = 60,["60"] = 60,["61"] = 35,["62"] = 66,["63"] = 66,["64"] = 66,["65"] = 66,["66"] = 66,["67"] = 35,["68"] = 72,["69"] = 72,["70"] = 72,["71"] = 72,["72"] = 72,["73"] = 35,["74"] = 35,["75"] = 35,["76"] = 35,["77"] = 35,["78"] = 35,["79"] = 35,["80"] = 35,["81"] = 35,["82"] = 35,["83"] = 123,["84"] = 123,["85"] = 123,["86"] = 123,["87"] = 123,["88"] = 35,["89"] = 130,["90"] = 130,["91"] = 130,["92"] = 130,["93"] = 130,["94"] = 35,["95"] = 35,["96"] = 35,["97"] = 35,["98"] = 35,["99"] = 35,["100"] = 162,["101"] = 162,["102"] = 162,["103"] = 162,["104"] = 162,["105"] = 35,["106"] = 35,["107"] = 35,["108"] = 35,["109"] = 35,["110"] = 35,["111"] = 35,["112"] = 199,["113"] = 199,["114"] = 199,["115"] = 199,["116"] = 199,["117"] = 35,["118"] = 206,["119"] = 206,["120"] = 206,["121"] = 206,["122"] = 206,["123"] = 35,["124"] = 35,["125"] = 213,["126"] = 217,["127"] = 218,["128"] = 219,["129"] = 220,["130"] = 221,["131"] = 221,["132"] = 221,["133"] = 222,["134"] = 222,["135"] = 221,["136"] = 221,["137"] = 224,["138"] = 224,["139"] = 224,["140"] = 224,["141"] = 226,["142"] = 228,["143"] = 230,["144"] = 230,["145"] = 231,["146"] = 231,["147"] = 232,["148"] = 233,["149"] = 234,["150"] = 234,["151"] = 234,["152"] = 234,["153"] = 235,["154"] = 235,["155"] = 235,["156"] = 236,["157"] = 237,["158"] = 238,["160"] = 235,["161"] = 235,["164"] = 231,["165"] = 231,["166"] = 246,["167"] = 246,["168"] = 247,["169"] = 247,["170"] = 248,["171"] = 249,["172"] = 250,["174"] = 247,["175"] = 247,["176"] = 255,["177"] = 255,["178"] = 256,["179"] = 258,["180"] = 259,["181"] = 260,["182"] = 261,["183"] = 261,["184"] = 261,["185"] = 261,["186"] = 262,["187"] = 262,["188"] = 262,["189"] = 262,["191"] = 256,["192"] = 256,["193"] = 256,["194"] = 270,["195"] = 270,["196"] = 271,["197"] = 273,["198"] = 274,["199"] = 275,["200"] = 275,["201"] = 275,["202"] = 275,["203"] = 275,["204"] = 275,["205"] = 275,["206"] = 275,["207"] = 283,["210"] = 286,["211"] = 287,["212"] = 287,["213"] = 287,["214"] = 287,["215"] = 288,["216"] = 288,["217"] = 288,["218"] = 288,["220"] = 271,["221"] = 271,["222"] = 271,["223"] = 297,["224"] = 297,["225"] = 298,["226"] = 300,["227"] = 301,["228"] = 302,["229"] = 303,["230"] = 304,["231"] = 305,["233"] = 298,["234"] = 298,["235"] = 298,["236"] = 217,["237"] = 313,["238"] = 314,["239"] = 315,["240"] = 316,["241"] = 317,["242"] = 317,["243"] = 317,["244"] = 317,["246"] = 321,["247"] = 322,["248"] = 323,["249"] = 323,["250"] = 323,["251"] = 323,["253"] = 326,["254"] = 328,["255"] = 328,["256"] = 328,["257"] = 328,["258"] = 330,["259"] = 330,["260"] = 330,["261"] = 330,["262"] = 335,["263"] = 335,["264"] = 335,["265"] = 337,["266"] = 343,["268"] = 335,["269"] = 335,["270"] = 346,["271"] = 347,["272"] = 348,["273"] = 313,["274"] = 351,["275"] = 352,["276"] = 353,["277"] = 351,["278"] = 356,["279"] = 357,["280"] = 357,["281"] = 357,["282"] = 358,["283"] = 358,["284"] = 358,["285"] = 359,["286"] = 360,["287"] = 358,["288"] = 358,["289"] = 357,["290"] = 357,["291"] = 356,["292"] = 369,["293"] = 370,["294"] = 371,["295"] = 369,["296"] = 373,["297"] = 374,["300"] = 377,["301"] = 377,["302"] = 377,["303"] = 377,["304"] = 377,["305"] = 377,["306"] = 377,["307"] = 377,["308"] = 385,["309"] = 386,["310"] = 387,["311"] = 388,["312"] = 389,["313"] = 390,["314"] = 391,["315"] = 391,["316"] = 391,["317"] = 391,["318"] = 391,["319"] = 392,["320"] = 393,["321"] = 394,["322"] = 395,["325"] = 398,["326"] = 398,["327"] = 398,["328"] = 399,["329"] = 401,["330"] = 402,["331"] = 402,["332"] = 402,["333"] = 404,["334"] = 405,["335"] = 405,["336"] = 405,["337"] = 407,["338"] = 408,["339"] = 408,["340"] = 408,["341"] = 410,["342"] = 411,["343"] = 412,["344"] = 414,["345"] = 414,["346"] = 414,["347"] = 414,["348"] = 414,["349"] = 414,["352"] = 422,["353"] = 441,["354"] = 423,["356"] = 424,["357"] = 424,["358"] = 424,["359"] = 424,["360"] = 424,["361"] = 424,["364"] = 431,["366"] = 432,["367"] = 432,["368"] = 432,["369"] = 432,["370"] = 432,["371"] = 432,["372"] = 432,["375"] = 440,["377"] = 441,["378"] = 442,["379"] = 443,["382"] = 446,["383"] = 446,["384"] = 446,["385"] = 446,["386"] = 446,["387"] = 446,["388"] = 446,["389"] = 453,["390"] = 454,["391"] = 442,["398"] = 398,["399"] = 398,["400"] = 373,["401"] = 468,["402"] = 469,["403"] = 470,["404"] = 471,["405"] = 472,["406"] = 472,["407"] = 472,["408"] = 472,["409"] = 468,["410"] = 475,["411"] = 476,["412"] = 477,["413"] = 477,["414"] = 477,["415"] = 478,["416"] = 478,["417"] = 478,["418"] = 478,["419"] = 478,["420"] = 478,["421"] = 478,["422"] = 480,["423"] = 481,["424"] = 482,["425"] = 486,["426"] = 487,["427"] = 488,["428"] = 494,["429"] = 475,["430"] = 497,["431"] = 498,["432"] = 499,["433"] = 500,["434"] = 501,["435"] = 502,["436"] = 503,["437"] = 497,["438"] = 506,["439"] = 507,["440"] = 508,["441"] = 509,["444"] = 512,["445"] = 513,["446"] = 514,["447"] = 514,["448"] = 514,["449"] = 514,["450"] = 506,["451"] = 517,["452"] = 518,["453"] = 519,["454"] = 520,["455"] = 517,["456"] = 527,["457"] = 532,["458"] = 532,["459"] = 532,["460"] = 533,["461"] = 541,["462"] = 542,["463"] = 542,["464"] = 542,["465"] = 542,["466"] = 542,["467"] = 547,["468"] = 532,["469"] = 532,["470"] = 527,["471"] = 565,["472"] = 570,["473"] = 570,["474"] = 570,["475"] = 570,["476"] = 570,["477"] = 570,["478"] = 576,["479"] = 576,["480"] = 576,["481"] = 576,["482"] = 576,["483"] = 576,["484"] = 565,["485"] = 584,["486"] = 589,["487"] = 590,["488"] = 591,["489"] = 591,["490"] = 591,["491"] = 592,["492"] = 592,["493"] = 592,["494"] = 592,["495"] = 592,["496"] = 592,["497"] = 591,["498"] = 591,["499"] = 584,["500"] = 601,["501"] = 607,["502"] = 608,["503"] = 609,["504"] = 611,["505"] = 611,["506"] = 611,["507"] = 612,["508"] = 613,["509"] = 614,["510"] = 614,["511"] = 614,["512"] = 614,["513"] = 618,["514"] = 618,["515"] = 618,["516"] = 618,["517"] = 618,["518"] = 618,["520"] = 626,["521"] = 626,["522"] = 626,["523"] = 626,["524"] = 626,["525"] = 626,["526"] = 611,["527"] = 611,["528"] = 601,["529"] = 635,["530"] = 640,["531"] = 641,["532"] = 641,["533"] = 641,["534"] = 642,["535"] = 643,["536"] = 644,["537"] = 644,["538"] = 644,["539"] = 644,["540"] = 644,["541"] = 649,["542"] = 650,["543"] = 651,["546"] = 654,["547"] = 654,["548"] = 654,["549"] = 654,["550"] = 654,["551"] = 654,["552"] = 654,["553"] = 661,["554"] = 662,["555"] = 650,["556"] = 641,["557"] = 641,["558"] = 635,["559"] = 667,["560"] = 672,["561"] = 674,["562"] = 674,["563"] = 674,["564"] = 675,["565"] = 676,["566"] = 677,["567"] = 677,["568"] = 677,["569"] = 677,["570"] = 681,["571"] = 681,["572"] = 681,["573"] = 681,["574"] = 681,["575"] = 681,["577"] = 689,["578"] = 689,["579"] = 689,["580"] = 689,["581"] = 689,["582"] = 689,["583"] = 689,["584"] = 697,["585"] = 697,["586"] = 697,["587"] = 697,["588"] = 697,["589"] = 697,["590"] = 674,["591"] = 674,["592"] = 667,["593"] = 706,["594"] = 711,["595"] = 711,["596"] = 711,["597"] = 711,["598"] = 711,["599"] = 711,["600"] = 717,["601"] = 718,["602"] = 718,["603"] = 718,["604"] = 719,["605"] = 720,["606"] = 723,["607"] = 724,["610"] = 727,["611"] = 727,["612"] = 727,["613"] = 727,["614"] = 727,["615"] = 727,["616"] = 727,["617"] = 734,["618"] = 735,["619"] = 723,["620"] = 718,["621"] = 718,["622"] = 706,["623"] = 739,["624"] = 744,["625"] = 745,["626"] = 745,["627"] = 745,["628"] = 746,["629"] = 746,["630"] = 746,["631"] = 746,["632"] = 746,["633"] = 746,["634"] = 745,["635"] = 745,["636"] = 739,["637"] = 755,["638"] = 755,["639"] = 763,["640"] = 784,["641"] = 784,["642"] = 784,["643"] = 784,["644"] = 784,["645"] = 784,["646"] = 763});
 local ____exports = {}
 local ____event_2Dbus = require("core.event-bus.event-bus")
 local eventBus = ____event_2Dbus.eventBus
 local ____Game = require("games.Game")
 local GameBase = ____Game.GameBase
+local ____empty_debuff = require("modifiers.empty_debuff")
+local empty_debuff_applier = ____empty_debuff.empty_debuff_applier
 local ____manta = require("modifiers.manta")
 local manta_modifier = ____manta.manta_modifier
 local ____soft_2Dwall = require("modifiers.soft-wall")
@@ -29,28 +34,114 @@ MantaDodge.name = "MantaDodge"
 __TS__ClassExtends(MantaDodge, GameBase)
 function MantaDodge.prototype.____constructor(self)
     GameBase.prototype.____constructor(self, "manta_dodge")
+    self.pid = math.floor(math.random() * 10000)
     self.unsubs = {}
     self.isRunning = false
     self.heroPreviousState = {attack_capability = nil}
+    self.spells = {
+        {
+            hero = "npc_dota_neutral_centaur_khan",
+            ability_name = "centaur_khan_war_stomp",
+            useBlink = false,
+            processor = function(____, caster, ability, config) return self:creepCentStun(caster, ability, config) end
+        },
+        {
+            hero = "npc_dota_hero_pangolier",
+            ability_name = "pangolier_shield_crash",
+            useBlink = false,
+            processor = function(____, caster, ability, config) return self:pangoShieldCrush(caster, ability, config) end
+        },
+        {hero = "npc_dota_hero_windrunner", ability_name = "windrunner_powershot", useBlink = false},
+        {hero = "npc_dota_hero_dark_willow", ability_name = "dark_willow_terrorize", useBlink = false},
+        {
+            hero = "npc_dota_hero_phoenix",
+            ability_name = "phoenix_supernova",
+            useBlink = false,
+            processor = function(____, caster, ability) return self:phoneixSuperNova(caster, ability) end
+        },
+        {
+            hero = "npc_dota_hero_zuus",
+            ability_name = "zuus_thundergods_wrath",
+            useBlink = false,
+            processor = function(____, caster, ability) return self:zeusThundergods(caster, ability) end
+        },
+        {
+            hero = "npc_dota_hero_witch_doctor",
+            ability_name = "witch_doctor_maledict",
+            useBlink = false,
+            processor = function(____, caster, ability) return self:witchDoctorMaledict(caster, ability) end
+        },
+        {hero = "npc_dota_hero_witch_doctor", ability_name = "witch_doctor_paralyzing_cask", useBlink = false},
+        {hero = "npc_dota_hero_warlock", ability_name = "warlock_rain_of_chaos", useBlink = false},
+        {hero = "npc_dota_hero_techies", ability_name = "techies_suicide", useBlink = false},
+        {hero = "npc_dota_hero_sven", ability_name = "sven_storm_bolt", useBlink = false},
+        {hero = "npc_dota_hero_slardar", ability_name = "slardar_slithereen_crush", useBlink = true},
+        {hero = "npc_dota_hero_ringmaster", ability_name = "ringmaster_tame_the_beasts", useBlink = false},
+        {hero = "npc_dota_hero_rattletrap", ability_name = "rattletrap_hookshot", useBlink = false},
+        {hero = "npc_dota_hero_primal_beast", ability_name = "primal_beast_rock_throw", useBlink = false},
+        {hero = "npc_dota_hero_obsidian_destroyer", ability_name = "obsidian_destroyer_sanity_eclipse", useBlink = false},
+        {
+            hero = "npc_dota_hero_nevermore",
+            ability_name = "nevermore_shadowraze3",
+            useBlink = false,
+            processor = function(____, caster, ability, config) return self:nevermoreRaze(caster, ability, config) end
+        },
+        {
+            hero = "npc_dota_hero_nevermore",
+            ability_name = "nevermore_requiem",
+            useBlink = true,
+            processor = function(____, caster, ability, config) return self:nevermoreRequiem(caster, ability, config) end
+        },
+        {hero = "npc_dota_hero_monkey_king", ability_name = "monkey_king_boundless_strike", useBlink = false},
+        {hero = "npc_dota_hero_lion", ability_name = "lion_impale", useBlink = false},
+        {hero = "npc_dota_hero_lich", ability_name = "lich_chain_frost", useBlink = false},
+        {hero = "npc_dota_hero_leshrac", ability_name = "leshrac_split_earth", useBlink = false},
+        {hero = "npc_dota_hero_huskar", ability_name = "huskar_life_break", useBlink = false},
+        {
+            hero = "npc_dota_hero_dragon_knight",
+            ability_name = "dragon_knight_dragon_tail",
+            useBlink = false,
+            processor = function(____, caster, ability, config) return self:dragonKnightStun(caster, ability, config) end
+        },
+        {hero = "npc_dota_hero_disruptor", ability_name = "disruptor_glimpse", useBlink = false},
+        {hero = "npc_dota_hero_chaos_knight", ability_name = "chaos_knight_chaos_bolt", useBlink = false},
+        {hero = "npc_dota_hero_centaur", ability_name = "centaur_hoof_stomp", useBlink = true},
+        {hero = "npc_dota_hero_lina", ability_name = "lina_light_strike_array", useBlink = false},
+        {hero = "npc_dota_hero_lina", ability_name = "lina_laguna_blade", useBlink = false},
+        {hero = "npc_dota_hero_magnataur", ability_name = "magnataur_reverse_polarity", useBlink = true},
+        {
+            hero = "npc_dota_hero_axe",
+            ability_name = "axe_berserkers_call",
+            useBlink = true,
+            processor = function(____, caster, ability, config) return self:axeCall(caster, ability, config) end
+        },
+        {
+            hero = "npc_dota_hero_alchemist",
+            ability_name = "alchemist_unstable_concoction",
+            useBlink = false,
+            processor = function(____, caster, ability) return self:alchConcotions(caster, ability) end
+        }
+    }
 end
 function MantaDodge.prototype.launch(self, options)
     self.isRunning = true
     self:moveHero(self.controller)
     self:setupHero()
-    local spells = {{
-        hero = "npc_dota_hero_pangolier",
-        ability_name = "pangolier_shield_crash",
-        useBlink = false,
-        processor = function(____, caster, ability, config) return self:pangoShieldCrush(caster, ability, config) end
-    }}
-    self.controller:GetAssignedHero():SetDayTimeVisionRange(500)
+    local spells = __TS__ArrayFilter(
+        self.spells,
+        function(____, elem) return __TS__ArrayFind(
+            __TS__ObjectEntries(options.spells),
+            function(____, e) return e[2] == elem.ability_name end
+        ) end
+    )
     local heroes = __TS__ArrayMap(
         spells,
         function(____, e) return e.hero end
     )
     self:preCacheHeroes(heroes)
     local cache = {}
-    eventBus:on(
+    local ____self_unsubs_0 = self.unsubs
+    ____self_unsubs_0[#____self_unsubs_0 + 1] = eventBus:on(
         "manta_dodge.cache_finish",
         function(____, data)
             if data.hero then
@@ -72,18 +163,20 @@ function MantaDodge.prototype.launch(self, options)
             end
         end
     )
-    eventBus:on(
+    local ____self_unsubs_1 = self.unsubs
+    ____self_unsubs_1[#____self_unsubs_1 + 1] = eventBus:on(
         "manta_dodge.cast_spell_finish",
         function()
+            print(self.pid, "FINISHED SPELL CAST")
             if self.isRunning then
                 self:trigerrSpellCast(spells)
             end
         end
     )
-    ListenToGameEvent(
+    local ____self_game_event_listeners_2 = self.game_event_listeners
+    ____self_game_event_listeners_2[#____self_game_event_listeners_2 + 1] = ListenToGameEvent(
         "dota_ability_channel_finished",
         function(____, event)
-            DeepPrintTable(event)
             local ent = EntIndexToHScript(event.caster_entindex)
             if ent then
                 Timers:CreateTimer(
@@ -98,10 +191,10 @@ function MantaDodge.prototype.launch(self, options)
         end,
         self.context
     )
-    ListenToGameEvent(
+    local ____self_game_event_listeners_3 = self.game_event_listeners
+    ____self_game_event_listeners_3[#____self_game_event_listeners_3 + 1] = ListenToGameEvent(
         "dota_non_player_used_ability",
         function(____, event)
-            DeepPrintTable(event)
             local ent = EntIndexToHScript(event.caster_entindex)
             local ability_blacklist = {
                 "alchemist_unstable_concoction",
@@ -127,7 +220,8 @@ function MantaDodge.prototype.launch(self, options)
         end,
         self.context
     )
-    ListenToGameEvent(
+    local ____self_game_event_listeners_4 = self.game_event_listeners
+    ____self_game_event_listeners_4[#____self_game_event_listeners_4 + 1] = ListenToGameEvent(
         "npc_spawned",
         function(____, event)
             local entity = EntIndexToHScript(event.entindex)
@@ -149,16 +243,37 @@ function MantaDodge.prototype.finish(self)
             function(____, listener) return CustomGameEventManager:UnregisterListener(listener) end
         )
     end
+    local game_events = self.game_event_listeners
+    if #game_events > 0 then
+        __TS__ArrayForEach(
+            game_events,
+            function(____, listener) return StopListeningToGameEvent(listener) end
+        )
+    end
     StopListeningToAllGameEvents(self.context)
     __TS__ArrayMap(
         self.unsubs,
         function(____, e) return e(nil) end
     )
+    local entities = Entities:FindAllInSphere(
+        self.controller:GetAssignedHero():GetAbsOrigin(),
+        1000
+    )
+    __TS__ArrayForEach(
+        entities,
+        function(____, e)
+            if e:GetEntityIndex() ~= self.controller:GetAssignedHero():GetEntityIndex() and e:IsBaseNPC() and e:IsAlive() and e:IsHero() then
+                e:Destroy()
+            end
+        end
+    )
     self:resetHero()
     self:returnHero()
     self:listenEvents()
 end
-function MantaDodge.prototype.relaunch(self)
+function MantaDodge.prototype.relaunch(self, options)
+    self:finish()
+    self:launch(options)
 end
 function MantaDodge.prototype.preCacheHeroes(self, heroes)
     __TS__ArrayForEach(
@@ -179,6 +294,9 @@ function MantaDodge.prototype.trigerrSpellCast(self, spells)
     self:castSpell(spells[index + 1])
 end
 function MantaDodge.prototype.castSpell(self, config)
+    if not self.isRunning then
+        return
+    end
     local hero = CreateUnitByName(
         config.hero,
         Vector(),
@@ -191,7 +309,7 @@ function MantaDodge.prototype.castSpell(self, config)
     hero:SetAttackCapability(0)
     hero:SetMoveCapability(1)
     hero:SetBaseMoveSpeed(500)
-    hero:AddItemByName("item_aghanims_shard")
+    hero:AddNewModifier(nil, nil, empty_debuff_applier.name, {})
     local spawn_name = "main_training_spawn"
     Utils:moveEntityToEntity(
         hero,
@@ -231,10 +349,10 @@ function MantaDodge.prototype.castSpell(self, config)
                 })
             end
             repeat
-                local ____switch38 = true
+                local ____switch54 = true
                 local tryCount
-                local ____cond38 = ____switch38 == isNoTarget
-                if ____cond38 then
+                local ____cond54 = ____switch54 == isNoTarget
+                if ____cond54 then
                     ExecuteOrderFromTable({
                         OrderType = DOTA_UNIT_ORDER_CAST_NO_TARGET,
                         UnitIndex = hero:GetEntityIndex(),
@@ -243,8 +361,8 @@ function MantaDodge.prototype.castSpell(self, config)
                     })
                     break
                 end
-                ____cond38 = ____cond38 or ____switch38 == isPoint
-                if ____cond38 then
+                ____cond54 = ____cond54 or ____switch54 == isPoint
+                if ____cond54 then
                     ExecuteOrderFromTable({
                         OrderType = DOTA_UNIT_ORDER_CAST_POSITION,
                         UnitIndex = hero:GetEntityIndex(),
@@ -254,8 +372,8 @@ function MantaDodge.prototype.castSpell(self, config)
                     })
                     break
                 end
-                ____cond38 = ____cond38 or ____switch38 == isTarget
-                if ____cond38 then
+                ____cond54 = ____cond54 or ____switch54 == isTarget
+                if ____cond54 then
                     tryCount = 0
                     Timers:CreateTimer(function()
                         if tryCount == 3 then
@@ -291,9 +409,9 @@ function MantaDodge.prototype.moveHero(self, controller)
 end
 function MantaDodge.prototype.setupHero(self)
     local startPosition = Entities:FindByName(nil, "main_training_spawn")
-    local ____TS__New_result_0 = __TS__New(Geometry)
-    self.heroBox = ____TS__New_result_0
-    local box = ____TS__New_result_0
+    local ____TS__New_result_5 = __TS__New(Geometry)
+    self.heroBox = ____TS__New_result_5
+    local box = ____TS__New_result_5
     self.heroBox:createBox(
         startPosition:GetAbsOrigin(),
         375,
@@ -334,6 +452,21 @@ function MantaDodge.prototype.pickRandomPositionInRadius(self, origin, radius)
     local r = radius * math.sqrt(RandomFloat(0, 1))
     local offset = RandomVector(r)
     return Vector(origin.x + offset.x, origin.y + offset.y, 0)
+end
+function MantaDodge.prototype.creepCentStun(self, caster, ability, config)
+    Timers:CreateTimer(
+        0.5,
+        function()
+            print(caster:GetName())
+            print(caster:GetEntityIndex())
+            caster:CastAbilityOnPosition(
+                self.controller:GetAssignedHero():GetAbsOrigin(),
+                ability,
+                -1
+            )
+            caster:MoveToPosition(self.controller:GetAssignedHero():GetAbsOrigin())
+        end
+    )
 end
 function MantaDodge.prototype.pangoShieldCrush(self, caster, ability, config)
     ExecuteOrderFromTable({
@@ -468,14 +601,22 @@ function MantaDodge.prototype.alchConcotions(self, caster, ability, config)
     Timers:CreateTimer(
         randomThrowTime,
         function()
+            local tryCount = 0
             local throw_abilitiy = caster:FindAbilityByName("alchemist_unstable_concoction_throw")
-            ExecuteOrderFromTable({
-                OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
-                UnitIndex = caster:GetEntityIndex(),
-                TargetIndex = self.controller:GetAssignedHero():GetEntityIndex(),
-                AbilityIndex = throw_abilitiy:GetEntityIndex(),
-                Queue = true
-            })
+            Timers:CreateTimer(function()
+                if tryCount == 3 then
+                    return
+                end
+                ExecuteOrderFromTable({
+                    OrderType = DOTA_UNIT_ORDER_CAST_TARGET,
+                    UnitIndex = caster:GetEntityIndex(),
+                    TargetIndex = self.controller:GetAssignedHero():GetEntityIndex(),
+                    AbilityIndex = throw_abilitiy:GetEntityIndex(),
+                    Queue = true
+                })
+                tryCount = tryCount + 1
+                return 0.5
+            end)
         end
     )
 end

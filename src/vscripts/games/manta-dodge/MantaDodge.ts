@@ -1,5 +1,6 @@
 import { eventBus } from "core/event-bus/event-bus";
 import { GameBase } from "games/Game";
+import { empty_debuff_applier } from "modifiers/empty_debuff";
 
 import { manta_modifier } from "modifiers/manta";
 import { soft_wall } from "modifiers/soft-wall";
@@ -8,7 +9,7 @@ import { HeroInventory } from "utils/HeroInventory";
 import { Utils } from "utils/Utils";
 
 interface LaunchOptions {
-  spells: any;
+  spells: string[];
 }
 
 interface CastAbility {
@@ -22,6 +23,7 @@ interface CastAbility {
   ) => void;
 }
 export class MantaDodge extends GameBase {
+  private readonly pid: number = Math.floor(Math.random() * 10000);
   private unsubs: (() => void)[] = [];
   private isRunning: boolean = false;
 
@@ -30,6 +32,184 @@ export class MantaDodge extends GameBase {
     attack_capability: null,
   };
 
+  private readonly spells: CastAbility[] = [
+    {
+      hero: "npc_dota_neutral_centaur_khan",
+      ability_name: "centaur_khan_war_stomp",
+      useBlink: false,
+      processor: (caster, ability, config) =>
+        this.creepCentStun(caster, ability, config),
+    },
+    {
+      hero: "npc_dota_hero_pangolier",
+      ability_name: "pangolier_shield_crash",
+      useBlink: false,
+      processor: (caster, ability, config) =>
+        this.pangoShieldCrush(caster, ability, config),
+    },
+    {
+      hero: "npc_dota_hero_windrunner",
+      ability_name: "windrunner_powershot",
+      useBlink: false,
+    },
+    {
+      hero: "npc_dota_hero_dark_willow",
+      ability_name: "dark_willow_terrorize",
+      useBlink: false,
+    },
+    {
+      hero: "npc_dota_hero_phoenix",
+      ability_name: "phoenix_supernova",
+      useBlink: false,
+      processor: (caster, ability) => this.phoneixSuperNova(caster, ability),
+    },
+    {
+      hero: "npc_dota_hero_zuus",
+      ability_name: "zuus_thundergods_wrath",
+      useBlink: false,
+      processor: (caster, ability) => this.zeusThundergods(caster, ability),
+    },
+    {
+      hero: "npc_dota_hero_witch_doctor",
+      ability_name: "witch_doctor_maledict",
+      useBlink: false,
+      processor: (caster, ability) => this.witchDoctorMaledict(caster, ability),
+    },
+    {
+      hero: "npc_dota_hero_witch_doctor",
+      ability_name: "witch_doctor_paralyzing_cask",
+      useBlink: false,
+    },
+    {
+      hero: "npc_dota_hero_warlock",
+      ability_name: "warlock_rain_of_chaos",
+      useBlink: false,
+    },
+    {
+      hero: "npc_dota_hero_techies",
+      ability_name: "techies_suicide",
+      useBlink: false,
+    },
+    {
+      hero: "npc_dota_hero_sven",
+      ability_name: "sven_storm_bolt",
+      useBlink: false,
+    },
+    {
+      hero: "npc_dota_hero_slardar",
+      ability_name: "slardar_slithereen_crush",
+      useBlink: true,
+    },
+    {
+      hero: "npc_dota_hero_ringmaster",
+      ability_name: "ringmaster_tame_the_beasts",
+      useBlink: false,
+    },
+    {
+      hero: "npc_dota_hero_rattletrap",
+      ability_name: "rattletrap_hookshot",
+      useBlink: false,
+    },
+    {
+      hero: "npc_dota_hero_primal_beast",
+      ability_name: "primal_beast_rock_throw",
+      useBlink: false,
+    },
+    {
+      hero: "npc_dota_hero_obsidian_destroyer",
+      ability_name: "obsidian_destroyer_sanity_eclipse",
+      useBlink: false,
+    },
+    {
+      hero: "npc_dota_hero_nevermore",
+      ability_name: "nevermore_shadowraze3",
+      useBlink: false,
+      processor: (caster, ability, config) =>
+        this.nevermoreRaze(caster, ability, config),
+    },
+    {
+      hero: "npc_dota_hero_nevermore",
+      ability_name: "nevermore_requiem",
+      useBlink: true,
+      processor: (caster, ability, config) =>
+        this.nevermoreRequiem(caster, ability, config),
+    },
+    {
+      hero: "npc_dota_hero_monkey_king",
+      ability_name: "monkey_king_boundless_strike",
+      useBlink: false,
+    },
+    {
+      hero: "npc_dota_hero_lion",
+      ability_name: "lion_impale",
+      useBlink: false,
+    },
+    {
+      hero: "npc_dota_hero_lich",
+      ability_name: "lich_chain_frost",
+      useBlink: false,
+    },
+    {
+      hero: "npc_dota_hero_leshrac",
+      ability_name: "leshrac_split_earth",
+      useBlink: false,
+    },
+    {
+      hero: "npc_dota_hero_huskar",
+      ability_name: "huskar_life_break",
+      useBlink: false,
+    },
+    {
+      hero: "npc_dota_hero_dragon_knight",
+      ability_name: "dragon_knight_dragon_tail",
+      useBlink: false,
+      processor: (caster, ability, config) =>
+        this.dragonKnightStun(caster, ability, config),
+    },
+    {
+      hero: "npc_dota_hero_disruptor",
+      ability_name: "disruptor_glimpse",
+      useBlink: false,
+    },
+    {
+      hero: "npc_dota_hero_chaos_knight",
+      ability_name: "chaos_knight_chaos_bolt",
+      useBlink: false,
+    },
+    {
+      hero: "npc_dota_hero_centaur",
+      ability_name: "centaur_hoof_stomp",
+      useBlink: true,
+    },
+    {
+      hero: "npc_dota_hero_lina",
+      ability_name: "lina_light_strike_array",
+      useBlink: false,
+    },
+    {
+      hero: "npc_dota_hero_lina",
+      ability_name: "lina_laguna_blade",
+      useBlink: false,
+    },
+    {
+      hero: "npc_dota_hero_magnataur",
+      ability_name: "magnataur_reverse_polarity",
+      useBlink: true,
+    },
+    {
+      hero: "npc_dota_hero_axe",
+      ability_name: "axe_berserkers_call",
+      useBlink: true,
+      processor: (caster, ability, config) =>
+        this.axeCall(caster, ability, config),
+    },
+    {
+      hero: "npc_dota_hero_alchemist",
+      ability_name: "alchemist_unstable_concoction",
+      useBlink: false,
+      processor: (caster, ability) => this.alchConcotions(caster, ability),
+    },
+  ];
   constructor() {
     super("manta_dodge");
   }
@@ -38,257 +218,95 @@ export class MantaDodge extends GameBase {
     this.isRunning = true;
     this.moveHero(this.controller);
     this.setupHero();
-    // npc_dota_hero_rattletrap
-    const spells: CastAbility[] = [
-      {
-        hero: "npc_dota_hero_pangolier",
-        ability_name: "pangolier_shield_crash",
-        useBlink: false,
-        processor: (caster, ability, config) =>
-          this.pangoShieldCrush(caster, ability, config),
-      },
-      // {
-      //   hero: "npc_dota_hero_windrunner",
-      //   ability_name: "windrunner_powershot",
-      //   useBlink: false,
-      // },
-      // {
-      //   hero: "npc_dota_hero_dark_willow",
-      //   ability_name: "dark_willow_terrorize",
-      //   useBlink: false,
-      // },
-      // {
-      //   hero: "npc_dota_hero_phoenix",
-      //   ability_name: "phoenix_supernova",
-      //   useBlink: false,
-      //   processor: (caster, ability) => this.phoneixSuperNova(caster, ability),
-      // },
-      // {
-      //   hero: "npc_dota_hero_zuus",
-      //   ability_name: "zuus_thundergods_wrath",
-      //   useBlink: false,
-      //   processor: (caster, ability) => this.zeusThundergods(caster, ability),
-      // },
-      // todo
-      // {
-      //   hero: "npc_dota_hero_witch_doctor",
-      //   ability_name: "witch_doctor_maledict",
-      //   useBlink: false,
-      //   processor: (caster, ability) =>
-      //     this.witchDoctorMaledict(caster, ability),
-      // },
-      // {
-      //   hero: "npc_dota_hero_witch_doctor",
-      //   ability_name: "witch_doctor_paralyzing_cask",
-      //   useBlink: false,
-      // },
-      // {
-      //   hero: "npc_dota_hero_warlock",
-      //   ability_name: "warlock_rain_of_chaos",
-      //   useBlink: false,
-      // },
-      // {
-      //   hero: "npc_dota_hero_techies",
-      //   ability_name: "techies_suicide",
-      //   useBlink: false,
-      // },
-      // {
-      //   hero: "npc_dota_hero_sven",
-      //   ability_name: "sven_storm_bolt",
-      //   useBlink: false,
-      // },
-      // {
-      //   hero: "npc_dota_hero_slardar",
-      //   ability_name: "slardar_slithereen_crush",
-      //   useBlink: true,
-      // },
-      // {
-      //   hero: "npc_dota_hero_ringmaster",
-      //   ability_name: "ringmaster_tame_the_beasts",
-      //   useBlink: false,
-      // },
-      // {
-      //   hero: "npc_dota_hero_rattletrap",
-      //   ability_name: "rattletrap_hookshot",
-      //   useBlink: false,
-      // },
-      // {
-      //   hero: "npc_dota_hero_primal_beast",
-      //   ability_name: "primal_beast_rock_throw",
-      //   useBlink: false,
-      // },
-      // {
-      //   hero: "npc_dota_hero_obsidian_destroyer",
-      //   ability_name: "obsidian_destroyer_sanity_eclipse",
-      //   useBlink: false,
-      // },
-      // {
-      //   hero: "npc_dota_hero_nevermore",
-      //   ability_name: "nevermore_shadowraze3",
-      //   useBlink: false,
-      //   processor: (caster, ability, config) =>
-      //     this.nevermoreRaze(caster, ability, config),
-      // },
-      // {
-      //   hero: "npc_dota_hero_nevermore",
-      //   ability_name: "nevermore_requiem",
-      //   useBlink: true,
-      //   processor: (caster, ability, config) =>
-      //     this.nevermoreRequiem(caster, ability, config),
-      // },
-      // {
-      //   hero: "npc_dota_hero_monkey_king",
-      //   ability_name: "monkey_king_boundless_strike",
-      //   useBlink: false,
-      // },
-      // {
-      //   hero: "npc_dota_hero_lion",
-      //   ability_name: "lion_impale",
-      //   useBlink: false,
-      // },
-      // {
-      //   hero: "npc_dota_hero_lich",
-      //   ability_name: "lich_chain_frost",
-      //   useBlink: false,
-      // },
-      // {
-      //   hero: "npc_dota_hero_leshrac",
-      //   ability_name: "leshrac_split_earth",
-      //   useBlink: false,
-      // },
-      // {
-      //   hero: "npc_dota_hero_huskar",
-      //   ability_name: "huskar_life_break",
-      //   useBlink: false,
-      // },
-      // {
-      //   hero: "npc_dota_hero_dragon_knight",
-      //   ability_name: "dragon_knight_dragon_tail",
-      //   useBlink: false,
-      //   processor: (caster, ability, config) =>
-      //     this.dragonKnightStun(caster, ability, config),
-      // },
-      //todo
-      // {
-      //   hero: "npc_dota_hero_disruptor",
-      //   ability_name: "disruptor_glimpse",
-      //   useBlink: false,
-      // },
-      // {
-      //   hero: "npc_dota_hero_chaos_knight",
-      //   ability_name: "chaos_knight_chaos_bolt",
-      //   useBlink: false,
-      // },
-      // {
-      //   hero: "npc_dota_hero_centaur",
-      //   ability_name: "centaur_hoof_stomp",
-      //   useBlink: true,
-      // },
-      // {
-      //   hero: "npc_dota_hero_lina",
-      //   ability_name: "lina_light_strike_array",
-      //   useBlink: false,
-      // },
-      // {
-      //   hero: "npc_dota_hero_lina",
-      //   ability_name: "lina_laguna_blade",
-      //   useBlink: false,
-      // },
-      // {
-      //   hero: "npc_dota_hero_magnataur",
-      //   ability_name: "magnataur_reverse_polarity",
-      //   useBlink: true,
-      // },
-      // {
-      //   hero: "npc_dota_hero_axe",
-      //   ability_name: "axe_berserkers_call",
-      //   useBlink: true,
-      //   processor: (caster, ability, config) =>
-      //     this.axeCall(caster, ability, config),
-      // },
-      // {
-      //   hero: "npc_dota_hero_alchemist",
-      //   ability_name: "alchemist_unstable_concoction",
-      //   useBlink: false,
-      //   processor: (caster, ability) => this.alchConcotions(caster, ability),
-      // },
-    ];
-    this.controller.GetAssignedHero().SetDayTimeVisionRange(500);
+    const spells = this.spells.filter((elem) =>
+      Object.entries(options.spells).find((e) => e[1] === elem.ability_name),
+    );
     const heroes = spells.map((e) => e.hero);
 
     this.preCacheHeroes(heroes);
 
     const cache = [];
 
-    eventBus.on("manta_dodge.cache_finish", (data: { hero: string }) => {
-      if (data.hero) {
-        cache.push(data.hero);
-        if (heroes.every((hero) => cache.includes(hero))) {
-          Timers.CreateTimer(1, () => {
-            print("MANTA DODGE CACHE FINISH!!!");
-            if (this.isRunning) {
-              this.trigerrSpellCast(spells);
-            }
-          });
+    this.unsubs.push(
+      eventBus.on("manta_dodge.cache_finish", (data: { hero: string }) => {
+        if (data.hero) {
+          cache.push(data.hero);
+          if (heroes.every((hero) => cache.includes(hero))) {
+            Timers.CreateTimer(1, () => {
+              print("MANTA DODGE CACHE FINISH!!!");
+              if (this.isRunning) {
+                this.trigerrSpellCast(spells);
+              }
+            });
+          }
         }
-      }
-    });
+      }),
+    );
 
-    eventBus.on("manta_dodge.cast_spell_finish", () => {
-      if (this.isRunning) {
-        this.trigerrSpellCast(spells);
-      }
-    });
-    ListenToGameEvent(
-      "dota_ability_channel_finished",
-      (event) => {
-        DeepPrintTable(event);
-        const ent = EntIndexToHScript(event.caster_entindex) as CDOTA_BaseNPC;
-        if (ent) {
-          Timers.CreateTimer(1, () => ent.Destroy());
-          Timers.CreateTimer(1.5, () =>
-            eventBus.emit("manta_dodge.cast_spell_finish", null),
-          );
+    this.unsubs.push(
+      eventBus.on("manta_dodge.cast_spell_finish", () => {
+        print(this.pid, "FINISHED SPELL CAST");
+        if (this.isRunning) {
+          this.trigerrSpellCast(spells);
         }
-      },
-      this.context,
+      }),
     );
-    ListenToGameEvent(
-      "dota_non_player_used_ability",
-      (event) => {
-        DeepPrintTable(event);
-        const ent = EntIndexToHScript(event.caster_entindex) as CDOTA_BaseNPC;
-        const ability_blacklist = [
-          "alchemist_unstable_concoction",
-          "item_blink",
-          "phoenix_supernova",
-          "ringmaster_tame_the_beasts",
-          "dragon_knight_elder_dragon_form",
-          "windrunner_powershot",
-        ];
-        if (ability_blacklist.includes(event.abilityname)) {
-          return;
-        }
-        if (ent) {
-          Timers.CreateTimer(1, () => ent.Destroy());
-          Timers.CreateTimer(1.5, () =>
-            eventBus.emit("manta_dodge.cast_spell_finish", null),
-          );
-        }
-      },
-      this.context,
+
+    this.game_event_listeners.push(
+      ListenToGameEvent(
+        "dota_ability_channel_finished",
+        (event) => {
+          const ent = EntIndexToHScript(event.caster_entindex) as CDOTA_BaseNPC;
+          if (ent) {
+            Timers.CreateTimer(1, () => ent.Destroy());
+            Timers.CreateTimer(1.5, () =>
+              eventBus.emit("manta_dodge.cast_spell_finish", null),
+            );
+          }
+        },
+        this.context,
+      ),
     );
-    ListenToGameEvent(
-      "npc_spawned",
-      (event) => {
-        const entity = EntIndexToHScript(event.entindex);
-        const entityName = entity.GetName();
-        const destory_entities = ["npc_dota_warlock_golem"];
-        if (destory_entities.includes(entityName)) {
-          entity.Destroy();
-        }
-      },
-      this.context,
+    this.game_event_listeners.push(
+      ListenToGameEvent(
+        "dota_non_player_used_ability",
+        (event) => {
+          const ent = EntIndexToHScript(event.caster_entindex) as CDOTA_BaseNPC;
+          const ability_blacklist = [
+            "alchemist_unstable_concoction",
+            "item_blink",
+            "phoenix_supernova",
+            "ringmaster_tame_the_beasts",
+            "dragon_knight_elder_dragon_form",
+            "windrunner_powershot",
+          ];
+          if (ability_blacklist.includes(event.abilityname)) {
+            return;
+          }
+          if (ent) {
+            Timers.CreateTimer(1, () => ent.Destroy());
+            Timers.CreateTimer(1.5, () =>
+              eventBus.emit("manta_dodge.cast_spell_finish", null),
+            );
+          }
+        },
+        this.context,
+      ),
+    );
+
+    this.game_event_listeners.push(
+      ListenToGameEvent(
+        "npc_spawned",
+        (event) => {
+          const entity = EntIndexToHScript(event.entindex);
+          const entityName = entity.GetName();
+          const destory_entities = ["npc_dota_warlock_golem"];
+          if (destory_entities.includes(entityName)) {
+            entity.Destroy();
+          }
+        },
+        this.context,
+      ),
     );
   }
 
@@ -300,17 +318,40 @@ export class MantaDodge extends GameBase {
         CustomGameEventManager.UnregisterListener(listener),
       );
     }
+    const game_events = this.game_event_listeners;
+    if (game_events.length > 0) {
+      game_events.forEach((listener) => StopListeningToGameEvent(listener));
+    }
 
     StopListeningToAllGameEvents(this.context);
 
     this.unsubs.map((e) => e());
 
+    const entities = Entities.FindAllInSphere(
+      this.controller.GetAssignedHero().GetAbsOrigin(),
+      1000,
+    );
+
+    entities.forEach((e) => {
+      if (
+        e.GetEntityIndex() !==
+          this.controller.GetAssignedHero().GetEntityIndex() &&
+        e.IsBaseNPC() &&
+        e.IsAlive() &&
+        e.IsHero()
+      ) {
+        e.Destroy();
+      }
+    });
     this.resetHero();
     this.returnHero();
     this.listenEvents();
   }
 
-  public relaunch() {}
+  public relaunch(options: LaunchOptions) {
+    this.finish();
+    this.launch(options);
+  }
 
   public preCacheHeroes(heroes: string[]) {
     heroes.forEach((hero) => {
@@ -330,6 +371,9 @@ export class MantaDodge extends GameBase {
     this.castSpell(spells[index]);
   }
   private castSpell(config: CastAbility) {
+    if (!this.isRunning) {
+      return;
+    }
     const hero = CreateUnitByName(
       config.hero,
       Vector(),
@@ -342,12 +386,11 @@ export class MantaDodge extends GameBase {
     hero.SetAttackCapability(0);
     hero.SetMoveCapability(1);
     hero.SetBaseMoveSpeed(500);
-    hero.AddItemByName("item_aghanims_shard");
+    hero.AddNewModifier(undefined, undefined, empty_debuff_applier.name, {});
     const spawn_name = "main_training_spawn";
     Utils.moveEntityToEntity(hero, spawn_name, Vector(0, 500));
     const ability = hero.FindAbilityByName(config.ability_name);
     ability.SetLevel(1);
-
     if (config.processor) {
       config.processor(hero as CDOTA_BaseNPC_Hero, ability, config);
       return;
@@ -480,6 +523,45 @@ export class MantaDodge extends GameBase {
   /**
    * Processors
    */
+
+  creepCentStun(
+    caster: CDOTA_BaseNPC_Hero,
+    ability: CDOTABaseAbility,
+    config: CastAbility,
+  ) {
+    Timers.CreateTimer(0.5, () => {
+      print(caster.GetName());
+      // ExecuteOrderFromTable({
+      //   OrderType: UnitOrder.MOVE_TO_POSITION,
+      //   UnitIndex: caster.GetEntityIndex(),
+      //   TargetIndex: this.controller.GetAssignedHero().GetEntityIndex(),
+      //   Position: this.controller.GetAssignedHero().GetAbsOrigin(),
+      //   Queue: true,
+      // });
+      print(caster.GetEntityIndex());
+      caster.CastAbilityOnPosition(
+        this.controller.GetAssignedHero().GetAbsOrigin(),
+        ability,
+        -1,
+      );
+      caster.MoveToPosition(this.controller.GetAssignedHero().GetAbsOrigin());
+      // ExecuteOrderFromTable({
+      //   OrderType: UnitOrder.MOVE_TO_POSITION,
+      //   UnitIndex: caster.GetEntityIndex(),
+      //   TargetIndex: this.controller.GetAssignedHero().GetEntityIndex(),
+      //   Position: this.controller.GetAssignedHero().GetAbsOrigin(),
+      //   Queue: true,
+      // });
+
+      // ExecuteOrderFromTable({
+      //   OrderType: UnitOrder.CAST_NO_TARGET,
+      //   UnitIndex: caster.GetEntityIndex(),
+      //   AbilityIndex: ability.GetEntityIndex(),
+      //   Queue: true,
+      // });
+    });
+  }
+
   pangoShieldCrush(
     caster: CDOTA_BaseNPC_Hero,
     ability: CDOTABaseAbility,
@@ -634,15 +716,23 @@ export class MantaDodge extends GameBase {
     });
     const randomThrowTime = (Math.floor(Math.random() * 9) + 2) * 0.5;
     Timers.CreateTimer(randomThrowTime, () => {
+      let tryCount = 0;
       const throw_abilitiy = caster.FindAbilityByName(
         "alchemist_unstable_concoction_throw",
       );
-      ExecuteOrderFromTable({
-        OrderType: UnitOrder.CAST_TARGET,
-        UnitIndex: caster.GetEntityIndex(),
-        TargetIndex: this.controller.GetAssignedHero().GetEntityIndex(),
-        AbilityIndex: throw_abilitiy.GetEntityIndex(),
-        Queue: true,
+      Timers.CreateTimer(() => {
+        if (tryCount === 3) {
+          return;
+        }
+        ExecuteOrderFromTable({
+          OrderType: UnitOrder.CAST_TARGET,
+          UnitIndex: caster.GetEntityIndex(),
+          TargetIndex: this.controller.GetAssignedHero().GetEntityIndex(),
+          AbilityIndex: throw_abilitiy.GetEntityIndex(),
+          Queue: true,
+        });
+        tryCount += 1;
+        return 0.5;
       });
     });
   }

@@ -3,7 +3,7 @@ type PageConstructor<T extends PageComponent> = new (...args: any[]) => T;
 type NavButtons =
   | LastitNavigationButton
   | AimNavButton
-  | MantaDodgeNavButton
+  | AbilityDodgeNavButton
   | MultitaskNavButton
   | UnitControllNavButton
   | HeroesChoiseNavigationButton;
@@ -15,7 +15,7 @@ interface SideNavConfig {
 enum SideNavButton {
   HEROES_CHOISE = "Heroes Choise",
   LASTHIT = "Lasthit",
-  MANTA_DODGE = "Manta Dodge",
+  ABILITY_DODGE = "Ability Dodge",
   AIM = "Aim",
   MULTITASK = "Multitask",
   UNIT_CONTROL = "UnitControl",
@@ -24,14 +24,14 @@ enum PageNames {
   LASTHIT = "LasthitPage",
   AIM = "AimPage",
   MULTITASK = "MultitaskPage",
-  MANTA_DODGE = "MantaDodgePage",
+  ABILITY_DODGE = "AbilityDodgePage",
 }
 
 var SIDE_NAV_CONFIG: SideNavConfig[] = [
   { name: SideNavButton.HEROES_CHOISE, class: HeroesChoiseNavigationButton },
   { name: SideNavButton.LASTHIT, class: LastitNavigationButton },
   { name: SideNavButton.AIM, class: AimNavButton },
-  { name: SideNavButton.MANTA_DODGE, class: MantaDodgeNavButton },
+  { name: SideNavButton.ABILITY_DODGE, class: AbilityDodgeNavButton },
   // { name: SideNavButton.MULTITASK, class: MultitaskNavButton },
 
   // { name: SideNavButton.UNIT_CONTROL, class: UnitControllNavButton },

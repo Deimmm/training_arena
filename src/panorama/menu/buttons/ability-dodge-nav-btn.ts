@@ -1,8 +1,8 @@
-class MantaDodgeNavButton extends ButtonComponent {
+class AbilityDodgeNavButton extends ButtonComponent {
   constructor(id: string, root: Panel) {
     super(id, {
-      onClick: MantaDodgeNavButton._onClick,
-      text: SideNavButton.MANTA_DODGE,
+      onClick: AbilityDodgeNavButton._onClick,
+      text: SideNavButton.ABILITY_DODGE,
       snippet: "NavButton",
     });
     this.load(root);
@@ -11,8 +11,8 @@ class MantaDodgeNavButton extends ButtonComponent {
   private static _onClick() {
     GameEvents.SendCustomGameEventToAllClients<any>("render-page", {
       playerId: Players.GetLocalPlayer(),
-      page: PageNames.MANTA_DODGE,
+      page: PageNames.ABILITY_DODGE,
     });
-    $.Msg(`Clicked ${MantaDodgeNavButton.name}`);
+    $.Msg(`Clicked ${AbilityDodgeNavButton.name}`);
   }
 }

@@ -8,7 +8,7 @@
         <include src="file://{resources}/layout/custom_game/menu/buttons/aim-nav-btn.js"/>
         <include src="file://{resources}/layout/custom_game/menu/buttons/lasthit-nav-btn.js"/>
         <include src="file://{resources}/layout/custom_game/menu/buttons/multitask-nav-btn.js"/>
-        <include src="file://{resources}/layout/custom_game/menu/buttons/mantadodge-nav-btn.js"/>
+        <include src="file://{resources}/layout/custom_game/menu/buttons/ability-dodge-nav-btn.js"/>
         <include src="file://{resources}/layout/custom_game/menu/buttons/unitcontroll-nav-btn.js"/>
         <include src="file://{resources}/layout/custom_game/menu/buttons/heroeschoise-nav-btn.js"/>
         <include src="file://{resources}/layout/custom_game/pages/lasthit/options/lasthit_solo.js"/>
@@ -19,7 +19,8 @@
         <include src="file://{resources}/layout/custom_game/pages/lasthit/lasthit.js"/>
         <include src="file://{resources}/layout/custom_game/pages/aim/aim.js"/>
         <include src="file://{resources}/layout/custom_game/pages/multitask/multitask.js"/>
-        <include src="file://{resources}/layout/custom_game/pages/manta-dodge/mantadodge.js"/>
+        <include src="file://{resources}/layout/custom_game/pages/ability-dodge/ability-dodge.js"/>
+        <include src="file://{resources}/layout/custom_game/pages/ability-dodge/options/manta-dodge.js"/>
         <include src="file://{resources}/layout/custom_game/pages/page_config.js"/>
         <include src="file://{resources}/layout/custom_game/menu/menu_config.js"/>
         <include src="file://{resources}/layout/custom_game/menu/menu.js"/>
@@ -172,21 +173,32 @@
                 </Panel>
             </Panel>
         </snippet>
+        <snippet name="AbilityDodgePage">
+            <Panel class="PageContainer" id ="AbilityDodgePage">
+                <Panel class="PageOptions" id ="PageOptions">
+                </Panel>
+                <Panel class="PageContent" id ="PageContent">
+
+                </Panel>
+            </Panel>
+        </snippet>
         <snippet name="MantaDodgePage">
             <Panel class="PageContainer" id ="MantaDodgePage">
-                <Panel class="PageContent" id ="PageContent">
-                    <Panel class="Placeholder">
-                        <Label text="Placeholder"/>
+                <Panel class="AbilityGrid" id="AbilityGrid">
+                </Panel>
+                <Panel class="ButtonPanel">
+                    <Panel class="LaunchButton" onactivate="ClientEventBus.emit('game_launch', {game: 'manta_dodge', player: Players.GetLocalPlayer() });">
+                        <Label class="ButtonText" text="START"/>
                     </Panel>
-                    <Panel class="ButtonPanel">
-                        <Panel class="LaunchButton" onactivate="ClientEventBus.emit('game_launch', {game: 'manta_dodge', player: Players.GetLocalPlayer() });">
-                            <Label class="ButtonText" text="START"/>
-                        </Panel>
-                        <Panel id="MultitaskFinishButton" class="FinishButton" onactivate="ClientEventBus.emit('game_finish.manta_dodge');">
-                            <Label class="ButtonText" text="FINISH"/>
-                        </Panel>
+                    <Panel id="MultitaskFinishButton" class="FinishButton" onactivate="ClientEventBus.emit('game_finish.manta_dodge');">
+                        <Label class="ButtonText" text="FINISH"/>
                     </Panel>
                 </Panel>
+            </Panel>
+        </snippet>
+        <snippet name="AbilityCard">
+            <Panel>
+                <DOTAAbilityImage/>
             </Panel>
         </snippet>
     </snippets>

@@ -171,7 +171,7 @@ export class Lasthit1V1 extends GameBase {
               8,
               undefined,
             );
-            EmitSoundOn("sheep", this.controller.GetAssignedHero());
+            // EmitSoundOn("sheep", this.controller.GetAssignedHero());
             ParticleManager.SetParticleControl(particle, 0, position);
             entity.GetTeam() === DotaTeam.GOODGUYS
               ? (this.sKills = this.sKills + 1)

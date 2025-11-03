@@ -2,7 +2,7 @@ var SideNavButton;
 (function (SideNavButton) {
     SideNavButton["HEROES_CHOISE"] = "Heroes Choise";
     SideNavButton["LASTHIT"] = "Lasthit";
-    SideNavButton["MANTA_DODGE"] = "Manta Dodge";
+    SideNavButton["ABILITY_DODGE"] = "Ability Dodge";
     SideNavButton["AIM"] = "Aim";
     SideNavButton["MULTITASK"] = "Multitask";
     SideNavButton["UNIT_CONTROL"] = "UnitControl";
@@ -12,13 +12,13 @@ var PageNames;
     PageNames["LASTHIT"] = "LasthitPage";
     PageNames["AIM"] = "AimPage";
     PageNames["MULTITASK"] = "MultitaskPage";
-    PageNames["MANTA_DODGE"] = "MantaDodgePage";
+    PageNames["ABILITY_DODGE"] = "AbilityDodgePage";
 })(PageNames || (PageNames = {}));
 var SIDE_NAV_CONFIG = [
     { name: SideNavButton.HEROES_CHOISE, class: HeroesChoiseNavigationButton },
     { name: SideNavButton.LASTHIT, class: LastitNavigationButton },
     { name: SideNavButton.AIM, class: AimNavButton },
-    { name: SideNavButton.MANTA_DODGE, class: MantaDodgeNavButton },
+    { name: SideNavButton.ABILITY_DODGE, class: AbilityDodgeNavButton },
     // { name: SideNavButton.MULTITASK, class: MultitaskNavButton },
     // { name: SideNavButton.UNIT_CONTROL, class: UnitControllNavButton },
 ];

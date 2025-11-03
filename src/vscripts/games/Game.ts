@@ -1,6 +1,7 @@
 interface IGameBase {
   controller: CDOTAPlayerController;
   listeners: CustomGameEventListenerID[];
+  game_event_listeners: EventListenerID[];
   context: any;
   game_name: string;
 
@@ -12,6 +13,7 @@ interface IGameBase {
 export class GameBase implements IGameBase {
   controller: CDOTAPlayerController;
   listeners: CustomGameEventListenerID[] = [];
+  game_event_listeners: EventListenerID[] = [];
   context: any = {};
   game_name: string;
 
