@@ -324,27 +324,28 @@ export class MantaDodge extends GameBase {
   public finish() {
     this.activePid = null;
     const listeners = this.listeners;
-    if (listeners.length > 0) {
+    if (listeners && listeners.length > 0) {
       listeners.forEach((listener) =>
         CustomGameEventManager.UnregisterListener(listener),
       );
     }
     const game_events = this.game_event_listeners;
-    if (game_events.length > 0) {
+    if (game_events && game_events.length > 0) {
       game_events.forEach((listener) => StopListeningToGameEvent(listener));
     }
 
     StopListeningToAllGameEvents(this.context);
 
     this.unsubs.map((e) => e());
-
+    const spawn_name = "main_training_spawn";
     const entities = Entities.FindAllInSphere(
-      this.controller.GetAssignedHero().GetAbsOrigin(),
+      Entities.FindByName(null, spawn_name).GetAbsOrigin(),
       1000,
     );
 
     entities.forEach((e) => {
       if (
+        this.controller &&
         e.GetEntityIndex() !==
           this.controller.GetAssignedHero().GetEntityIndex() &&
         e.IsBaseNPC() &&
@@ -354,7 +355,7 @@ export class MantaDodge extends GameBase {
         e.Destroy();
       }
     });
-    this.heroBox.destroyBox();
+    this.heroBox && this.heroBox.destroyBox();
     this.resetHero();
     this.returnHero();
     this.listenEvents();
@@ -363,7 +364,6 @@ export class MantaDodge extends GameBase {
   public relaunch(options: LaunchOptions) {
     this.finish();
     this.launch(options);
-    // Timers.CreateTimer(0, () => this.launch(options));
   }
 
   public preCacheHeroes(heroes: string[]) {
@@ -508,23 +508,27 @@ export class MantaDodge extends GameBase {
   }
 
   private resetHero() {
-    const hero = this.controller.GetAssignedHero();
-    hero.SetMoveCapability(1);
-    hero.SetAttackCapability(this.heroPreviousState.attack_capability);
-    hero.RemoveModifierByName(manta_modifier.name);
-    hero.RemoveModifierByName(soft_wall.name);
-    HeroInventory.reset(hero);
+    if (this.controller) {
+      const hero = this.controller.GetAssignedHero();
+      hero.SetMoveCapability(1);
+      hero.SetAttackCapability(this.heroPreviousState.attack_capability);
+      hero.RemoveModifierByName(manta_modifier.name);
+      hero.RemoveModifierByName(soft_wall.name);
+      HeroInventory.reset(hero);
+    }
   }
 
   private returnHero() {
-    const hero = this.controller.GetAssignedHero();
-    const game_start = Entities.FindByName(undefined, "start");
-    if (!game_start) {
-      return;
+    if (this.controller) {
+      const hero = this.controller.GetAssignedHero();
+      const game_start = Entities.FindByName(undefined, "start");
+      if (!game_start) {
+        return;
+      }
+      const vector = game_start.GetAbsOrigin();
+      hero.SetAbsOrigin(vector);
+      CenterCameraOnUnit(this.controller.GetPlayerID(), hero);
     }
-    const vector = game_start.GetAbsOrigin();
-    hero.SetAbsOrigin(vector);
-    CenterCameraOnUnit(this.controller.GetPlayerID(), hero);
   }
 
   private pickRandomPositionInRadius(origin: Vector, radius: number) {

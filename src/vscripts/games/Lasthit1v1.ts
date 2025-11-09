@@ -40,14 +40,14 @@ export class Lasthit1V1 extends GameBase {
       sniper.Destroy();
     }
     const listeners = this.listeners;
-    if (listeners.length > 0) {
+    if (listeners && listeners.length > 0) {
       listeners.forEach((listener) =>
         CustomGameEventManager.UnregisterListener(listener),
       );
     }
     StopListeningToAllGameEvents(this.context);
     const spawns = this.spawns;
-    if (spawns.length > 0) {
+    if (spawns && spawns.length > 0) {
       spawns.forEach((spawn) => spawn.stopSpawn());
     }
     const creeps = Entities.FindAllByClassname("npc_dota_creep_lane");
@@ -114,14 +114,16 @@ export class Lasthit1V1 extends GameBase {
     );
   }
   private returnHero() {
-    const hero = this.controller.GetAssignedHero();
-    const game_start = Entities.FindByName(undefined, "start");
-    if (!game_start) {
-      return;
+    if (this.controller) {
+      const hero = this.controller.GetAssignedHero();
+      const game_start = Entities.FindByName(undefined, "start");
+      if (!game_start || !hero) {
+        return;
+      }
+      const vector = game_start.GetAbsOrigin();
+      hero.SetAbsOrigin(vector);
+      CenterCameraOnUnit(this.controller.GetPlayerID(), hero);
     }
-    const vector = game_start.GetAbsOrigin();
-    hero.SetAbsOrigin(vector);
-    CenterCameraOnUnit(this.controller.GetPlayerID(), hero);
   }
 
   private moveHero(

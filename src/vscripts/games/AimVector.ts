@@ -41,7 +41,7 @@ export class AimVector extends GameBase {
   }
 
   public finish() {
-    this.vectorSpawn.kill();
+    this.vectorSpawn && this.vectorSpawn.kill();
     this.isGameRunning = false;
     this.result = 0;
     this.streak = 0;
@@ -50,14 +50,14 @@ export class AimVector extends GameBase {
     this.killedUnits = 0;
     this.killTimes = [];
     const listeners = this.listeners;
-    if (listeners.length > 0) {
+    if (listeners && listeners.length > 0) {
       listeners.forEach((listener) =>
         CustomGameEventManager.UnregisterListener(listener),
       );
     }
     StopListeningToAllGameEvents(this.context);
     this.unsubs.map((e) => e());
-    this.outerBox.destroyBox();
+    this.outerBox && this.outerBox.destroyBox();
     this.resetHero();
     this.returnHero();
 
@@ -209,38 +209,44 @@ export class AimVector extends GameBase {
   }
 
   private resetHero() {
-    const { attack_capability, return_ability_name } = this.heroPreviousState;
-    const hero = this.controller.GetAssignedHero();
-    hero.SetMoveCapability(1);
-    hero.SetAttackCapability(attack_capability);
-    hero.SwapAbilities(return_ability_name, "muerta_dead_shot", true, true);
-    hero.RemoveAbility("muerta_dead_shot");
-    hero.RemoveModifierByName(vector_aim_hero_boost.name);
+    if (this.controller) {
+      const { attack_capability, return_ability_name } = this.heroPreviousState;
+      const hero = this.controller.GetAssignedHero();
+      hero.SetMoveCapability(1);
+      hero.SetAttackCapability(attack_capability);
+      hero.SwapAbilities(return_ability_name, "muerta_dead_shot", true, true);
+      hero.RemoveAbility("muerta_dead_shot");
+      hero.RemoveModifierByName(vector_aim_hero_boost.name);
 
-    HeroInventory.reset(hero);
+      HeroInventory.reset(hero);
+    }
   }
   private moveHero(controller: CDOTAPlayerController) {
-    const hero = controller.GetAssignedHero();
-    const spawn_name = "main_training_spawn";
+    if (this.controller) {
+      const hero = controller.GetAssignedHero();
+      const spawn_name = "main_training_spawn";
 
-    const padawan_spawn = Entities.FindByName(undefined, spawn_name);
-    if (!padawan_spawn) {
-      return;
+      const padawan_spawn = Entities.FindByName(undefined, spawn_name);
+      if (!padawan_spawn) {
+        return;
+      }
+      const vector = padawan_spawn.GetAbsOrigin();
+      hero.SetAbsOrigin(vector);
+      CenterCameraOnUnit(controller.GetPlayerID(), hero);
     }
-    const vector = padawan_spawn.GetAbsOrigin();
-    hero.SetAbsOrigin(vector);
-    CenterCameraOnUnit(controller.GetPlayerID(), hero);
   }
 
   private returnHero() {
-    const hero = this.controller.GetAssignedHero();
-    const game_start = Entities.FindByName(undefined, "start");
-    if (!game_start) {
-      return;
+    if (this.controller) {
+      const hero = this.controller.GetAssignedHero();
+      const game_start = Entities.FindByName(undefined, "start");
+      if (!game_start) {
+        return;
+      }
+      const vector = game_start.GetAbsOrigin();
+      hero.SetAbsOrigin(vector);
+      CenterCameraOnUnit(this.controller.GetPlayerID(), hero);
     }
-    const vector = game_start.GetAbsOrigin();
-    hero.SetAbsOrigin(vector);
-    CenterCameraOnUnit(this.controller.GetPlayerID(), hero);
   }
   private listen() {
     const listener = CustomGameEventManager.RegisterListener(

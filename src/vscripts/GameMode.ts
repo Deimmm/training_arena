@@ -59,17 +59,20 @@ export class GameMode {
       this.context,
     );
 
+    new API().listenEvents();
+    const games = [
+      new Lasthit1V1(),
+      new AimCommon(),
+      new AimVector(),
+      new MantaDodge(),
+    ];
+    games.forEach((game) => game.listenEvents());
+
     CustomGameEventManager.RegisterListener("heroes.restart", () => {
       print("[SERVER] heroes.restart");
+      games.forEach((game) => game.finish());
       GameRules.ResetToHeroSelection();
     });
-
-    new API().listenEvents();
-    new Lasthit1V1().listenEvents();
-    new AimCommon().listenEvents();
-    new AimVector().listenEvents();
-    new MantaDodge().listenEvents();
-    // new Multitask().listenEvents();
   }
 
   onNPCSpawned(event: NpcSpawnedEvent) {

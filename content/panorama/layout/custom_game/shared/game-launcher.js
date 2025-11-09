@@ -8,19 +8,18 @@ class GameLauncher {
             if (Players.GetLocalPlayer() !== playerId) {
                 return;
             }
-            if (!games.includes(game)) {
-                return;
+            if (game === "ACTIVE") {
+                ClientEventBus.emit(`game_finish.${this.launchedGame}`, { playerId });
             }
-            ClientEventBus.emit(`game_finish.${game}`, { playerId });
+            else {
+                ClientEventBus.emit(`game_finish.${game}`, { playerId });
+            }
             this.launchedGame = null;
         });
         GameEvents.Subscribe("game_launch", (event) => {
             const { playerId, game } = event;
             $.Msg(event);
             if (Players.GetLocalPlayer() !== playerId) {
-                return;
-            }
-            if (!games.includes(game)) {
                 return;
             }
             const launchedGame = this.launchedGame;

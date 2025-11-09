@@ -20,7 +20,6 @@ class CommonAIMPageComponent extends PageComponent {
     });
 
     this.root = root;
-    $.Msg("MY ROIOOOOOT", root);
     this.load(root);
     this.eventBus();
   }

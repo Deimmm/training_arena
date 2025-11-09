@@ -8,7 +8,6 @@ class CommonAIMPageComponent extends PageComponent {
         this.form = {};
         this.shedules = [];
         this.root = root;
-        $.Msg("MY ROIOOOOOT", root);
         this.load(root);
         this.eventBus();
     }

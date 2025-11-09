@@ -34,7 +34,7 @@ export class AimCommon extends GameBase {
 
   public finish() {
     this.isGameRunning = false;
-    this.obsSpawn.kill();
+    this.obsSpawn && this.obsSpawn.kill();
     this.result = 0;
     this.streak = 0;
     this.avgTime = 0;
@@ -42,14 +42,14 @@ export class AimCommon extends GameBase {
     this.killedWards = 0;
     this.killTimes = [];
     const listeners = this.listeners;
-    if (listeners.length > 0) {
+    if (listeners && listeners.length > 0) {
       listeners.forEach((listener) =>
         CustomGameEventManager.UnregisterListener(listener),
       );
     }
     StopListeningToAllGameEvents(this.context);
     this.unsubs.map((e) => e());
-    this.outerBox.destroyBox();
+    this.outerBox && this.outerBox.destroyBox();
     this.resetHero();
     this.returnHero();
 
@@ -188,10 +188,12 @@ export class AimCommon extends GameBase {
   }
 
   private resetHero() {
-    const hero = this.controller.GetAssignedHero();
-    hero.SetMoveCapability(1);
-    hero.SetAttackCapability(this.heroPreviousState.attack_capability);
-    HeroInventory.reset(hero);
+    if (this.controller) {
+      const hero = this.controller.GetAssignedHero();
+      hero.SetMoveCapability(1);
+      hero.SetAttackCapability(this.heroPreviousState.attack_capability);
+      HeroInventory.reset(hero);
+    }
   }
   private moveHero(controller: CDOTAPlayerController) {
     const hero = controller.GetAssignedHero();
@@ -207,14 +209,16 @@ export class AimCommon extends GameBase {
   }
 
   private returnHero() {
-    const hero = this.controller.GetAssignedHero();
-    const game_start = Entities.FindByName(undefined, "start");
-    if (!game_start) {
-      return;
+    if (this.controller) {
+      const hero = this.controller.GetAssignedHero();
+      const game_start = Entities.FindByName(undefined, "start");
+      if (!game_start) {
+        return;
+      }
+      const vector = game_start.GetAbsOrigin();
+      hero.SetAbsOrigin(vector);
+      CenterCameraOnUnit(this.controller.GetPlayerID(), hero);
     }
-    const vector = game_start.GetAbsOrigin();
-    hero.SetAbsOrigin(vector);
-    CenterCameraOnUnit(this.controller.GetPlayerID(), hero);
   }
   private listen() {
     const listener = CustomGameEventManager.RegisterListener(

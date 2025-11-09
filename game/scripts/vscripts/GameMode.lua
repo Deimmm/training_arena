@@ -1,9 +1,10 @@
 local ____lualib = require("lualib_bundle")
 local __TS__Class = ____lualib.__TS__Class
 local __TS__New = ____lualib.__TS__New
+local __TS__ArrayForEach = ____lualib.__TS__ArrayForEach
 local __TS__Decorate = ____lualib.__TS__Decorate
 local __TS__SourceMapTraceBack = ____lualib.__TS__SourceMapTraceBack
-__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["8"] = 1,["9"] = 1,["10"] = 2,["11"] = 2,["12"] = 3,["13"] = 3,["14"] = 4,["15"] = 4,["16"] = 5,["17"] = 5,["18"] = 7,["19"] = 7,["20"] = 15,["21"] = 16,["22"] = 15,["24"] = 17,["25"] = 40,["26"] = 41,["27"] = 39,["28"] = 18,["29"] = 19,["30"] = 20,["31"] = 21,["32"] = 22,["33"] = 23,["34"] = 28,["35"] = 18,["36"] = 35,["37"] = 36,["38"] = 35,["39"] = 43,["40"] = 44,["41"] = 44,["42"] = 46,["43"] = 47,["44"] = 51,["45"] = 44,["46"] = 44,["47"] = 44,["48"] = 56,["49"] = 56,["50"] = 56,["51"] = 56,["52"] = 56,["53"] = 62,["54"] = 62,["55"] = 62,["56"] = 63,["57"] = 64,["58"] = 62,["59"] = 62,["60"] = 67,["61"] = 68,["62"] = 69,["63"] = 70,["64"] = 71,["65"] = 43,["66"] = 75,["67"] = 76,["68"] = 77,["69"] = 79,["70"] = 84,["73"] = 75,["74"] = 88,["75"] = 89,["76"] = 90,["77"] = 91,["78"] = 92,["79"] = 93,["80"] = 94,["81"] = 95,["82"] = 96,["83"] = 97,["84"] = 99,["85"] = 100,["86"] = 102,["87"] = 102,["88"] = 102,["89"] = 102,["90"] = 88,["91"] = 105,["92"] = 105,["93"] = 15,["94"] = 16});
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["9"] = 1,["10"] = 1,["11"] = 2,["12"] = 2,["13"] = 3,["14"] = 3,["15"] = 4,["16"] = 4,["17"] = 5,["18"] = 5,["19"] = 7,["20"] = 7,["21"] = 15,["22"] = 16,["23"] = 15,["25"] = 17,["26"] = 40,["27"] = 41,["28"] = 39,["29"] = 18,["30"] = 19,["31"] = 20,["32"] = 21,["33"] = 22,["34"] = 23,["35"] = 28,["36"] = 18,["37"] = 35,["38"] = 36,["39"] = 35,["40"] = 43,["41"] = 44,["42"] = 44,["43"] = 46,["44"] = 47,["45"] = 51,["46"] = 44,["47"] = 44,["48"] = 44,["49"] = 56,["50"] = 56,["51"] = 56,["52"] = 56,["53"] = 56,["54"] = 62,["55"] = 63,["56"] = 63,["57"] = 63,["58"] = 63,["59"] = 63,["60"] = 63,["61"] = 69,["62"] = 69,["63"] = 69,["64"] = 69,["65"] = 71,["66"] = 71,["67"] = 71,["68"] = 72,["69"] = 73,["70"] = 73,["71"] = 73,["72"] = 73,["73"] = 74,["74"] = 71,["75"] = 71,["76"] = 43,["77"] = 78,["78"] = 79,["79"] = 80,["80"] = 82,["81"] = 87,["84"] = 78,["85"] = 91,["86"] = 92,["87"] = 93,["88"] = 94,["89"] = 95,["90"] = 96,["91"] = 97,["92"] = 98,["93"] = 99,["94"] = 100,["95"] = 102,["96"] = 103,["97"] = 105,["98"] = 105,["99"] = 105,["100"] = 105,["101"] = 91,["102"] = 108,["103"] = 108,["104"] = 15,["105"] = 16});
 local ____exports = {}
 local ____Api = require("core.api.Api")
 local API = ____Api.API
@@ -50,18 +51,28 @@ function GameMode.prototype.eventHandling(self)
         function(____, event) return self:onNPCSpawned(event) end,
         self.context
     )
+    __TS__New(API):listenEvents()
+    local games = {
+        __TS__New(Lasthit1V1),
+        __TS__New(AimCommon),
+        __TS__New(AimVector),
+        __TS__New(MantaDodge)
+    }
+    __TS__ArrayForEach(
+        games,
+        function(____, game) return game:listenEvents() end
+    )
     CustomGameEventManager:RegisterListener(
         "heroes.restart",
         function()
             print("[SERVER] heroes.restart")
+            __TS__ArrayForEach(
+                games,
+                function(____, game) return game:finish() end
+            )
             GameRules:ResetToHeroSelection()
         end
     )
-    __TS__New(API):listenEvents()
-    __TS__New(Lasthit1V1):listenEvents()
-    __TS__New(AimCommon):listenEvents()
-    __TS__New(AimVector):listenEvents()
-    __TS__New(MantaDodge):listenEvents()
 end
 function GameMode.prototype.onNPCSpawned(self, event)
     local npc = EntIndexToHScript(event.entindex)

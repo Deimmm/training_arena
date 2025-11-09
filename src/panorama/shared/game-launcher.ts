@@ -12,10 +12,13 @@ class GameLauncher {
         if (Players.GetLocalPlayer() !== playerId) {
           return;
         }
-        if (!games.includes(game)) {
-          return;
+
+        if (game === "ACTIVE") {
+          ClientEventBus.emit(`game_finish.${this.launchedGame}`, { playerId });
+        } else {
+          ClientEventBus.emit(`game_finish.${game}`, { playerId });
         }
-        ClientEventBus.emit(`game_finish.${game}`, { playerId });
+
         this.launchedGame = null;
       },
     );
@@ -25,9 +28,6 @@ class GameLauncher {
         const { playerId, game } = event;
         $.Msg(event);
         if (Players.GetLocalPlayer() !== playerId) {
-          return;
-        }
-        if (!games.includes(game)) {
           return;
         }
 
