@@ -57,6 +57,7 @@ class ONE_V_ONELasthitPageComponent extends PageComponent {
         "game_finish.1v1",
         {},
       );
+      $("#ResultBoard").visible = false;
     });
 
     GameEvents.Subscribe("game_launch.1v1.success", (event) => {

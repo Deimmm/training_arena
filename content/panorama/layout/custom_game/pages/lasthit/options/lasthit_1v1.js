@@ -33,6 +33,7 @@ class ONE_V_ONELasthitPageComponent extends PageComponent {
         GameEvents.Subscribe("game_finish.1v1", (event) => {
             $.Msg(ONE_V_ONELasthitPageComponent.name, "game_finish.1v1", event);
             GameEvents.SendCustomGameEventToServer("game_finish.1v1", {});
+            $("#ResultBoard").visible = false;
         });
         GameEvents.Subscribe("game_launch.1v1.success", (event) => {
             $.Msg("game_launch.1v1.success", event);

@@ -190,7 +190,13 @@
                     <Panel class="LaunchButton" onactivate="ClientEventBus.emit('game_launch', {game: 'manta_dodge', player: Players.GetLocalPlayer() });">
                         <Label class="ButtonText" text="START"/>
                     </Panel>
-                    <Panel id="MultitaskFinishButton" class="FinishButton" onactivate="ClientEventBus.emit('game_finish.manta_dodge');">
+                    <Panel class="ButtonContainerSmall" onactivate="ClientEventBus.emit('manta.select_all', { player: Players.GetLocalPlayer() });">
+                        <Label class="ButtonText" text="Select All"/>
+                    </Panel>
+                    <Panel class="ButtonContainerSmall" onactivate="ClientEventBus.emit('manta.unselect_all', { player: Players.GetLocalPlayer() });">
+                        <Label class="ButtonText" text="Unselect All"/>
+                    </Panel>
+                    <Panel id="MultitaskFinishButton" class="FinishButton" onactivate="ClientEventBus.emit('game_finish', {game: 'manta_dodge', player: Players.GetLocalPlayer() });">
                         <Label class="ButtonText" text="FINISH"/>
                     </Panel>
                 </Panel>

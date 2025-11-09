@@ -1,9 +1,24 @@
 const games = ["aim_common", "1v1", "aim_vector", "multitask", "manta_dodge"];
 class GameLauncher {
-  launchedGame?: string;
+  launchedGame?: string | null;
   constructor() {}
 
   listenEvents() {
+    GameEvents.Subscribe<any>(
+      "game_finish",
+      (event: { game: string; playerId: PlayerID }) => {
+        const { playerId, game } = event;
+        $.Msg(event);
+        if (Players.GetLocalPlayer() !== playerId) {
+          return;
+        }
+        if (!games.includes(game)) {
+          return;
+        }
+        ClientEventBus.emit(`game_finish.${game}`, { playerId });
+        this.launchedGame = null;
+      },
+    );
     GameEvents.Subscribe<any>(
       "game_launch",
       (event: { game: string; playerId: PlayerID }) => {
@@ -28,6 +43,7 @@ class GameLauncher {
             });
             this.awaitedFinish(`game_finish.${this.launchedGame}.success`).then(
               (eventId) => {
+                $.Msg(`game_finish.${this.launchedGame}.success`);
                 GameEvents.Unsubscribe(eventId as GameEventListenerID);
                 ClientEventBus.emit(`game_launch.${game}`, { playerId });
               },

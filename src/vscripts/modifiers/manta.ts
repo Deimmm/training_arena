@@ -1,7 +1,15 @@
 import { BaseModifier, registerModifier } from "../lib/dota_ts_adapter";
+import { empty_debuff } from "./empty_debuff";
 
 @registerModifier()
 export class manta_modifier extends BaseModifier {
+  private special_abilities: string[] = [
+    "axe_berserkers_call",
+    "dark_willow_terrorize",
+    "warlock_rain_of_chaos",
+  ];
+
+  private index = 0;
   DeclareFunctions() {
     return [
       ModifierFunction.STATUS_RESISTANCE,
@@ -26,14 +34,32 @@ export class manta_modifier extends BaseModifier {
     return 80;
   }
 
-  OnModifierAdded(event: any): void {
+  OnModifierAdded(event: ModifierAddedEvent): void {
     if (!IsServer()) return;
     const parent = this.GetParent();
-    if (!event || event.unit !== parent) return;
+    const ability = event.added_buff.GetAbility();
 
+    if (!event || event.unit !== parent || !ability) return;
+    const ability_name = ability.GetDebugName();
     const added = event.added_buff as CDOTA_Buff | undefined;
-    if (!added || !added.IsDebuff()) return;
-
-    print(`[DODGE_TRAINING] HIT BY SPELL}`);
+    const added_name = added.GetName();
+    if (
+      added_name === empty_debuff.name ||
+      this.special_abilities.includes(ability_name)
+    ) {
+      print(`[DODGE_TRAINING] HIT BY SPELL}`);
+      const time = LocalTime();
+      GameRules.GetTimeOfDay();
+      const index = this.index;
+      this.index += 1;
+      const hours = time.Hours;
+      const min = time.Minutes;
+      const sec = time.Seconds;
+      GameRules.SendCustomMessage(
+        `[${index}]<b> You didn't dodge ${ability_name} :( </b>`,
+        0,
+        1,
+      );
+    }
   }
 }

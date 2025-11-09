@@ -23,9 +23,8 @@ interface CastAbility {
   ) => void;
 }
 export class MantaDodge extends GameBase {
-  private readonly pid: number = Math.floor(Math.random() * 10000);
+  private activePid: number;
   private unsubs: (() => void)[] = [];
-  private isRunning: boolean = false;
 
   private heroBox: Geometry;
   private heroPreviousState: { attack_capability: UnitAttackCapability } = {
@@ -51,6 +50,7 @@ export class MantaDodge extends GameBase {
       hero: "npc_dota_hero_windrunner",
       ability_name: "windrunner_powershot",
       useBlink: false,
+      processor: (caster, ability) => this.wrPowershot(caster, ability),
     },
     {
       hero: "npc_dota_hero_dark_willow",
@@ -104,6 +104,7 @@ export class MantaDodge extends GameBase {
       hero: "npc_dota_hero_ringmaster",
       ability_name: "ringmaster_tame_the_beasts",
       useBlink: false,
+      processor: (caster, ability) => this.ringMasterTame(caster, ability),
     },
     {
       hero: "npc_dota_hero_rattletrap",
@@ -114,6 +115,8 @@ export class MantaDodge extends GameBase {
       hero: "npc_dota_hero_primal_beast",
       ability_name: "primal_beast_rock_throw",
       useBlink: false,
+      processor: (caster, ability, config) =>
+        this.primalRockThrow(caster, ability, config),
     },
     {
       hero: "npc_dota_hero_obsidian_destroyer",
@@ -153,6 +156,8 @@ export class MantaDodge extends GameBase {
       hero: "npc_dota_hero_leshrac",
       ability_name: "leshrac_split_earth",
       useBlink: false,
+      processor: (caster, ability, config) =>
+        this.leshracStun(caster, ability, config),
     },
     {
       hero: "npc_dota_hero_huskar",
@@ -215,7 +220,8 @@ export class MantaDodge extends GameBase {
   }
 
   public launch(options: LaunchOptions) {
-    this.isRunning = true;
+    const pid = Math.floor(Math.random() * 10000);
+    this.activePid = pid;
     this.moveHero(this.controller);
     this.setupHero();
     const spells = this.spells.filter((elem) =>
@@ -234,8 +240,8 @@ export class MantaDodge extends GameBase {
           if (heroes.every((hero) => cache.includes(hero))) {
             Timers.CreateTimer(1, () => {
               print("MANTA DODGE CACHE FINISH!!!");
-              if (this.isRunning) {
-                this.trigerrSpellCast(spells);
+              if (this.activePid === pid) {
+                this.trigerrSpellCast(spells, pid);
               }
             });
           }
@@ -245,9 +251,8 @@ export class MantaDodge extends GameBase {
 
     this.unsubs.push(
       eventBus.on("manta_dodge.cast_spell_finish", () => {
-        print(this.pid, "FINISHED SPELL CAST");
-        if (this.isRunning) {
-          this.trigerrSpellCast(spells);
+        if (this.activePid === pid) {
+          this.trigerrSpellCast(spells, pid);
         }
       }),
     );
@@ -259,8 +264,11 @@ export class MantaDodge extends GameBase {
           const ent = EntIndexToHScript(event.caster_entindex) as CDOTA_BaseNPC;
           if (ent) {
             Timers.CreateTimer(1, () => ent.Destroy());
-            Timers.CreateTimer(1.5, () =>
-              eventBus.emit("manta_dodge.cast_spell_finish", null),
+            Timers.CreateTimer(
+              1.5,
+              () =>
+                this.activePid === pid &&
+                eventBus.emit("manta_dodge.cast_spell_finish", null),
             );
           }
         },
@@ -285,8 +293,11 @@ export class MantaDodge extends GameBase {
           }
           if (ent) {
             Timers.CreateTimer(1, () => ent.Destroy());
-            Timers.CreateTimer(1.5, () =>
-              eventBus.emit("manta_dodge.cast_spell_finish", null),
+            Timers.CreateTimer(
+              1.5,
+              () =>
+                this.activePid === pid &&
+                eventBus.emit("manta_dodge.cast_spell_finish", null),
             );
           }
         },
@@ -311,7 +322,7 @@ export class MantaDodge extends GameBase {
   }
 
   public finish() {
-    this.isRunning = false;
+    this.activePid = null;
     const listeners = this.listeners;
     if (listeners.length > 0) {
       listeners.forEach((listener) =>
@@ -343,6 +354,7 @@ export class MantaDodge extends GameBase {
         e.Destroy();
       }
     });
+    this.heroBox.destroyBox();
     this.resetHero();
     this.returnHero();
     this.listenEvents();
@@ -351,13 +363,14 @@ export class MantaDodge extends GameBase {
   public relaunch(options: LaunchOptions) {
     this.finish();
     this.launch(options);
+    // Timers.CreateTimer(0, () => this.launch(options));
   }
 
   public preCacheHeroes(heroes: string[]) {
     heroes.forEach((hero) => {
       PrecacheUnitByNameAsync(hero, () => {
         eventBus.emit("manta_dodge.cache_finish", { hero });
-        print("PRECACHE FINISH ", hero);
+        GameRules.SendCustomMessage(`<i> Loading ${hero} </i>`, 0, 1);
       });
     });
   }
@@ -366,14 +379,14 @@ export class MantaDodge extends GameBase {
    * <<--- SPELLS --->>
    */
 
-  private trigerrSpellCast(spells: CastAbility[]) {
+  private trigerrSpellCast(spells: CastAbility[], pid: number) {
+    if (this.activePid !== pid) {
+      return;
+    }
     const index = Math.floor(Math.random() * spells.length);
     this.castSpell(spells[index]);
   }
   private castSpell(config: CastAbility) {
-    if (!this.isRunning) {
-      return;
-    }
     const hero = CreateUnitByName(
       config.hero,
       Vector(),
@@ -561,7 +574,77 @@ export class MantaDodge extends GameBase {
       // });
     });
   }
+  ringMasterTame(caster: CDOTA_BaseNPC_Hero, ability: CDOTABaseAbility) {
+    ExecuteOrderFromTable({
+      OrderType: UnitOrder.CAST_POSITION,
+      UnitIndex: caster.GetEntityIndex(),
+      AbilityIndex: ability.GetEntityIndex(),
+      Position: this.controller.GetAssignedHero().GetAbsOrigin(),
+      Queue: true,
+    });
+    const cast_time = ability.GetChannelTime();
+    const randomTime = Utils.randomInt(0.5, 0.5 + cast_time, 0.15);
+    Timers.CreateTimer(randomTime, () => {
+      ExecuteOrderFromTable({
+        OrderType: UnitOrder.STOP,
+        UnitIndex: caster.GetEntityIndex(),
+        AbilityIndex: ability.GetEntityIndex(),
+        Position: this.controller.GetAssignedHero().GetAbsOrigin(),
+      });
+    });
+  }
+  wrPowershot(caster: CDOTA_BaseNPC_Hero, ability: CDOTABaseAbility) {
+    ExecuteOrderFromTable({
+      OrderType: UnitOrder.CAST_POSITION,
+      UnitIndex: caster.GetEntityIndex(),
+      AbilityIndex: ability.GetEntityIndex(),
+      Position: this.controller.GetAssignedHero().GetAbsOrigin(),
+      Queue: true,
+    });
+    const cast_time = ability.GetChannelTime();
+    const randomTime = Utils.randomInt(0.75, 0.75 + cast_time, 0.15);
+    Timers.CreateTimer(randomTime, () => {
+      ExecuteOrderFromTable({
+        OrderType: UnitOrder.STOP,
+        UnitIndex: caster.GetEntityIndex(),
+        AbilityIndex: ability.GetEntityIndex(),
+        Position: this.controller.GetAssignedHero().GetAbsOrigin(),
+      });
+    });
+  }
+  leshracStun(
+    caster: CDOTA_BaseNPC_Hero,
+    ability: CDOTABaseAbility,
+    config: CastAbility,
+  ) {
+    ability.SetLevel(4);
 
+    ExecuteOrderFromTable({
+      OrderType: UnitOrder.CAST_POSITION,
+      UnitIndex: caster.GetEntityIndex(),
+      AbilityIndex: ability.GetEntityIndex(),
+      Position: this.controller.GetAssignedHero().GetAbsOrigin(),
+      Queue: true,
+    });
+  }
+
+  primalRockThrow(
+    caster: CDOTA_BaseNPC_Hero,
+    ability: CDOTABaseAbility,
+    config: CastAbility,
+  ) {
+    caster.AddItemByName("item_aghanims_shard");
+    const randomTime = Utils.randomInt(0.5, 1, 0.1);
+    Timers.CreateTimer(randomTime, () => {
+      ExecuteOrderFromTable({
+        OrderType: UnitOrder.CAST_POSITION,
+        UnitIndex: caster.GetEntityIndex(),
+        AbilityIndex: ability.GetEntityIndex(),
+        Position: this.controller.GetAssignedHero().GetAbsOrigin(),
+        Queue: true,
+      });
+    });
+  }
   pangoShieldCrush(
     caster: CDOTA_BaseNPC_Hero,
     ability: CDOTABaseAbility,

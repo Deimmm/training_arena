@@ -3,19 +3,17 @@ import { BaseModifier, registerModifier } from "lib/dota_ts_adapter";
 @registerModifier()
 export class empty_debuff_applier extends BaseModifier {
   DeclareFunctions() {
-    return [ModifierFunction.ON_DAMAGE_CALCULATED];
+    return [ModifierFunction.ON_TAKEDAMAGE];
   }
 
-  OnDamageCalculated(event: ModifierAttackEvent): void {
-    DeepPrintTable(event);
+  OnTakeDamage(event: ModifierInstanceEvent): void {
     if (!IsServer()) return;
 
     const parent = this.GetParent();
-
-    if (event.attacker !== parent) return;
+    if (event.attacker.GetName() !== parent.GetName()) return;
 
     const duration = 1;
-    parent.AddNewModifier(parent, this.GetAbility(), "modifier_user_debuff", {
+    event.unit.AddNewModifier(parent, event.inflictor, empty_debuff.name, {
       duration,
     });
   }
@@ -26,12 +24,7 @@ export class empty_debuff extends BaseModifier {
   IsPurgable() {
     return true;
   }
-
-  DeclareFunctions() {
-    return [ModifierFunction.MOVESPEED_BONUS_PERCENTAGE];
-  }
-
-  GetModifierMoveSpeedBonus_Percentage() {
-    return 0;
+  IsDebuff(): boolean {
+    return true;
   }
 }

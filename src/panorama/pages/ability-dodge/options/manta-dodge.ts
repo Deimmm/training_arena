@@ -19,10 +19,6 @@ var SPELLS: Spell[] = [
     ability_name: "dark_willow_terrorize",
   },
   {
-    hero: "npc_dota_hero_phoenix",
-    ability_name: "phoenix_supernova",
-  },
-  {
     hero: "npc_dota_hero_zuus",
     ability_name: "zuus_thundergods_wrath",
   },
@@ -89,10 +85,6 @@ var SPELLS: Spell[] = [
   {
     hero: "npc_dota_hero_dragon_knight",
     ability_name: "dragon_knight_dragon_tail",
-  },
-  {
-    hero: "npc_dota_hero_disruptor",
-    ability_name: "disruptor_glimpse",
   },
   {
     hero: "npc_dota_hero_chaos_knight",
@@ -172,6 +164,52 @@ class MantaDodgePageComponent extends PageComponent {
   }
 
   eventBus() {
+    GameEvents.Subscribe<{ player: PlayerID }>("manta.select_all", (event) => {
+      if (event.player !== Players.GetLocalPlayer()) {
+        return;
+      }
+      const grid = $("#AbilityGrid");
+      if (!grid) {
+        return;
+      }
+      const childrenCount = grid.GetChildCount();
+      $.Msg(childrenCount);
+      for (let i = 0; i < childrenCount; i++) {
+        const child = grid.GetChild(i);
+        if (child) {
+          child.AddClass("AbilityCardSelected");
+          child.SetAttributeInt("checked", 1);
+        }
+      }
+      this.form = SPELLS.reduce((acc: Record<string, string>, elem) => {
+        acc[elem.ability_name] = elem.ability_name;
+        return acc;
+      }, {});
+    });
+
+    GameEvents.Subscribe<{ player: PlayerID }>(
+      "manta.unselect_all",
+      (event) => {
+        if (event.player !== Players.GetLocalPlayer()) {
+          return;
+        }
+        this.form = {};
+        const grid = $("#AbilityGrid");
+        if (!grid) {
+          return;
+        }
+
+        const childrenCount = grid.GetChildCount();
+        for (let i = 0; i < childrenCount; i++) {
+          const child = grid.GetChild(i);
+          if (child) {
+            child.RemoveClass("AbilityCardSelected");
+            child.SetAttributeInt("checked", 0);
+          }
+        }
+      },
+    );
+
     GameEvents.Subscribe("game_launch.manta_dodge", (event) => {
       $.Msg("game_launch.manta_dodge", event);
       let spells = Object.entries(this.form).map((e) => e[1]);
@@ -198,7 +236,7 @@ class MantaDodgePageComponent extends PageComponent {
     });
 
     GameEvents.Subscribe("game_finish.manta_dodge", (event) => {
-      $.Msg(AbilityDodgePage.name, "game_finish.manta_dodge", event);
+      $.Msg(AbilityDodgePage.name, " game_finish.manta_dodge", event);
       GameEvents.SendCustomGameEventToServer<any>(
         "game_finish.manta_dodge",
         {},
@@ -221,7 +259,7 @@ class MantaDodgePageComponent extends PageComponent {
         "open-menu",
         { playerId: Players.GetLocalPlayer() },
       );
-      $("#MultitaskFinishButton").visible = true;
+      $("#MultitaskFinishButton").visible = false;
     });
   }
 }
