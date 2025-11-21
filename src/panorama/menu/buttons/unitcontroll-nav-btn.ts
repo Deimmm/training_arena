@@ -1,0 +1,1 @@
+class UnitControllNavButton extends ButtonComponent {}

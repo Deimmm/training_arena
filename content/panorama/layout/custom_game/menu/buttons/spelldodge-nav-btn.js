@@ -1,0 +1,2 @@
+class SpellDodgeNavButton extends ButtonComponent {
+}

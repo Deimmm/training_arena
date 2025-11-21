@@ -1,0 +1,214 @@
+<root>
+    <scripts>
+        <include src="file://{resources}/layout/custom_game/shared/logger.js"/>
+        <include src="file://{resources}/layout/custom_game/shared/game-launcher.js"/>
+        <include src="file://{resources}/layout/custom_game/shared/button.js"/>
+        <include src="file://{resources}/layout/custom_game/shared/page.js"/>
+        <include src="file://{resources}/layout/custom_game/shared/table.js"/>
+        <include src="file://{resources}/layout/custom_game/menu/buttons/aim-nav-btn.js"/>
+        <include src="file://{resources}/layout/custom_game/menu/buttons/lasthit-nav-btn.js"/>
+        <include src="file://{resources}/layout/custom_game/menu/buttons/multitask-nav-btn.js"/>
+        <include src="file://{resources}/layout/custom_game/menu/buttons/ability-dodge-nav-btn.js"/>
+        <include src="file://{resources}/layout/custom_game/menu/buttons/unitcontroll-nav-btn.js"/>
+        <include src="file://{resources}/layout/custom_game/menu/buttons/heroeschoise-nav-btn.js"/>
+        <include src="file://{resources}/layout/custom_game/pages/lasthit/options/lasthit_solo.js"/>
+        <include src="file://{resources}/layout/custom_game/pages/lasthit/options/lasthit_1v1.js"/>
+        <include src="file://{resources}/layout/custom_game/pages/lasthit/options/lasthit_2v2.js"/>
+        <include src="file://{resources}/layout/custom_game/pages/aim/options/common_aim.js"/>
+        <include src="file://{resources}/layout/custom_game/pages/aim/options/vector_aim.js"/>
+        <include src="file://{resources}/layout/custom_game/pages/lasthit/lasthit.js"/>
+        <include src="file://{resources}/layout/custom_game/pages/aim/aim.js"/>
+        <include src="file://{resources}/layout/custom_game/pages/multitask/multitask.js"/>
+        <include src="file://{resources}/layout/custom_game/pages/ability-dodge/ability-dodge.js"/>
+        <include src="file://{resources}/layout/custom_game/pages/ability-dodge/options/manta-dodge.js"/>
+        <include src="file://{resources}/layout/custom_game/pages/page_config.js"/>
+        <include src="file://{resources}/layout/custom_game/menu/menu_config.js"/>
+        <include src="file://{resources}/layout/custom_game/menu/menu.js"/>
+    </scripts>
+    <styles>
+        <include src="file://{resources}/layout/custom_game/menu/menu.css"/>
+    </styles>
+    <snippets>
+        <snippet name="Menu">
+            <Panel class="MenuRoot">
+                <Panel id="MenuRoot" class="MenuRoot2">
+                    <Panel id="ShowHideBtn"></Panel>
+                    <Panel class='MenuContainer' id="MenuContainer">
+                        <Panel class='SideNav' id="SideNav">
+                        </Panel>
+                        <Panel class="PageContentContainer" id="PageContainer"></Panel>
+                    </Panel>
+                </Panel>
+                <Panel class="Timer">
+                    <Label  id="Timer"/>
+                </Panel>
+                <Panel id="ResultBoard" class="ResultBoard" visible="false">
+                    <Label id="Result1"/>
+                    <Label id="Result2"  />
+                    <Label id="Result3"  />
+                    <Label id="Result4"  />
+                    <Label id="Result5"  />
+                    <Label id="Result6"  />
+                </Panel>
+            </Panel>
+        </snippet>
+        <snippet name="ShowHideButton">
+            <Panel class="ShowHideButton" onactivate="$('#Menu')">
+                <Label class="ButtonText" id="ShowHide" text="HIDE"/>
+            </Panel>
+        </snippet>
+        <snippet name="HeroesButton">
+            <Panel class="HeroesButtonContainer" >
+                <Label class="ButtonText" text="Placeholder"/>
+            </Panel>
+        </snippet>
+        <snippet name="NavButton">
+            <Panel class="ButtonContainer" >
+                <Label class="ButtonText" text="Placeholder"/>
+            </Panel>
+        </snippet>
+        <snippet name="Option">
+            <Panel class="Option">
+                <Label class="ButtonText" text="Placeholder"/>
+            </Panel>
+        </snippet>
+        <snippet name="LasthitPage">
+            <Panel class="PageContainer" id ="LasthitPage">
+                <Panel class="PageOptions" id ="PageOptions">
+                </Panel>
+                <Panel class="PageContent"  id ="PageContent">
+                </Panel>
+            </Panel>
+        </snippet>
+        <snippet name="Solo">
+            <Panel class="SelectedOptionContainer" id ="SoloOption">
+                <Label  class="ButtonText" text="Work in progress"/>
+            </Panel>
+        </snippet>
+        <snippet name="1V1">
+            <Panel class="SelectedOptionContainer" id ="1V1Option">
+                <Panel class="Form" id="1V1Form">
+                    <Label class="FormOptionTitle" text="Sniper Bot"/>
+                    <Panel class="RadioBtnGroup">
+                        <RadioButton group="IsSniperEnabled" selectionpos="auto" id="SniperEnable" text="Enable" class="RadioBtn" onactivate="ClientEventBus.emit('form.1v1.isSniper', {isSniper: true})" />
+                        <RadioButton group="IsSniperEnabled" selectionpos="auto" id="SniperDisable" text="Disable" class="RadioBtn"  onactivate="ClientEventBus.emit('form.1v1.isSniper', {isSniper: false})" />
+                    </Panel>
+                    <Label class="FormOptionTitle" text="Choose Terrain"/>
+                    <Panel class="RadioBtnGroup">
+                        <RadioButton checked="checked" group="Terrain" selectionpos="auto" id="TerrainPlain" text="Plain" class="RadioBtn" onactivate="ClientEventBus.emit('form.1v1.terrain', {terrain: 'plain'})" />
+                        <RadioButton group="Terrain" selectionpos="auto" id="TerrainRiver" text="River" class="RadioBtn"  onactivate="ClientEventBus.emit('form.1v1.terrain', {terrain: 'river'})" />
+                    </Panel>
+                </Panel>
+                <Panel class="ButtonPanel">
+                    <Panel class="LaunchButton" onactivate="ClientEventBus.emit('game_launch', {game: '1v1', player: Players.GetLocalPlayer() });">
+                        <Label class="ButtonText" text="START"/>
+                    </Panel>
+                    <Panel id="1V1FinishButton" class="FinishButton" onactivate="ClientEventBus.emit('game_finish.1v1');">
+                        <Label class="ButtonText" text="FINISH"/>
+                    </Panel>
+                </Panel>
+            </Panel>
+        </snippet>
+        <snippet name="2V2">
+            <Panel class="SelectedOptionContainer" id ="1V1Option" >
+                <Label  class="ButtonText" text="Work in progress"/>
+            </Panel>
+        </snippet>
+        <snippet name="AimPage">
+            <Panel class="PageContainer" id ="LasthitPage">
+                <Panel class="PageOptions" id ="PageOptions">
+                </Panel>
+                <Panel class="PageContent" id ="PageContent">
+                </Panel>
+            </Panel>
+        </snippet>
+        <snippet name="CommonAIM">
+            <Panel class="SelectedOptionContainer" id ="CommonAIM" >
+                <Panel id="LeaderbordTable" class="TableContainer">
+                    <Panel id="TableHeader" class="TableHeader">
+                    </Panel>
+                    <Panel id="TableBody" class="TableBody"></Panel>
+                </Panel>
+                <Panel class="ButtonPanel">
+                    <Panel class="LaunchButton" onactivate="ClientEventBus.emit('game_launch', {game: 'aim_common', player: Players.GetLocalPlayer() });">
+                        <Label class="ButtonText" text="START"/>
+                    </Panel>
+                    <Panel id="CommonAimFinishButton" class="FinishButton" onactivate="ClientEventBus.emit('game_finish.aim_common');">
+                        <Label class="ButtonText" text="FINISH"/>
+                    </Panel>
+                </Panel>
+            </Panel>
+        </snippet>
+        <snippet name="VectorAIM">
+            <Panel class="SelectedOptionContainer" id ="VectorAIM" >
+                <Panel id="LeaderbordTable" class="TableContainer">
+                    <Panel id="TableHeader" class="TableHeader">
+                    </Panel>
+                    <Panel id="TableBody" class="TableBody"></Panel>
+                </Panel>
+                <Panel class="ButtonPanel">
+                    <Panel class="LaunchButton" onactivate="ClientEventBus.emit('game_launch', {game: 'aim_vector', player: Players.GetLocalPlayer() });">
+                        <Label class="ButtonText" text="START"/>
+                    </Panel>
+                    <Panel id="CommonAimFinishButton" class="FinishButton" onactivate="ClientEventBus.emit('game_finish.aim_vector');">
+                        <Label class="ButtonText" text="FINISH"/>
+                    </Panel>
+                </Panel>
+            </Panel>
+        </snippet>
+        <snippet name="MultitaskPage">
+            <Panel class="PageContainer" id ="MultitaskPage">
+                <Panel class="PageOptions" id ="PageOptions">
+                </Panel>
+                <Panel class="PageContent" id ="PageContent">
+                    <Label text="Placeholder"/>
+                    <Panel class="ButtonPanel">
+                        <Panel class="LaunchButton" onactivate="ClientEventBus.emit('game_launch', {game: 'multitask', player: Players.GetLocalPlayer() });">
+                            <Label class="ButtonText" text="START"/>
+                        </Panel>
+                        <Panel id="MultitaskFinishButton" class="FinishButton" onactivate="ClientEventBus.emit('game_finish.multitask');">
+                            <Label class="ButtonText" text="FINISH"/>
+                        </Panel>
+                    </Panel>
+                </Panel>
+            </Panel>
+        </snippet>
+        <snippet name="AbilityDodgePage">
+            <Panel class="PageContainer" id ="AbilityDodgePage">
+                <Panel class="PageOptions" id ="PageOptions">
+                </Panel>
+                <Panel class="PageContent" id ="PageContent">
+
+                </Panel>
+            </Panel>
+        </snippet>
+        <snippet name="MantaDodgePage">
+            <Panel class="PageContainer" id ="MantaDodgePage">
+                <Panel class="AbilityGrid" id="AbilityGrid">
+                </Panel>
+                <Panel class="ButtonPanel">
+                    <Panel class="LaunchButton" onactivate="ClientEventBus.emit('game_launch', {game: 'manta_dodge', player: Players.GetLocalPlayer() });">
+                        <Label class="ButtonText" text="START"/>
+                    </Panel>
+                    <Panel class="ButtonContainerSmall" onactivate="ClientEventBus.emit('manta.select_all', { player: Players.GetLocalPlayer() });">
+                        <Label class="ButtonText" text="Select All"/>
+                    </Panel>
+                    <Panel class="ButtonContainerSmall" onactivate="ClientEventBus.emit('manta.unselect_all', { player: Players.GetLocalPlayer() });">
+                        <Label class="ButtonText" text="Unselect All"/>
+                    </Panel>
+                    <Panel id="MultitaskFinishButton" class="FinishButton" onactivate="ClientEventBus.emit('game_finish', {game: 'manta_dodge', player: Players.GetLocalPlayer() });">
+                        <Label class="ButtonText" text="FINISH"/>
+                    </Panel>
+                </Panel>
+            </Panel>
+        </snippet>
+        <snippet name="AbilityCard">
+            <Panel>
+                <DOTAAbilityImage/>
+            </Panel>
+        </snippet>
+    </snippets>
+    <Panel class="MenuRoot">
+        <Panel id="MENU_SNIPPET"></Panel>
+    </Panel>
+</root>

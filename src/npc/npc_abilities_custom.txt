@@ -1,0 +1,21 @@
+"DOTAAbilities"
+{
+    "Version"    "1"
+
+    "custom_deadshot"
+    {
+        "BaseClass" "ability_lua"
+        "ScriptFile" "abilities/deadshot"
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_VECTOR_TARGETING | DOTA_ABILITY_BEHAVIOR_DIRECTIONAL"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+        "AbilityUnitTargetType" " DOTA_UNIT_TARGET_TREE"
+        "AbilityCooldown" "0.5"
+        "AbilityManaCost" "0"
+        "AbilityCastRange" "2000"
+
+        "AbilityVectorTargetRange" "2000"        
+        "AbilityVectorTargetStartRadius" "100"    
+        "AbilityVectorTargetEndRadius" "100"    
+        "AbilityVectorTargeting"           "1"  
+    }
+}

@@ -1,0 +1,59 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	sheep = 
+	{
+		type = "dota_update_default"
+		vsnd_files = 
+		[
+			"sounds/ambient/sheep.vsnd",
+		]
+		volume = "3"
+		distance_max = "5000"
+		sound_replace_existing = "1"
+        channel = "STATIC"
+	}
+	pig = 
+	{
+		type = "dota_update_default"
+		vsnd_files = 
+		[
+			"sounds/ambient/pig.vsnd",
+		]
+		volume = "3"
+		distance_max = "5000"
+		sound_replace_existing = "1"
+        channel = "STATIC"
+	}
+	frog = 
+	{
+		type = "dota_update_default"
+		vsnd_files = 
+		[
+			"sounds/ambient/frog.vsnd",
+		]
+		volume = "3"
+		distance_max = "5000"
+		sound_replace_existing = "1"
+        channel = "STATIC"
+	}
+		sproing = 
+	{
+		type = "dota_update_default"
+		vsnd_files = 
+		[
+			"sounds/misc/soundboard/sproing.vsnd",
+		]
+		volume = "3"
+		distance_max = "5000"
+	}
+	drums = 
+	{
+		type = "dota_update_default"
+		vsnd_files = 
+		[
+			"sounds/misc/soundboard/drum_roll.vsnd",
+		]
+		volume = "3"
+		distance_max = "5000"
+	}
+}

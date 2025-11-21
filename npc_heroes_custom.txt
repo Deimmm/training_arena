@@ -1,0 +1,1266 @@
+"DOTAUnits"
+{
+    "npc_dota_hero_abaddon"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/abaddon"
+            "model_folder" "models/items/abaddon"
+        }
+    }
+    "npc_dota_hero_abyssal_underlord"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/abyssal_underlord"
+            "model_folder" "models/items/abyssal_underlord"
+        }
+    }
+    "npc_dota_hero_alchemist"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/alchemist"
+            "model_folder" "models/items/alchemist"
+        }
+    }
+    "npc_dota_hero_ancient_apparition"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/ancient_apparition"
+            "model_folder" "models/items/ancient_apparition"
+        }
+    }
+    "npc_dota_hero_antimage"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/antimage"
+            "model_folder" "models/items/antimage"
+        }
+    }
+    "npc_dota_hero_arc_warden"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/arc_warden"
+            "model_folder" "models/items/arc_warden"
+        }
+    }
+    "npc_dota_hero_axe"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/axe"
+            "model_folder" "models/items/axe"
+        }
+    }
+    "npc_dota_hero_bane"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/bane"
+            "model_folder" "models/items/bane"
+        }
+    }
+    "npc_dota_hero_batrider"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/batrider"
+            "model_folder" "models/items/batrider"
+        }
+    }
+    "npc_dota_hero_beastmaster"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/beastmaster"
+            "model_folder" "models/items/beastmaster"
+        }
+    }
+    "npc_dota_hero_bloodseeker"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/bloodseeker"
+            "model_folder" "models/items/bloodseeker"
+        }
+    }
+    "npc_dota_hero_bounty_hunter"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/bounty_hunter"
+            "model_folder" "models/items/bounty_hunter"
+        }
+    }
+    "npc_dota_hero_brewmaster"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/brewmaster"
+            "model_folder" "models/items/brewmaster"
+        }
+    }
+    "npc_dota_hero_bristleback"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/bristleback"
+            "model_folder" "models/items/bristleback"
+        }
+    }
+    "npc_dota_hero_broodmother"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/broodmother"
+            "model_folder" "models/items/broodmother"
+        }
+    }
+    "npc_dota_hero_centaur"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/centaur"
+            "model_folder" "models/items/centaur"
+        }
+    }
+    "npc_dota_hero_chaos_knight"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/chaos_knight"
+            "model_folder" "models/items/chaos_knight"
+        }
+    }
+    "npc_dota_hero_chen"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/chen"
+            "model_folder" "models/items/chen"
+        }
+    }
+    "npc_dota_hero_clinkz"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/clinkz"
+            "model_folder" "models/items/clinkz"
+        }
+    }
+    "npc_dota_hero_crystal_maiden"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/crystal_maiden"
+            "model_folder" "models/items/crystal_maiden"
+        }
+    }
+    "npc_dota_hero_dark_seer"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/dark_seer"
+            "model_folder" "models/items/dark_seer"
+        }
+    }
+    "npc_dota_hero_dark_willow"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/dark_willow"
+            "model_folder" "models/items/dark_willow"
+        }
+    }
+    "npc_dota_hero_dawnbreaker"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/dawnbreaker"
+            "model_folder" "models/items/dawnbreaker"
+        }
+    }
+    "npc_dota_hero_dazzle"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/dazzle"
+            "model_folder" "models/items/dazzle"
+        }
+    }
+    "npc_dota_hero_death_prophet"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/death_prophet"
+            "model_folder" "models/items/death_prophet"
+        }
+    }
+    "npc_dota_hero_disruptor"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/disruptor"
+            "model_folder" "models/items/disruptor"
+        }
+    }
+    "npc_dota_hero_doom_bringer"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/doom_bringer"
+            "model_folder" "models/items/doom_bringer"
+        }
+    }
+    "npc_dota_hero_dragon_knight"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/dragon_knight"
+            "model_folder" "models/items/dragon_knight"
+        }
+    }
+    "npc_dota_hero_drow_ranger"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/drow_ranger"
+            "model_folder" "models/items/drow_ranger"
+        }
+    }
+    "npc_dota_hero_earth_spirit"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/earth_spirit"
+            "model_folder" "models/items/earth_spirit"
+        }
+    }
+    "npc_dota_hero_earthshaker"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/earthshaker"
+            "model_folder" "models/items/earthshaker"
+        }
+    }
+    "npc_dota_hero_elder_titan"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/elder_titan"
+            "model_folder" "models/items/elder_titan"
+        }
+    }
+    "npc_dota_hero_ember_spirit"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/ember_spirit"
+            "model_folder" "models/items/ember_spirit"
+        }
+    }
+    "npc_dota_hero_enchantress"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/enchantress"
+            "model_folder" "models/items/enchantress"
+        }
+    }
+    "npc_dota_hero_enigma"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/enigma"
+            "model_folder" "models/items/enigma"
+        }
+    }
+    "npc_dota_hero_faceless_void"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/faceless_void"
+            "model_folder" "models/items/faceless_void"
+        }
+    }
+    "npc_dota_hero_furion"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/furion"
+            "model_folder" "models/items/furion"
+        }
+    }
+    "npc_dota_hero_grimstroke"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/grimstroke"
+            "model_folder" "models/items/grimstroke"
+        }
+    }
+    "npc_dota_hero_gyrocopter"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/gyrocopter"
+            "model_folder" "models/items/gyrocopter"
+        }
+    }
+    "npc_dota_hero_hoodwink"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/hoodwink"
+            "model_folder" "models/items/hoodwink"
+        }
+    }
+    "npc_dota_hero_huskar"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/huskar"
+            "model_folder" "models/items/huskar"
+        }
+    }
+    "npc_dota_hero_invoker"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/invoker"
+            "model_folder" "models/items/invoker"
+        }
+    }
+    "npc_dota_hero_jakiro"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/jakiro"
+            "model_folder" "models/items/jakiro"
+        }
+    }
+    "npc_dota_hero_juggernaut"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/juggernaut"
+            "model_folder" "models/items/juggernaut"
+        }
+    }
+    "npc_dota_hero_keeper_of_the_light"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/keeper_of_the_light"
+            "model_folder" "models/items/keeper_of_the_light"
+        }
+    }
+    "npc_dota_hero_kez"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/kez"
+            "model_folder" "models/items/kez"
+        }
+    }
+    "npc_dota_hero_kunkka"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/kunkka"
+            "model_folder" "models/items/kunkka"
+        }
+    }
+    "npc_dota_hero_legion_commander"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/legion_commander"
+            "model_folder" "models/items/legion_commander"
+        }
+    }
+    "npc_dota_hero_leshrac"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/leshrac"
+            "model_folder" "models/items/leshrac"
+        }
+    }
+    "npc_dota_hero_lich"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/lich"
+            "model_folder" "models/items/lich"
+        }
+    }
+    "npc_dota_hero_life_stealer"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/life_stealer"
+            "model_folder" "models/items/life_stealer"
+        }
+    }
+    "npc_dota_hero_lina"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/lina"
+            "model_folder" "models/items/lina"
+        }
+    }
+    "npc_dota_hero_lion"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/lion"
+            "model_folder" "models/items/lion"
+        }
+    }
+    "npc_dota_hero_lone_druid"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/lone_druid"
+            "model_folder" "models/items/lone_druid"
+        }
+    }
+    "npc_dota_hero_luna"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/luna"
+            "model_folder" "models/items/luna"
+        }
+    }
+    "npc_dota_hero_lycan"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder"     "models/heroes/lycan"
+        }
+    }
+    "npc_dota_hero_magnataur"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder"      "models/heroes/magnataur"
+        }
+    }
+    "npc_dota_hero_marci"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/marci"
+            "model_folder" "models/items/marci"
+        }
+    }
+    "npc_dota_hero_mars"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/mars"
+            "model_folder" "models/items/mars"
+        }
+    }
+    "npc_dota_hero_medusa"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/medusa"
+            "model_folder" "models/items/medusa"
+        }
+    }
+    "npc_dota_hero_meepo"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/meepo"
+            "model_folder" "models/items/meepo"
+        }
+    }
+    "npc_dota_hero_mirana"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/mirana"
+            "model_folder" "models/items/mirana"
+        }
+    }
+    "npc_dota_hero_monkey_king"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/monkey_king"
+            "model_folder" "models/items/monkey_king"
+        }
+    }
+    "npc_dota_hero_morphling"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/morphling"
+            "model_folder" "models/items/morphling"
+        }
+    }
+    "npc_dota_hero_muerta"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/muerta"
+            "model_folder" "models/items/muerta"
+        }
+    }
+    "npc_dota_hero_naga_siren"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/naga_siren"
+            "model_folder" "models/items/naga_siren"
+        }
+    }
+    "npc_dota_hero_necrolyte"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/necrolyte"
+            "model_folder" "models/items/necrolyte"
+        }
+    }
+    "npc_dota_hero_nevermore"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/nevermore"
+            "model_folder" "models/items/nevermore"
+        }
+    }
+    "npc_dota_hero_night_stalker"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/night_stalker"
+            "model_folder" "models/items/night_stalker"
+        }
+    }
+    "npc_dota_hero_nyx_assassin"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/nyx_assassin"
+            "model_folder" "models/items/nyx_assassin"
+        }
+    }
+    "npc_dota_hero_obsidian_destroyer"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/obsidian_destroyer"
+            "model_folder" "models/items/obsidian_destroyer"
+        }
+    }
+    "npc_dota_hero_ogre_magi"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/ogre_magi"
+            "model_folder" "models/items/ogre_magi"
+        }
+    }
+    "npc_dota_hero_omniknight"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/omniknight"
+            "model_folder" "models/items/omniknight"
+        }
+    }
+    "npc_dota_hero_oracle"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/oracle"
+            "model_folder" "models/items/oracle"
+        }
+    }
+    "npc_dota_hero_pangolier"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/pangolier"
+            "model_folder" "models/items/pangolier"
+        }
+    }
+    "npc_dota_hero_phantom_assassin"
+    {
+        "override_hero" "0"
+
+    }
+    "npc_dota_hero_phantom_lancer"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/phantom_lancer"
+            "model_folder" "models/items/phantom_lancer"
+        }
+    }
+    "npc_dota_hero_phoenix"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/phoenix"
+            "model_folder" "models/items/phoenix"
+        }
+    }
+    "npc_dota_hero_primal_beast"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/primal_beast"
+            "model_folder" "models/items/primal_beast"
+        }
+    }
+    "npc_dota_hero_puck"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/puck"
+            "model_folder" "models/items/puck"
+        }
+    }
+    "npc_dota_hero_pudge"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/pudge"
+            "model_folder" "models/items/pudge"
+        }
+    }
+    "npc_dota_hero_pugna"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/pugna"
+            "model_folder" "models/items/pugna"
+        }
+    }
+    "npc_dota_hero_queenofpain"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/queenofpain"
+            "model_folder" "models/items/queenofpain"
+        }
+    }
+    "npc_dota_hero_rattletrap"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/rattletrap"
+            "model_folder" "models/items/rattletrap"
+        }
+    }
+    "npc_dota_hero_razor"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/razor"
+            "model_folder" "models/items/razor"
+        }
+    }
+    "npc_dota_hero_riki"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/riki"
+            "model_folder" "models/items/riki"
+        }
+    }
+    "npc_dota_hero_ringmaster"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/ringmaster"
+            "model_folder" "models/items/ringmaster"
+        }
+    }
+    "npc_dota_hero_rubick"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/rubick"
+            "model_folder" "models/items/rubick"
+        }
+    }
+    "npc_dota_hero_sand_king"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/sand_king"
+            "model_folder" "models/items/sand_king"
+        }
+    }
+    "npc_dota_hero_shadow_demon"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/shadow_demon"
+            "model_folder" "models/items/shadow_demon"
+        }
+    }
+    "npc_dota_hero_shadow_shaman"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/shadow_shaman"
+            "model_folder" "models/items/shadow_shaman"
+        }
+    }
+    "npc_dota_hero_shredder"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/shredder"
+            "model_folder" "models/items/shredder"
+        }
+    }
+    "npc_dota_hero_silencer"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/silencer"
+            "model_folder" "models/items/silencer"
+        }
+    }
+    "npc_dota_hero_skeleton_king"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/skeleton_king"
+            "model_folder" "models/items/skeleton_king"
+        }
+    }
+    "npc_dota_hero_skywrath_mage"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/skywrath_mage"
+            "model_folder" "models/items/skywrath_mage"
+        }
+    }
+    "npc_dota_hero_slardar"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/slardar"
+            "model_folder" "models/items/slardar"
+        }
+    }
+    "npc_dota_hero_slark"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/slark"
+            "model_folder" "models/items/slark"
+        }
+    }
+    "npc_dota_hero_snapfire"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/snapfire"
+            "model_folder" "models/items/snapfire"
+        }
+    }
+    "npc_dota_hero_sniper"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/sniper"
+            "model_folder" "models/items/sniper"
+        }
+    }
+    "npc_dota_hero_spectre"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/spectre"
+            "model_folder" "models/items/spectre"
+        }
+    }
+    "npc_dota_hero_spirit_breaker"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/spirit_breaker"
+            "model_folder" "models/items/spirit_breaker"
+        }
+    }
+    "npc_dota_hero_storm_spirit"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/storm_spirit"
+            "model_folder" "models/items/storm_spirit"
+        }
+    }
+    "npc_dota_hero_sven"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/sven"
+            "model_folder" "models/items/sven"
+        }
+    }
+    "npc_dota_hero_target_dummy"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/target_dummy"
+            "model_folder" "models/items/target_dummy"
+        }
+    }
+    "npc_dota_hero_techies"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/techies"
+            "model_folder" "models/items/techies"
+        }
+    }
+    "npc_dota_hero_templar_assassin"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/templar_assassin"
+            "model_folder" "models/items/templar_assassin"
+        }
+    }
+    "npc_dota_hero_terrorblade"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/terrorblade"
+            "model_folder" "models/items/terrorblade"
+        }
+    }
+    "npc_dota_hero_tidehunter"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/tidehunter"
+            "model_folder" "models/items/tidehunter"
+        }
+    }
+    "npc_dota_hero_tinker"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/tinker"
+            "model_folder" "models/items/tinker"
+        }
+    }
+    "npc_dota_hero_tiny"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/tiny"
+            "model_folder" "models/items/tiny"
+        }
+    }
+    "npc_dota_hero_treant"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/treant"
+            "model_folder" "models/items/treant"
+        }
+    }
+    "npc_dota_hero_troll_warlord"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/troll_warlord"
+            "model_folder" "models/items/troll_warlord"
+        }
+    }
+    "npc_dota_hero_tusk"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/tusk"
+            "model_folder" "models/items/tusk"
+        }
+    }
+    "npc_dota_hero_undying"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/undying"
+            "model_folder" "models/items/undying"
+        }
+    }
+    "npc_dota_hero_ursa"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/ursa"
+            "model_folder" "models/items/ursa"
+        }
+    }
+    "npc_dota_hero_vengefulspirit"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/vengefulspirit"
+            "model_folder" "models/items/vengefulspirit"
+        }
+    }
+    "npc_dota_hero_venomancer"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/venomancer"
+            "model_folder" "models/items/venomancer"
+        }
+    }
+    "npc_dota_hero_viper"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/viper"
+            "model_folder" "models/items/viper"
+        }
+    }
+    "npc_dota_hero_visage"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/visage"
+            "model_folder" "models/items/visage"
+        }
+    }
+    "npc_dota_hero_void_spirit"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/void_spirit"
+            "model_folder" "models/items/void_spirit"
+        }
+    }
+    "npc_dota_hero_warlock"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/warlock"
+            "model_folder" "models/items/warlock"
+        }
+    }
+    "npc_dota_hero_weaver"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/weaver"
+            "model_folder" "models/items/weaver"
+        }
+    }
+    "npc_dota_hero_windrunner"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/windrunner"
+            "model_folder" "models/items/windrunner"
+        }
+    }
+    "npc_dota_hero_winter_wyvern"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/winter_wyvern"
+            "model_folder" "models/items/winter_wyvern"
+        }
+    }
+    "npc_dota_hero_wisp"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/wisp"
+            "model_folder" "models/items/wisp"
+        }
+    }
+    "npc_dota_hero_witch_doctor"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/witch_doctor"
+            "model_folder" "models/items/witch_doctor"
+        }
+    }
+    "npc_dota_hero_zuus"
+    {
+        "override_hero" "1"
+
+        "precache"
+        {
+            "model_folder" "models/heroes/zuus"
+            "model_folder" "models/items/zuus"
+        }
+    }
+}
