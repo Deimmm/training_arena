@@ -487,8 +487,9 @@ export class MantaDodge extends GameBase {
 
   private setupHero() {
     const startPosition = Entities.FindByName(undefined, "main_training_spawn");
-    const box = (this.heroBox = new Geometry());
+    this.heroBox = new Geometry();
     this.heroBox.createBox(startPosition.GetAbsOrigin(), 375, 100, true, {});
+    const box = this.heroBox;
 
     const hero = this.controller.GetAssignedHero();
     HeroInventory.reset(hero);

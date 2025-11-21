@@ -3,7 +3,7 @@ local __TS__Class = ____lualib.__TS__Class
 local __TS__ClassExtends = ____lualib.__TS__ClassExtends
 local __TS__Decorate = ____lualib.__TS__Decorate
 local __TS__SourceMapTraceBack = ____lualib.__TS__SourceMapTraceBack
-__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["8"] = 1,["9"] = 1,["10"] = 1,["11"] = 2,["12"] = 3,["13"] = 2,["14"] = 3,["15"] = 9,["16"] = 15,["17"] = 16,["18"] = 17,["19"] = 18,["20"] = 20,["21"] = 9,["22"] = 23,["23"] = 24,["24"] = 23,["25"] = 27,["26"] = 28,["29"] = 29,["30"] = 30,["33"] = 32,["34"] = 33,["35"] = 34,["36"] = 35,["39"] = 27,["40"] = 40,["41"] = 41,["42"] = 40,["43"] = 48,["44"] = 49,["45"] = 50,["46"] = 50,["47"] = 50,["48"] = 50,["49"] = 49,["50"] = 51,["51"] = 51,["52"] = 51,["53"] = 51,["54"] = 51,["55"] = 48,["56"] = 3,["57"] = 3,["58"] = 3,["59"] = 2,["62"] = 3});
+__TS__SourceMapTraceBack(debug.getinfo(1).short_src, {["8"] = 1,["9"] = 1,["10"] = 1,["11"] = 2,["12"] = 3,["13"] = 2,["14"] = 3,["15"] = 9,["16"] = 15,["17"] = 16,["18"] = 17,["19"] = 18,["20"] = 20,["21"] = 9,["22"] = 23,["23"] = 24,["24"] = 23,["25"] = 27,["26"] = 28,["29"] = 29,["30"] = 30,["33"] = 31,["34"] = 32,["35"] = 33,["37"] = 27,["38"] = 37,["39"] = 38,["40"] = 37,["41"] = 45,["42"] = 46,["43"] = 47,["44"] = 47,["45"] = 47,["46"] = 47,["47"] = 46,["48"] = 48,["49"] = 48,["50"] = 48,["51"] = 48,["52"] = 48,["53"] = 45,["54"] = 3,["55"] = 3,["56"] = 3,["57"] = 2,["60"] = 3});
 local ____exports = {}
 local ____dota_ts_adapter = require("lib.dota_ts_adapter")
 local BaseModifier = ____dota_ts_adapter.BaseModifier
@@ -20,7 +20,7 @@ function soft_wall.prototype.OnCreated(self, opt)
     print(self.minX, self.maxX, self.minY, self.maxY)
 end
 function soft_wall.prototype.DeclareFunctions(self)
-    return {MODIFIER_EVENT_ON_UNIT_MOVED, MODIFIER_EVENT_ON_ORDER}
+    return {MODIFIER_EVENT_ON_UNIT_MOVED}
 end
 function soft_wall.prototype.OnUnitMoved(self, event)
     if not IsServer() then
@@ -30,11 +30,9 @@ function soft_wall.prototype.OnUnitMoved(self, event)
     if event.unit ~= unit then
         return
     end
-    if event.new_pos then
-        if self:isOutside(event.new_pos) then
-            local tp_pos = self:nearestOnBox(event.new_pos)
-            unit:SetAbsOrigin(tp_pos)
-        end
+    if self:isOutside(unit:GetAbsOrigin()) then
+        local tp_pos = self:nearestOnBox(unit:GetAbsOrigin())
+        unit:SetAbsOrigin(tp_pos)
     end
 end
 function soft_wall.prototype.isOutside(self, pos)

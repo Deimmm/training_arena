@@ -21,19 +21,16 @@ export class soft_wall extends BaseModifier {
   }
 
   DeclareFunctions() {
-    return [ModifierFunction.ON_UNIT_MOVED, ModifierFunction.ON_ORDER];
+    return [ModifierFunction.ON_UNIT_MOVED];
   }
 
   OnUnitMoved(event: ModifierUnitEvent): void {
     if (!IsServer()) return;
     const unit = this.GetParent();
     if (event.unit !== unit) return;
-
-    if (event.new_pos) {
-      if (this.isOutside(event.new_pos)) {
-        const tp_pos = this.nearestOnBox(event.new_pos);
-        unit.SetAbsOrigin(tp_pos);
-      }
+    if (this.isOutside(unit.GetAbsOrigin())) {
+      const tp_pos = this.nearestOnBox(unit.GetAbsOrigin());
+      unit.SetAbsOrigin(tp_pos);
     }
   }
 
